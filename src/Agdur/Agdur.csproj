@@ -56,6 +56,7 @@
     <Compile Include="Abstractions\IDataSelectorProvider.cs" />
     <Compile Include="Internals\Metric.cs" />
     <Compile Include="Internals\MultipleValueFormatter.cs" />
+    <Compile Include="Internals\NumberToStringMapper.cs" />
     <Compile Include="Internals\SingleValueFormatter.cs" />
     <Compile Include="Internals\TicksDataSelectorProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

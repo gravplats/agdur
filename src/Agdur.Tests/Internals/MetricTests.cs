@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Agdur.Abstractions;
 using Agdur.Internals;
 using Agdur.Tests.Utilities;
 using Xunit;
 
-namespace Agdur.Tests
+namespace Agdur.Tests.Internals
 {
     public class MetricTests
     {
@@ -39,26 +38,6 @@ namespace Agdur.Tests
             };
 
             Should.Throw<InvalidOperationException>(() => result.GetResult());
-        }
-
-        [Fact]
-        public void ShouldUseMetricFormatterMetricReturnsObjectThatImplementsIt()
-        {
-            var metric = new Metric("test", data => new TestOutput(), Enumerable.Empty<Sample>())
-            {
-                DataSelectorProvider = new MillisecondsDataSelectorProvider()
-            };
-
-            string result = metric.GetResult();
-            result.ShouldBe("test output");
-        }
-
-        public class TestOutput : IMetricFormatter
-        {
-            public string GetOutput(string nameOfMetric, string unitOfMeasurement)
-            {
-                return "test output";
-            }
         }
     }
 }

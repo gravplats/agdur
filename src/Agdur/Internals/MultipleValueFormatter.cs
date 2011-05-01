@@ -8,18 +8,8 @@ namespace Agdur.Internals
     /// </summary>
     public class MultipleValueFormatter : IMetricFormatter
     {
-        private static readonly IDictionary<int, string> NumberToWordMap = new Dictionary<int, string>();
-        
         private readonly int numberOfSamples;
         private readonly IEnumerable<long> samples;
-
-        static MultipleValueFormatter()
-        {
-            NumberToWordMap = new Dictionary<int, string>
-                                  {
-                                      { 2, "two"}, { 3, "three"}, { 4, "four"}, { 5, "five"}, { 6, "six"}, { 7, "seven"}, { 8, "eight"}, { 9, "nine"}, { 10, "ten"}
-                                  };
-        }
 
         /// <summary>
         /// Creates a new instance of the <see cref="MultipleValueFormatter"/> class.
@@ -43,22 +33,11 @@ namespace Agdur.Internals
         {
             if (numberOfSamples > 1)
             {
-                string word = ConvertNumberToWord(numberOfSamples);
+                string word = NumberToStringMapper.GetWordOrDefault(numberOfSamples);
                 return string.Format("The {0} {1} values are {2} {3}.", nameOfMetric, word, ToString(), unitOfMeasurement);
             }
 
             return string.Format("The {0} value is {1} {2}.", nameOfMetric, ToString(), unitOfMeasurement);
-        }
-
-        private static string ConvertNumberToWord(int numberOfSamples)
-        {
-            string word;
-            if (NumberToWordMap.TryGetValue(numberOfSamples, out word))
-            {
-                return word;
-            }
-
-            return numberOfSamples.ToString();
         }
     }
 }
