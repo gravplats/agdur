@@ -30,6 +30,17 @@ namespace Agdur.Tests
         }
 
         [Fact]
+        public void CanBenchmarkFirst()
+        {
+            var builder = Benchmark.This(() => new object()).Times(1)
+                .First(1).InMilliseconds()
+                .First(1).InTicks();
+
+            builder.ToConsole();
+            builder.ToWriter(new StringWriter());
+        }
+
+        [Fact]
         public void CanBenchmarkMax()
         {
             var builder = Benchmark.This(() => new object()).Times(1)
