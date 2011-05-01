@@ -37,6 +37,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SimpleMetricFormatter.cs" />
     <Compile Include="Benchmark.cs" />
     <Compile Include="DefaultBenchmarkAlgorithm.cs" />
     <Compile Include="Abstractions\IBenchmarkAlgorithm.cs" />

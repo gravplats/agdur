@@ -46,6 +46,7 @@
     <Compile Include="BenchmarkTests.cs" />
     <Compile Include="Internals\NumberToStringMapperTests.cs" />
     <Compile Include="MultipleValueFormatterTests.cs" />
+    <Compile Include="SimpleMetricFormatterTests.cs" />
     <Compile Include="SingleValueFormatterTests.cs" />
     <Compile Include="Utilities\AssertExtensions.cs" />
     <Compile Include="Internals\MetricTests.cs" />
