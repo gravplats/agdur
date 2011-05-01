@@ -1,6 +1,6 @@
 ﻿using Agdur.Abstractions;
 
-namespace Agdur.Internals
+namespace Agdur
 {
     /// <summary>
     /// Formats a single value result.

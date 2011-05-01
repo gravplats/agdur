@@ -45,7 +45,8 @@
   <ItemGroup>
     <Compile Include="BenchmarkTests.cs" />
     <Compile Include="Internals\NumberToStringMapperTests.cs" />
-    <Compile Include="Internals\MultipleValueFormatterTests.cs" />
+    <Compile Include="MultipleValueFormatterTests.cs" />
+    <Compile Include="SingleValueFormatterTests.cs" />
     <Compile Include="Utilities\AssertExtensions.cs" />
     <Compile Include="Internals\MetricTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -10,7 +10,7 @@ namespace Agdur.Tests.Internals
     public class MetricTests
     {
         [Fact]
-        public void CanGetResult()
+        public void ShouldNotThrowIfDataSelector()
         {
             var sample = new Sample(milliseconds: 1, ticks: 2);
             var samples = new List<Sample> { sample };
@@ -20,10 +20,7 @@ namespace Agdur.Tests.Internals
                 DataSelectorProvider = new MillisecondsDataSelectorProvider()
             };
 
-            string output = result.GetResult();
-
-            string expected = string.Format(SingleValueFormatter.OutputMessage, "test", 1, "ms");
-            output.ShouldBe(expected);
+            Should.NotThrow(() => result.GetResult());
         }
 
         [Fact]

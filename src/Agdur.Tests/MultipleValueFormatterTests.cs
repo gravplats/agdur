@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Linq;
-using Agdur.Internals;
 using Agdur.Tests.Utilities;
 using Xunit;
 
-namespace Agdur.Tests.Internals
+namespace Agdur.Tests
 {
     public class MultipleValueFormatterTests
     {

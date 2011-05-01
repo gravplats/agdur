@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using Agdur.Abstractions;
+using Agdur.Internals;
 
-namespace Agdur.Internals
+namespace Agdur
 {
     /// <summary>
     /// Format a multiple value result.
