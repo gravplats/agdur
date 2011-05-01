@@ -23,8 +23,8 @@ namespace Agdur.Tests
         public void CanBenchmarkCustom()
         {
             var builder = Benchmark.This(() => new object()).Times(10)
-                .Custom("first-five", data => new SamplesFormatter(5, data.Take(5))).InMilliseconds()
-                .Custom("first-five", data => new SamplesFormatter(5, data.Take(5))).InTicks();
+                .Custom("first-five", data => new MultipleValueFormatter(5, data.Take(5))).InMilliseconds()
+                .Custom("first-five", data => new MultipleValueFormatter(5, data.Take(5))).InTicks();
             
             builder.ToConsole();
             builder.ToWriter(new StringWriter());

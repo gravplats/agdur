@@ -27,11 +27,11 @@ namespace Agdur.Internals
         /// <inheritdoc/>
         public IBenchmarkMeasurementBuilder Average()
         {
-            return Custom("average", data => data.Average());
+            return Custom("average", data => new SingleValueFormatter(data.Average()));
         }
 
         /// <inheritdoc/>
-        public IBenchmarkMeasurementBuilder Custom(string nameOfMetric, Func<IEnumerable<long>, object> metricFunc)
+        public IBenchmarkMeasurementBuilder Custom(string nameOfMetric, Func<IEnumerable<long>, IMetricFormatter> metricFunc)
         {
             Ensure.ArgumentNotNull(metricFunc, "metric");
 
@@ -45,25 +45,25 @@ namespace Agdur.Internals
         public IBenchmarkMeasurementBuilder First(int numberOfSamples)
         {
             Ensure.GreaterThanZero(numberOfSamples, "numberOfSamples");
-            return Custom("first", data => new SamplesFormatter(numberOfSamples, data.Take(numberOfSamples)));
+            return Custom("first", data => new MultipleValueFormatter(numberOfSamples, data.Take(numberOfSamples)));
         }
 
         /// <inheritdoc/>
         public IBenchmarkMeasurementBuilder Max()
         {
-            return Custom("maximum", data => data.Max());
+            return Custom("maximum", data => new SingleValueFormatter(data.Max()));
         }
 
         /// <inheritdoc/>
         public IBenchmarkMeasurementBuilder Min()
         {
-            return Custom("minimum", data => data.Min());
+            return Custom("minimum", data => new SingleValueFormatter(data.Min()));
         }
 
         /// <inheritdoc/>
         public IBenchmarkMeasurementBuilder Total()
         {
-            return Custom("total", data => data.Sum());
+            return Custom("total", data => new SingleValueFormatter(data.Sum()));
         }
 
         /// <inheritdoc/>

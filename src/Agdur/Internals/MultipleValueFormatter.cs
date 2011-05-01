@@ -4,29 +4,29 @@ using Agdur.Abstractions;
 namespace Agdur.Internals
 {
     /// <summary>
-    /// Provides functionality for formatting output of multiple samples.
+    /// Format a multiple value result.
     /// </summary>
-    public class SamplesFormatter : IMetricFormatter
+    public class MultipleValueFormatter : IMetricFormatter
     {
         private static readonly IDictionary<int, string> NumberToWordMap = new Dictionary<int, string>();
         
         private readonly int numberOfSamples;
         private readonly IEnumerable<long> samples;
 
-        static SamplesFormatter()
+        static MultipleValueFormatter()
         {
             NumberToWordMap = new Dictionary<int, string>
-            {
-                { 2, "two"}, { 3, "three"}, { 4, "four"}, { 5, "five"}, { 6, "six"}, { 7, "seven"}, { 8, "eight"}, { 9, "nine"}, { 10, "ten"}
-            };
+                                  {
+                                      { 2, "two"}, { 3, "three"}, { 4, "four"}, { 5, "five"}, { 6, "six"}, { 7, "seven"}, { 8, "eight"}, { 9, "nine"}, { 10, "ten"}
+                                  };
         }
 
         /// <summary>
-        /// Creates a new instance of the <see cref="SamplesFormatter"/> class.
+        /// Creates a new instance of the <see cref="MultipleValueFormatter"/> class.
         /// </summary>
         /// <param name="numberOfSamples">The number of samples; "cached" since we're dealing with an <see cref="IEnumerable&lt;T&gt;"/></param>
         /// <param name="samples">The samples.</param>
-        public SamplesFormatter(int numberOfSamples, IEnumerable<long> samples)
+        public MultipleValueFormatter(int numberOfSamples, IEnumerable<long> samples)
         {
             this.numberOfSamples = numberOfSamples;
             this.samples = samples;

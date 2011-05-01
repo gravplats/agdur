@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BenchmarkTests.cs" />
-    <Compile Include="SampleContainerTests.cs" />
+    <Compile Include="MultipleValueFormatterTests.cs" />
     <Compile Include="Utilities\AssertExtensions.cs" />
     <Compile Include="MetricTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

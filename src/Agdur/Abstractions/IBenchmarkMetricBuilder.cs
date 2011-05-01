@@ -18,7 +18,7 @@ namespace Agdur.Abstractions
         /// </summary>
         /// <param name="nameOfMetric">The name of the custom metric.</param>
         /// <param name="metricFunc">The custom metric.</param>
-        IBenchmarkMeasurementBuilder Custom(string nameOfMetric, Func<IEnumerable<long>, object> metricFunc);
+        IBenchmarkMeasurementBuilder Custom(string nameOfMetric, Func<IEnumerable<long>, IMetricFormatter> metricFunc);
 
         /// <summary>
         /// Specifies that the first number of specified samples should be displayed.

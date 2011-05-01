@@ -10,13 +10,8 @@ namespace Agdur.Internals
     /// </summary>
     public class Metric
     {
-        /// <summary>
-        /// The default output message.
-        /// </summary>
-        public static string OutputMessage = "The {0} value is {1} {2}.";
-
         private readonly string nameOfMetric;
-        private readonly Func<IEnumerable<long>, object> metric;
+        private readonly Func<IEnumerable<long>, IMetricFormatter> metric;
         private readonly IEnumerable<Sample> samples;
         
         /// <summary>
@@ -25,7 +20,7 @@ namespace Agdur.Internals
         /// <param name="nameOfMetric">The name of the metric.</param>
         /// <param name="metric">The function for calculating the result of the metric.</param>
         /// <param name="samples">The sample data.</param>
-        public Metric(string nameOfMetric, Func<IEnumerable<long>, object> metric, IEnumerable<Sample> samples)
+        public Metric(string nameOfMetric, Func<IEnumerable<long>, IMetricFormatter> metric, IEnumerable<Sample> samples)
         {
             Ensure.ArgumentNotNull(nameOfMetric, "nameOfMetric");
             Ensure.ArgumentNotNull(metric, "metric");
@@ -49,27 +44,19 @@ namespace Agdur.Internals
         {
             Ensure.NotNull(DataSelectorProvider, "Internal error: Metric.DataSelectorProvider cannot be null.");
 
-            object resultOfMetric = GetResultOfMetric();
-            return GetFormattedOutput(resultOfMetric);
+            var resultOfMetric = GetResultOfMetric();
+            return resultOfMetric.GetOutput(nameOfMetric, GetUnitOfMeasurement());
         }
 
-        private string GetFormattedOutput(object resultOfMetric)
-        {
-            string unitOfMeasurement = DataSelectorProvider.GetUnitOfMeasurement() ?? "[unknown unit of measurement]";
-
-            var formatter = resultOfMetric as IMetricFormatter;
-            if (formatter != null)
-            {
-                return formatter.GetOutput(nameOfMetric, unitOfMeasurement);
-            }
-
-            return string.Format(OutputMessage, nameOfMetric, resultOfMetric, unitOfMeasurement);
-        }
-
-        private object GetResultOfMetric()
+        private IMetricFormatter GetResultOfMetric()
         {
             var data = samples.Select(DataSelectorProvider.GetDataSelector());
             return metric(data);
+        }
+
+        private string GetUnitOfMeasurement()
+        {
+            return DataSelectorProvider.GetUnitOfMeasurement() ?? "[unknown unit of measurement]";
         }
     }
 }

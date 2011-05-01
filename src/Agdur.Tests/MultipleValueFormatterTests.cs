@@ -7,13 +7,13 @@ using Xunit.Extensions;
 
 namespace Agdur.Tests
 {
-    public class SampleContainerTests
+    public class MultipleValueFormatterTests
     {
         [Fact]
         public void CanReturnProperOutputForOnlyOneSample()
         {
             var values = Enumerable.Range(1, 1).Select(Convert.ToInt64);
-            var container = new SamplesFormatter(values.Count(), values);
+            var container = new MultipleValueFormatter(values.Count(), values);
             
             string output = container.GetOutput("first", "ms");
 
@@ -33,7 +33,7 @@ namespace Agdur.Tests
         public void CanReturnProperOutputForTwoSamples(int number, string word)
         {
             var values = Enumerable.Range(1, number).Select(Convert.ToInt64);
-            var container = new SamplesFormatter(values.Count(), values);
+            var container = new MultipleValueFormatter(values.Count(), values);
 
             string output = container.GetOutput("first", "ms");
             
@@ -45,7 +45,7 @@ namespace Agdur.Tests
         public void CanReturnProperOutputForElevenSamples()
         {
             var values = Enumerable.Range(1, 11).Select(Convert.ToInt64);
-            var container = new SamplesFormatter(values.Count(), values);
+            var container = new MultipleValueFormatter(values.Count(), values);
 
             string output = container.GetOutput("first", "ms");
 

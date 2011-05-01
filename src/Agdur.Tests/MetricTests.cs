@@ -16,14 +16,14 @@ namespace Agdur.Tests
             var sample = new Sample(milliseconds: 1, ticks: 2);
             var samples = new List<Sample> { sample };
 
-            var result = new Metric("test", data => data.Max(), samples)
+            var result = new Metric("test", data => new SingleValueFormatter(data.Max()), samples)
             {
                 DataSelectorProvider = new MillisecondsDataSelectorProvider()
             };
 
             string output = result.GetResult();
 
-            string expected = string.Format(Metric.OutputMessage, "test", 1, "ms");
+            string expected = string.Format(SingleValueFormatter.OutputMessage, "test", 1, "ms");
             output.ShouldBe(expected);
         }
 
@@ -33,7 +33,7 @@ namespace Agdur.Tests
             var sample = new Sample(milliseconds: 1, ticks: 2);
             var samples = new List<Sample> { sample };
 
-            var result = new Metric("test", data => data.Max(), samples)
+            var result = new Metric("test", data => new SingleValueFormatter(data.Max()), samples)
             {
                 DataSelectorProvider = null
             };
