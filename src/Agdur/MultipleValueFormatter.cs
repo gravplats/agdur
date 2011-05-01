@@ -38,7 +38,7 @@ namespace Agdur
                 return string.Format("The {0} {1} values are {2} {3}.", nameOfMetric, word, ToString(), unitOfMeasurement);
             }
 
-            return string.Format("The {0} value is {1} {2}.", nameOfMetric, ToString(), unitOfMeasurement);
+            return string.Format(SingleValueFormatter.OutputMessage, nameOfMetric, ToString(), unitOfMeasurement);
         }
     }
 }
