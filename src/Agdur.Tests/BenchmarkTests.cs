@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 using Agdur.Abstractions;
@@ -77,6 +78,13 @@ namespace Agdur.Tests
         public void CanBenchmarkWithProfile()
         {
             Benchmark.This(() => new object()).With<BenchmarkProfile>();
+        }
+
+        [Fact]
+        public void CanBenmarchWithFuncProfile()
+        {
+            Action<IBenchmarkRepetitionBuilder> profile = (builder) => builder.Times(10000).Average().InMilliseconds().ToConsole();
+            Benchmark.This(() => new object()).With(profile);
         }
 
         public class BenchmarkProfile : IBenchmarkProfile

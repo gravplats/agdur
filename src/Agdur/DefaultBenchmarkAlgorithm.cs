@@ -33,7 +33,7 @@ namespace Agdur
             for (int index = 0; index < numberOfTimes; index++)
             {
                 watch.Reset();
-
+                
                 watch.Start();
                 action();
                 watch.Stop();

@@ -44,5 +44,11 @@ namespace Agdur
             var profile = new TProfile();
             profile.Define(this);
         }
+
+        /// <inheritdoc/>
+        public void With(Action<IBenchmarkRepetitionBuilder> profile)
+        {
+            profile(this);
+        }
     }
 }
