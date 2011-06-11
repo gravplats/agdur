@@ -1,17 +1,17 @@
 # This script is derived from the dotless build script.
 function Generate-Assembly-Info
 {
-	param(
-		[string]$file = $(throw "file is a required parameter."),
-		[string]$title,
-		[string]$description,
-		[string]$company,
-		[string]$product,
-		[string]$copyright,
-		[string]$version		
-	)
-	
-	$assemblyInfo = 
+    param(
+        [string]$file = $(throw "file is a required parameter."),
+        [string]$title,
+        [string]$description,
+        [string]$company,
+        [string]$product,
+        [string]$copyright,
+        [string]$version		
+    )
+    
+    $assemblyInfo = 
 "using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -26,25 +26,25 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion(""$version"")]
 [assembly: AssemblyDelaySign(false)]"
 
-	Generate-File-Content `
-		-file $file `
-		-content $assemblyInfo
+    Generate-File-Content `
+        -file $file `
+        -content $assemblyInfo
 }
 
 function Generate-NuGet-Spec
 {
-	param(
-		[string]$file = $(throw "file is a required parameter."),
-		[string]$id = $(throw "id is a required parameter."),
-		[string]$version = $(throw "version is a required parameter."),
-		[string]$description = $(throw "description is a required parameter."),
-		[string]$author = $(throw "author is a required parameter."),
-		[string]$licenseUrl = $(throw "licenseUrl is a required parameter."),
-		[string]$projectUrl = $(throw "projectUrl is a required parameter."),
-		[string]$tags = $(throw "tags is a required parameter.")
-	)
+    param(
+        [string]$file = $(throw "file is a required parameter."),
+        [string]$id = $(throw "id is a required parameter."),
+        [string]$version = $(throw "version is a required parameter."),
+        [string]$description = $(throw "description is a required parameter."),
+        [string]$author = $(throw "author is a required parameter."),
+        [string]$licenseUrl = $(throw "licenseUrl is a required parameter."),
+        [string]$projectUrl = $(throw "projectUrl is a required parameter."),
+        [string]$tags = $(throw "tags is a required parameter.")
+    )
 
-	$nugetSpec =
+    $nugetSpec =
 "<?xml version=""1.0""?>
 <package xmlns=""http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"">
   <metadata>
@@ -53,29 +53,29 @@ function Generate-NuGet-Spec
     <description>$description</description>
     <authors>$author</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-	<licenseUrl>$licenseUrl</licenseUrl>
+    <licenseUrl>$licenseUrl</licenseUrl>
     <projectUrl>$projectUrl</projectUrl>
     <tags>$tags</tags>
   </metadata>
 </package>"
 
-	Generate-File-Content `
-		-file $file `
-		-content $nugetSpec
+    Generate-File-Content `
+        -file $file `
+        -content $nugetSpec
 }
 
 function Generate-File-Content
 {
-	param(
-		[string]$file = $(throw "file is a required parameter."),
-		[string]$content = $(throw "content is a required parameter.")
-	)
-	
-	$dir = [System.IO.Path]::GetDirectoryName($file)
-	if ([System.IO.Directory]::Exists($dir) -eq $false)
-	{
-		[System.IO.Directory]::CreateDirectory($dir)
-	}
+    param(
+        [string]$file = $(throw "file is a required parameter."),
+        [string]$content = $(throw "content is a required parameter.")
+    )
+    
+    $dir = [System.IO.Path]::GetDirectoryName($file)
+    if ([System.IO.Directory]::Exists($dir) -eq $false)
+    {
+        [System.IO.Directory]::CreateDirectory($dir)
+    }
 
     Out-File -FilePath $file -Encoding UTF8 -InputObject $content
 }

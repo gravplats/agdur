@@ -2,6 +2,7 @@ _ReSharper.*
 bin
 obj
 build
+nuget
 release
 *.suo
 *.user
