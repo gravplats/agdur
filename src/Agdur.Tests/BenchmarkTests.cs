@@ -75,6 +75,17 @@ namespace Agdur.Tests
         }
 
         [Fact]
+        public void CanBenchmarkOnce()
+        {
+            var builder = Benchmark.This(() => new object()).Once()
+                .Value().InMilliseconds()
+                .Value().InTicks();
+
+            builder.ToConsole();
+            builder.ToWriter(new StringWriter());
+        }
+
+        [Fact]
         public void CanBenchmarkWithProfile()
         {
             Benchmark.This(() => new object()).With<BenchmarkProfile>();
@@ -83,7 +94,7 @@ namespace Agdur.Tests
         [Fact]
         public void CanBenmarchWithFuncProfile()
         {
-            Action<IBenchmarkRepetitionBuilder> profile = (builder) => builder.Times(10000).Average().InMilliseconds().ToConsole();
+            Action<IBenchmarkRepetitionBuilder> profile = builder => builder.Times(10000).Average().InMilliseconds().ToConsole();
             Benchmark.This(() => new object()).With(profile);
         }
 

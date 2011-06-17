@@ -9,7 +9,7 @@ namespace Agdur.Internals
     /// <summary>
     /// Provides a root for the fluent syntax associated with benchmarking.
     /// </summary>
-    public class BenchmarkBuilder : IBenchmarkOutputBuilder
+    public class BenchmarkBuilder : IBenchmarkOutputBuilder, ISingleBenchmarkOutputBuilder
     {
         private readonly IEnumerable<Sample> samples;
         private readonly List<Metric> metrics = new List<Metric>();
@@ -64,6 +64,15 @@ namespace Agdur.Internals
         public IBenchmarkMeasurementBuilder Total()
         {
             return Custom("total", data => new SingleValueFormatter(data.Sum()));
+        }
+
+        /// <inheritdoc/>
+        public ISingleBenchmarkMeasurementBuilder Value()
+        {
+            var metric = new Metric("single", data => new SingleValueFormatter(data.Single()), samples);
+            metrics.Add(metric);
+
+            return new SingleBenchmarkMeasurementBuilder(metric, this);
         }
 
         /// <inheritdoc/>

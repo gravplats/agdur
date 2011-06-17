@@ -23,6 +23,13 @@ namespace Agdur
         }
 
         /// <inheritdoc/>
+        public ISingleBenchmarkMetricBuilder Once()
+        {
+            var samples = benchmark.Run(1);
+            return new BenchmarkBuilder(samples);
+        }
+
+        /// <inheritdoc/>
         public static IBenchmarkBuilder This(Action action)
         {
             var benchmark = new DefaultBenchmarkAlgorithm(action);
