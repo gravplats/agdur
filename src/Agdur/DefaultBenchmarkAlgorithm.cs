@@ -9,7 +9,9 @@ namespace Agdur
     /// The default benchmark.
     /// </summary>
     /// <remarks>
-    /// Inspired by http://stackoverflow.com/questions/1507405/c-is-this-benchmarking-class-accurate.
+    /// Inspired by 
+    ///     http://stackoverflow.com/questions/1507405/c-is-this-benchmarking-class-accurate
+    ///     http://stackoverflow.com/questions/1047218/benchmarking-small-code-samples-in-c-can-this-implementation-be-improved
     /// </remarks>
     public class DefaultBenchmarkAlgorithm : IBenchmarkAlgorithm
     {
@@ -47,11 +49,11 @@ namespace Agdur
         /// </summary>
         private void WarmUp()
         {
-            action();
-
             GC.Collect();
             GC.WaitForPendingFinalizers();
             GC.Collect();
+
+            action();
         }
     }
 }
