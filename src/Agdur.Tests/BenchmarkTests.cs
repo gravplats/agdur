@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using Agdur.Abstractions;
+using Agdur.Internals;
 using Agdur.Tests.Utilities;
 using Xunit;
 
@@ -81,6 +82,26 @@ namespace Agdur.Tests
             var builder = Benchmark.This(() => new object()).Once()
                 .Value().InMilliseconds()
                 .Value().InTicks();
+
+            builder.ToConsole();
+            builder.ToWriter(new StringWriter());
+        }
+
+        [Fact]
+        public void CanBenchmarkWithCustomUnitOfTimeUsingImplementation()
+        {
+            var builder = Benchmark.This(() => new object()).Times(1)
+                .Total().InCustomUnitOfTime(new MillisecondsDataSelectorProvider());
+
+            builder.ToConsole();
+            builder.ToWriter(new StringWriter());
+        }
+
+        [Fact]
+        public void CanBenchmarkWithCustomUnitOfTimeUsingLambda()
+        {
+            var builder = Benchmark.This(() => new object()).Times(1)
+                .Total().InCustomUnitOfTime(sample => sample.Milliseconds, "ms");
 
             builder.ToConsole();
             builder.ToWriter(new StringWriter());

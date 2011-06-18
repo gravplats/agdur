@@ -40,6 +40,7 @@
     <Compile Include="Abstractions\ISingleBenchmarkMeasurementBuilder.cs" />
     <Compile Include="Abstractions\ISingleBenchmarkMetricBuilder.cs" />
     <Compile Include="Abstractions\ISingleBenchmarkOutputBuilder.cs" />
+    <Compile Include="Internals\InlineDataSelectorProvider.cs" />
     <Compile Include="Internals\SingleBenchmarkMeasurementBuilder.cs" />
     <Compile Include="SimpleMetricFormatter.cs" />
     <Compile Include="Benchmark.cs" />

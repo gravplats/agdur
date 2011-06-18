@@ -1,4 +1,5 @@
-﻿using Agdur.Abstractions;
+﻿using System;
+using Agdur.Abstractions;
 
 namespace Agdur.Internals
 {
@@ -35,6 +36,20 @@ namespace Agdur.Internals
         public IBenchmarkOutputBuilder InTicks()
         {
             result.DataSelectorProvider = new TicksDataSelectorProvider();
+            return builder;
+        }
+
+        /// <inheritdoc/>
+        public IBenchmarkOutputBuilder InCustomUnitOfTime(IDataSelectorProvider provider)
+        {
+            result.DataSelectorProvider = provider;
+            return builder;
+        }
+
+        /// <inheritdoc/>
+        public IBenchmarkOutputBuilder InCustomUnitOfTime(Func<Sample, long> selector, string unitOfMeasurement)
+        {
+            result.DataSelectorProvider = new InlineDataSelectorProvider(selector, unitOfMeasurement);
             return builder;
         }
     }

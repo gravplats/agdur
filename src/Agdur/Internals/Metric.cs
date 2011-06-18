@@ -50,7 +50,7 @@ namespace Agdur.Internals
 
         private IMetricFormatter GetResultOfMetric()
         {
-            var data = samples.Select(DataSelectorProvider.GetDataSelector());
+            IEnumerable<long> data = samples.Select(DataSelectorProvider.GetDataSelector());
             return metric(data);
         }
 
