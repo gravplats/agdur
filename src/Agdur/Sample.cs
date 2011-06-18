@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 
 namespace Agdur
 {
@@ -6,32 +7,39 @@ namespace Agdur
     /// Represents a sample for the benchmark.
     /// </summary>
     [DebuggerDisplay("{ToDebuggerDisplay(), nq}")]
-    public class Sample
+    public sealed class Sample
     {
         /// <summary>
         /// Creates a new instance of the <see cref="Sample"/> class.
         /// </summary>
-        /// <param name="milliseconds">The sample in milliseconds.</param>
-        /// <param name="ticks">The sample in ticks.</param>
-        public Sample(long milliseconds, long ticks)
+        /// <param name="span"></param>
+        public Sample(TimeSpan span)
         {
-            Milliseconds = milliseconds;
-            Ticks = ticks;
+            Span = span;
         }
 
         /// <summary>
         /// Returns the sample in milliseconds.
         /// </summary>
-        public long Milliseconds { get; private set; }
- 
+        public long Milliseconds
+        {
+            get { return Span.Milliseconds; }
+        }
+
+        /// <summary>
+        /// Returns the time span of the sample.
+        /// </summary>
+        public TimeSpan Span { get; private set; }
+
         /// <summary>
         /// Returns the sample in ticks.
         /// </summary>
-        public long Ticks { get; private set; }
+        public long Ticks
+        {
+            get { return Span.Ticks; }
+        }
 
-        // ReSharper disable UnusedMember.Local
-        private string ToDebuggerDisplay()
-        // ReSharper restore UnusedMember.Local
+        internal string ToDebuggerDisplay()
         {
             return string.Format("Milliseconds: {0}, Ticks {1}", Milliseconds, Ticks);
         }

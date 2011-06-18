@@ -40,7 +40,7 @@ namespace Agdur
                 action();
                 watch.Stop();
 
-                yield return new Sample(watch.ElapsedMilliseconds, watch.ElapsedTicks);
+                yield return new Sample(watch.Elapsed);
             }
         }
 

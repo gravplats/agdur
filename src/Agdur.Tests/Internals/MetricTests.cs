@@ -12,7 +12,9 @@ namespace Agdur.Tests.Internals
         [Fact]
         public void ShouldNotThrowIfDataSelector()
         {
-            var sample = new Sample(milliseconds: 1, ticks: 2);
+            TimeSpan span = new TimeSpan(0, 0, 0, 0, milliseconds: 1);
+            var sample = new Sample(span);
+
             var samples = new List<Sample> { sample };
 
             var result = new Metric("test", data => new SingleValueFormatter(data.Max()), samples)
@@ -26,7 +28,9 @@ namespace Agdur.Tests.Internals
         [Fact]
         public void ShouldThrowExceptionIfNoDataSelector()
         {
-            var sample = new Sample(milliseconds: 1, ticks: 2);
+            TimeSpan span = new TimeSpan(ticks: 1); 
+            var sample = new Sample(span);
+
             var samples = new List<Sample> { sample };
 
             var result = new Metric("test", data => new SingleValueFormatter(data.Max()), samples)
