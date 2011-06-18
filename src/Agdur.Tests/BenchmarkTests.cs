@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using Agdur.Abstractions;
+using Agdur.Tests.Utilities;
 using Xunit;
 
 namespace Agdur.Tests
@@ -25,7 +26,7 @@ namespace Agdur.Tests
             var builder = Benchmark.This(() => new object()).Times(10)
                 .Custom("custom", data => new SimpleMetricFormatter(data.Sum())).InMilliseconds()
                 .Custom("custom", data => new SimpleMetricFormatter(data.Sum())).InTicks();
-            
+
             builder.ToConsole();
             builder.ToWriter(new StringWriter());
         }
@@ -89,6 +90,21 @@ namespace Agdur.Tests
         public void CanBenchmarkWithProfile()
         {
             Benchmark.This(() => new object()).With<BenchmarkProfile>();
+        }
+
+        [Fact]
+        public void CanSetCustomBenchmarkAlgorithmProvider()
+        {
+            bool wasCalled = false;
+            Benchmark.SetBenchmarkAlgorithmProvider(action =>
+            {
+                wasCalled = true;
+                return new DefaultBenchmarkAlgorithm(action);
+            });
+
+            Benchmark.This(() => new object());
+
+            wasCalled.ShouldBeTrue();
         }
 
         [Fact]

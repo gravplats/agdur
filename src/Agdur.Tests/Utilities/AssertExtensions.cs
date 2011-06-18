@@ -8,5 +8,10 @@ namespace Agdur.Tests.Utilities
         {
             Assert.Equal(expected, actual);
         }
+
+        public static void ShouldBeTrue(this bool condition)
+        {
+            Assert.True(condition);
+        }
     }
 }

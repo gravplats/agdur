@@ -15,7 +15,7 @@ namespace Agdur
         /// <summary>
         /// Intializes a new instance of the <see cref="Benchmark" /> class.
         /// </summary>
-        /// <param name="benchmark"></param>
+        /// <param name="benchmark">The action to be benchmarked.</param>
         public Benchmark(IBenchmarkAlgorithm benchmark)
         {
             Ensure.ArgumentNotNull(benchmark, "benchmark");
@@ -27,13 +27,6 @@ namespace Agdur
         {
             var samples = benchmark.Run(1);
             return new BenchmarkBuilder(samples);
-        }
-
-        /// <inheritdoc/>
-        public static IBenchmarkBuilder This(Action action)
-        {
-            var benchmark = new DefaultBenchmarkAlgorithm(action);
-            return new Benchmark(benchmark);
         }
 
         /// <inheritdoc/>
@@ -56,6 +49,28 @@ namespace Agdur
         public void With(Action<IBenchmarkRepetitionBuilder> profile)
         {
             profile(this);
+        }
+
+        private static readonly Func<Action, IBenchmarkAlgorithm> DefaultProvider = action => new DefaultBenchmarkAlgorithm(action);
+        private static Func<Action, IBenchmarkAlgorithm> BenchmarkProvider = DefaultProvider;
+
+        /// <summary>
+        /// Benchmarks the specified action.
+        /// </summary>
+        /// <param name="action">The action to be benchmarked.</param>
+        public static IBenchmarkBuilder This(Action action)
+        {
+            var benchmark = BenchmarkProvider(action);
+            return new Benchmark(benchmark);
+        }
+
+        /// <summary>
+        /// Sets the provider that should be used to create a benchmark algorithm.
+        /// </summary>
+        /// <param name="provider">The benchmark algorithm provider.</param>
+        public static void SetBenchmarkAlgorithmProvider(Func<Action, IBenchmarkAlgorithm> provider)
+        {
+            BenchmarkProvider = provider ?? DefaultProvider;
         }
     }
 }
