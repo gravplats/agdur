@@ -9,7 +9,7 @@ namespace Agdur.Internals
     public class TicksDataSelectorProvider : IDataSelectorProvider
     {
         /// <inheritdoc/>
-        public Func<Sample, long> GetDataSelector()
+        public Func<TimeSpan, long> GetDataSelector()
         {
             return sample => sample.Ticks;
         }

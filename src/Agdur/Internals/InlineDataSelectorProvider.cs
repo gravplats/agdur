@@ -8,16 +8,16 @@ namespace Agdur.Internals
     /// </summary>
     internal class InlineDataSelectorProvider : IDataSelectorProvider
     {
-        private readonly Func<Sample, long> selector;
+        private readonly Func<TimeSpan, long> selector;
         private readonly string unitOfMeasurement;
 
-        public InlineDataSelectorProvider(Func<Sample, long> selector, string unitOfMeasurement)
+        public InlineDataSelectorProvider(Func<TimeSpan, long> selector, string unitOfMeasurement)
         {
             this.selector = selector;
             this.unitOfMeasurement = unitOfMeasurement;
         }
 
-        public Func<Sample, long> GetDataSelector()
+        public Func<TimeSpan, long> GetDataSelector()
         {
             return selector;
         }

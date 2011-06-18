@@ -47,7 +47,7 @@ namespace Agdur.Internals
         }
 
         /// <inheritdoc/>
-        public ISingleBenchmarkOutputBuilder InCustomUnitOfTime(Func<Sample, long> selector, string unitOfMeasurement)
+        public ISingleBenchmarkOutputBuilder InCustomUnitOfTime(Func<TimeSpan, long> selector, string unitOfMeasurement)
         {
             result.DataSelectorProvider = new InlineDataSelectorProvider(selector, unitOfMeasurement);
             return builder;

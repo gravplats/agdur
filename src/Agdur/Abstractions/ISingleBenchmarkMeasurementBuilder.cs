@@ -28,6 +28,6 @@ namespace Agdur.Abstractions
         /// </summary>
         /// <param name="selector">The custom data selector.</param>
         /// <param name="unitOfMeasurement">The unit of measurement of the custom data selector.</param>
-        ISingleBenchmarkOutputBuilder InCustomUnitOfTime(Func<Sample, long> selector, string unitOfMeasurement);
+        ISingleBenchmarkOutputBuilder InCustomUnitOfTime(Func<TimeSpan, long> selector, string unitOfMeasurement);
     }
 }

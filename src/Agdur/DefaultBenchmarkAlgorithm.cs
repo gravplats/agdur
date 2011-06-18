@@ -27,7 +27,7 @@ namespace Agdur
         }
 
         /// <inheritdoc/>
-        public IEnumerable<Sample> Run(int numberOfTimes)
+        public IEnumerable<TimeSpan> Run(int numberOfTimes)
         {
             WarmUp();
 
@@ -40,7 +40,7 @@ namespace Agdur
                 action();
                 watch.Stop();
 
-                yield return new Sample(watch.Elapsed);
+                yield return watch.Elapsed;
             }
         }
 

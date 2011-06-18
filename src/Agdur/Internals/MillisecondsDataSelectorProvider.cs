@@ -9,7 +9,7 @@ namespace Agdur.Internals
     public class MillisecondsDataSelectorProvider : IDataSelectorProvider
     {
         /// <inheritdoc/>
-        public Func<Sample, long> GetDataSelector()
+        public Func<TimeSpan, long> GetDataSelector()
         {
             return sample => sample.Milliseconds;
         }

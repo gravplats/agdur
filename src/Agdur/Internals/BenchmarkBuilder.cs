@@ -11,14 +11,14 @@ namespace Agdur.Internals
     /// </summary>
     public class BenchmarkBuilder : IBenchmarkOutputBuilder, ISingleBenchmarkOutputBuilder
     {
-        private readonly IEnumerable<Sample> samples;
+        private readonly IEnumerable<TimeSpan> samples;
         private readonly List<Metric> metrics = new List<Metric>();
 
         /// <summary>
         /// Creates a new instance of the <see cref="BenchmarkBuilder"/> class.
         /// </summary>
         /// <param name="samples">The samples.</param>
-        public BenchmarkBuilder(IEnumerable<Sample> samples)
+        public BenchmarkBuilder(IEnumerable<TimeSpan> samples)
         {
             Ensure.ArgumentNotNull(samples, "samples");
             this.samples = samples;

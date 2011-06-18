@@ -12,7 +12,7 @@ namespace Agdur.Internals
     {
         private readonly string nameOfMetric;
         private readonly Func<IEnumerable<long>, IMetricFormatter> metric;
-        private readonly IEnumerable<Sample> samples;
+        private readonly IEnumerable<TimeSpan> samples;
         
         /// <summary>
         /// Creates a new instance of the <see cref="Metric"/> class.
@@ -20,7 +20,7 @@ namespace Agdur.Internals
         /// <param name="nameOfMetric">The name of the metric.</param>
         /// <param name="metric">The function for calculating the result of the metric.</param>
         /// <param name="samples">The sample data.</param>
-        public Metric(string nameOfMetric, Func<IEnumerable<long>, IMetricFormatter> metric, IEnumerable<Sample> samples)
+        public Metric(string nameOfMetric, Func<IEnumerable<long>, IMetricFormatter> metric, IEnumerable<TimeSpan> samples)
         {
             Ensure.ArgumentNotNull(nameOfMetric, "nameOfMetric");
             Ensure.ArgumentNotNull(metric, "metric");
@@ -50,7 +50,7 @@ namespace Agdur.Internals
 
         private IMetricFormatter GetResultOfMetric()
         {
-            IEnumerable<long> data = samples.Select(DataSelectorProvider.GetDataSelector());
+            var data = samples.Select(DataSelectorProvider.GetDataSelector());
             return metric(data);
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Agdur.Abstractions
 {
@@ -12,6 +13,6 @@ namespace Agdur.Abstractions
         /// </summary>
         /// <param name="numberOfTimes">The number of times the benchmark should be run.</param>
         /// <returns>The result of the benchmark.</returns>
-        IEnumerable<Sample> Run(int numberOfTimes);
+        IEnumerable<TimeSpan> Run(int numberOfTimes);
     }
 }

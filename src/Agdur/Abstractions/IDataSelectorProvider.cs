@@ -11,7 +11,7 @@ namespace Agdur.Abstractions
         /// Returns a data selector.
         /// </summary>
         /// <returns>A data selector.</returns>
-        Func<Sample, long> GetDataSelector();
+        Func<TimeSpan, long> GetDataSelector();
 
         /// <summary>
         /// Returns the unit of measurement associated with the data selector.
