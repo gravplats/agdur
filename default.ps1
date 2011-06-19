@@ -9,7 +9,7 @@ properties {
     $sourceDirectory  = "$path\src"
     $solution         = "$sourceDirectory\Agdur.sln"	
     $toolsDirectory   = "$path\tools\"
-    $version          = "0.5"
+    $version          = "0.6"
 }
 
 $framework = '4.0'
