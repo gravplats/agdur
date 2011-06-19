@@ -28,28 +28,29 @@ namespace Agdur.Internals
         /// <inheritdoc/>
         public TOutput InMilliseconds()
         {
-            result.DataSelectorProvider = new MillisecondsDataSelectorProvider();
+            result.DataProvider = span => span.Milliseconds;
+            result.UnitOfMeasurement = "ms";
+
             return builder;
         }
 
         /// <inheritdoc/>
         public TOutput InTicks()
         {
-            result.DataSelectorProvider = new TicksDataSelectorProvider();
+            result.DataProvider = span => span.Ticks;
+            result.UnitOfMeasurement = "ticks";
+
             return builder;
         }
 
         /// <inheritdoc/>
-        public TOutput InCustomUnitOfTime(IDataSelectorProvider provider)
+        public TOutput InCustomUnitOfTime(Func<TimeSpan, long> provider, string unitOfMeasurement)
         {
-            result.DataSelectorProvider = provider;
-            return builder;
-        }
+            Ensure.ArgumentNotNull(provider, "provider");
 
-        /// <inheritdoc/>
-        public TOutput InCustomUnitOfTime(Func<TimeSpan, long> selector, string unitOfMeasurement)
-        {
-            result.DataSelectorProvider = new InlineDataSelectorProvider(selector, unitOfMeasurement);
+            result.DataProvider = provider;
+            result.UnitOfMeasurement = unitOfMeasurement;
+
             return builder;
         }
     }

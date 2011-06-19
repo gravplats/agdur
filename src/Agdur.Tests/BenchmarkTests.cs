@@ -88,16 +88,6 @@ namespace Agdur.Tests
         }
 
         [Fact]
-        public void CanBenchmarkWithCustomUnitOfTimeUsingImplementation()
-        {
-            var builder = Benchmark.This(() => new object()).Times(1)
-                .Total().InCustomUnitOfTime(new MillisecondsDataSelectorProvider());
-
-            builder.ToConsole();
-            builder.ToWriter(new StringWriter());
-        }
-
-        [Fact]
         public void CanBenchmarkWithCustomUnitOfTimeUsingLambda()
         {
             var builder = Benchmark.This(() => new object()).Times(1)

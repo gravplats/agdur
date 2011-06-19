@@ -39,7 +39,6 @@
   <ItemGroup>
     <Compile Include="Abstractions\ISingleBenchmarkMetricBuilder.cs" />
     <Compile Include="Abstractions\ISingleBenchmarkOutputBuilder.cs" />
-    <Compile Include="Internals\InlineDataSelectorProvider.cs" />
     <Compile Include="SimpleMetricFormatter.cs" />
     <Compile Include="Benchmark.cs" />
     <Compile Include="DefaultBenchmarkAlgorithm.cs" />
@@ -49,7 +48,6 @@
     <Compile Include="Abstractions\IMetricFormatter.cs" />
     <Compile Include="Internals\BenchmarkMeasurementBuilder.cs" />
     <Compile Include="Internals\BenchmarkBuilder.cs" />
-    <Compile Include="Internals\MillisecondsDataSelectorProvider.cs" />
     <Compile Include="Internals\Ensure.cs" />
     <Compile Include="Abstractions\IBenchmarkActionBuilder.cs" />
     <Compile Include="Abstractions\IBenchmarkRepetitionBuilder.cs" />
@@ -57,12 +55,10 @@
     <Compile Include="Abstractions\IBenchmarkMetricBuilder.cs" />
     <Compile Include="Abstractions\IBenchmarkOutputBuilder.cs" />
     <Compile Include="Abstractions\IFluentSyntax.cs" />
-    <Compile Include="Abstractions\IDataSelectorProvider.cs" />
     <Compile Include="Internals\Metric.cs" />
     <Compile Include="MultipleValueFormatter.cs" />
     <Compile Include="Internals\NumberToStringMapper.cs" />
     <Compile Include="SingleValueFormatter.cs" />
-    <Compile Include="Internals\TicksDataSelectorProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

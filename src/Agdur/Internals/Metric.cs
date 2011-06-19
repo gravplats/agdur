@@ -13,7 +13,7 @@ namespace Agdur.Internals
         private readonly string nameOfMetric;
         private readonly Func<IEnumerable<long>, IMetricFormatter> metric;
         private readonly IEnumerable<TimeSpan> samples;
-        
+
         /// <summary>
         /// Creates a new instance of the <see cref="Metric"/> class.
         /// </summary>
@@ -32,9 +32,14 @@ namespace Agdur.Internals
         }
 
         /// <summary>
-        /// Gets or set the data selector provider.
+        /// Gets or sets the data provider.
         /// </summary>
-        public IDataSelectorProvider DataSelectorProvider { get; set; }
+        public Func<TimeSpan, long> DataProvider { get; set; }
+
+        /// <summary>
+        /// Gets or sets the unit of measurement.
+        /// </summary>
+        public string UnitOfMeasurement { get; set; }
 
         /// <summary>
         /// Returns the result of the metric.
@@ -42,7 +47,7 @@ namespace Agdur.Internals
         /// <returns>The result of the metric.</returns>
         public string GetResult()
         {
-            Ensure.NotNull(DataSelectorProvider, "Internal error: Metric.DataSelectorProvider cannot be null.");
+            Ensure.NotNull(DataProvider, "Internal error: Metric.DataProvider cannot be null.");
 
             var resultOfMetric = GetResultOfMetric();
             return resultOfMetric.GetOutput(nameOfMetric, GetUnitOfMeasurement());
@@ -50,13 +55,13 @@ namespace Agdur.Internals
 
         private IMetricFormatter GetResultOfMetric()
         {
-            var data = samples.Select(DataSelectorProvider.GetDataSelector());
+            var data = samples.Select(DataProvider);
             return metric(data);
         }
 
         private string GetUnitOfMeasurement()
         {
-            return DataSelectorProvider.GetUnitOfMeasurement() ?? "[unknown unit of measurement]";
+            return UnitOfMeasurement ?? "[unknown unit of measurement]";
         }
     }
 }

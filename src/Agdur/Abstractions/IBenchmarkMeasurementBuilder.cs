@@ -19,16 +19,10 @@ namespace Agdur.Abstractions
         TOutput InTicks();
 
         /// <summary>
-        /// States that the metric should use a custom unit of time selector provider.
+        /// States that the metric should use a custom unit of time based on the specified provider.
         /// </summary>
-        /// <param name="provider">The custom unit of time selector provider.</param>
-        TOutput InCustomUnitOfTime(IDataSelectorProvider provider);
-
-        /// <summary>
-        /// States that the metric should use a custom unit of time selector provider.
-        /// </summary>
-        /// <param name="selector">The custom data selector.</param>
+        /// <param name="provider">The custom data provider.</param>
         /// <param name="unitOfMeasurement">The unit of measurement of the custom data selector.</param>
-        TOutput InCustomUnitOfTime(Func<TimeSpan, long> selector, string unitOfMeasurement);
+        TOutput InCustomUnitOfTime(Func<TimeSpan, long> provider, string unitOfMeasurement);
     }
 }

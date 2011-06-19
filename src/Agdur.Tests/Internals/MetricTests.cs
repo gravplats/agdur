@@ -12,12 +12,11 @@ namespace Agdur.Tests.Internals
         [Fact]
         public void ShouldNotThrowIfDataSelector()
         {
-            TimeSpan span = new TimeSpan(0, 0, 0, 0, milliseconds: 1);
-            var samples = new List<TimeSpan> { span };
+            var samples = new List<TimeSpan> { new TimeSpan(0, 0, 0, 0, milliseconds: 1) };
 
             var result = new Metric("test", data => new SingleValueFormatter(data.Max()), samples)
             {
-                DataSelectorProvider = new MillisecondsDataSelectorProvider()
+                DataProvider = span => span.Milliseconds
             };
 
             Should.NotThrow(() => result.GetResult());
@@ -26,12 +25,12 @@ namespace Agdur.Tests.Internals
         [Fact]
         public void ShouldThrowExceptionIfNoDataSelector()
         {
-            TimeSpan span = new TimeSpan(ticks: 1); 
+            TimeSpan span = new TimeSpan(ticks: 1);
             var samples = new List<TimeSpan> { span };
 
             var result = new Metric("test", data => new SingleValueFormatter(data.Max()), samples)
             {
-                DataSelectorProvider = null
+                DataProvider = null
             };
 
             Should.Throw<InvalidOperationException>(() => result.GetResult());
