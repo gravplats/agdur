@@ -3,11 +3,12 @@
     /// <summary>
     /// Used to define the type of metric.
     /// </summary>
-    public interface ISingleBenchmarkMetricBuilder : IFluentSyntax
+    /// /// <typeparam name="TOutput">The type of the output builder.</typeparam>
+    public interface ISingleBenchmarkMetricBuilder<out TOutput> : IFluentSyntax
     {
         /// <summary>
         /// Specifies that the single value of the sample should be displayed.
         /// </summary>
-        ISingleBenchmarkMeasurementBuilder Value();
+        IBenchmarkMeasurementBuilder<TOutput> Value();
     }
 }

@@ -6,39 +6,40 @@ namespace Agdur.Abstractions
     /// <summary>
     /// Used to define the type of metric.
     /// </summary>
-    public interface IBenchmarkMetricBuilder : IFluentSyntax
+    /// <typeparam name="TOutput">The type of the output builder.</typeparam>
+    public interface IBenchmarkMetricBuilder<out TOutput> : IFluentSyntax
     {
         /// <summary>
         /// Specifies that the average value should be calculated.
         /// </summary>
-        IBenchmarkMeasurementBuilder Average();
+        IBenchmarkMeasurementBuilder<TOutput> Average();
 
         /// <summary>
         /// Specifies that the value of the custom metric should be calculated.
         /// </summary>
         /// <param name="nameOfMetric">The name of the custom metric.</param>
         /// <param name="metricFunc">The custom metric.</param>
-        IBenchmarkMeasurementBuilder Custom(string nameOfMetric, Func<IEnumerable<long>, IMetricFormatter> metricFunc);
+        IBenchmarkMeasurementBuilder<TOutput> Custom(string nameOfMetric, Func<IEnumerable<long>, IMetricFormatter> metricFunc);
 
         /// <summary>
         /// Specifies that the first number of specified samples should be displayed.
         /// </summary>
         /// <param name="numberOfSamples">The number of samples that should be displayed.</param>
-        IBenchmarkMeasurementBuilder First(int numberOfSamples);
+        IBenchmarkMeasurementBuilder<TOutput> First(int numberOfSamples);
 
         /// <summary>
         /// Specifies that the maximum value should be calculated.
         /// </summary>
-        IBenchmarkMeasurementBuilder Max();
+        IBenchmarkMeasurementBuilder<TOutput> Max();
 
         /// <summary>
         /// Specifies that the minimum value should be calculated.
         /// </summary>
-        IBenchmarkMeasurementBuilder Min();
+        IBenchmarkMeasurementBuilder<TOutput> Min();
 
         /// <summary>
         /// Specifies that the total value should be calculated.
         /// </summary>
-        IBenchmarkMeasurementBuilder Total();
+        IBenchmarkMeasurementBuilder<TOutput> Total();
     }
 }

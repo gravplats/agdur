@@ -23,14 +23,14 @@ namespace Agdur
         }
 
         /// <inheritdoc/>
-        public ISingleBenchmarkMetricBuilder Once()
+        public ISingleBenchmarkMetricBuilder<ISingleBenchmarkOutputBuilder> Once()
         {
             var samples = benchmark.Run(1);
             return new BenchmarkBuilder(samples);
         }
 
         /// <inheritdoc/>
-        public IBenchmarkMetricBuilder Times(int numberOfTimes)
+        public IBenchmarkMetricBuilder<IBenchmarkOutputBuilder> Times(int numberOfTimes)
         {
             Ensure.GreaterThanZero(numberOfTimes, "numberOfTimes");
 

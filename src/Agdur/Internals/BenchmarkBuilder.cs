@@ -25,54 +25,54 @@ namespace Agdur.Internals
         }
 
         /// <inheritdoc/>
-        public IBenchmarkMeasurementBuilder Average()
+        public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Average()
         {
             return Custom("average", data => new SingleValueFormatter(data.Average()));
         }
 
         /// <inheritdoc/>
-        public IBenchmarkMeasurementBuilder Custom(string nameOfMetric, Func<IEnumerable<long>, IMetricFormatter> metricFunc)
+        public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Custom(string nameOfMetric, Func<IEnumerable<long>, IMetricFormatter> metricFunc)
         {
             Ensure.ArgumentNotNull(metricFunc, "metric");
 
             var metric = new Metric(nameOfMetric, metricFunc, samples);
             metrics.Add(metric);
             
-            return new BenchmarkMeasurementBuilder(metric, this);
+            return new BenchmarkMeasurementBuilder<IBenchmarkOutputBuilder>(metric, this);
         }
 
         /// <inheritdoc/>
-        public IBenchmarkMeasurementBuilder First(int numberOfSamples)
+        public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> First(int numberOfSamples)
         {
             Ensure.GreaterThanZero(numberOfSamples, "numberOfSamples");
             return Custom("first", data => new MultipleValueFormatter(numberOfSamples, data.Take(numberOfSamples)));
         }
 
         /// <inheritdoc/>
-        public IBenchmarkMeasurementBuilder Max()
+        public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Max()
         {
             return Custom("maximum", data => new SingleValueFormatter(data.Max()));
         }
 
         /// <inheritdoc/>
-        public IBenchmarkMeasurementBuilder Min()
+        public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Min()
         {
             return Custom("minimum", data => new SingleValueFormatter(data.Min()));
         }
 
         /// <inheritdoc/>
-        public IBenchmarkMeasurementBuilder Total()
+        public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Total()
         {
             return Custom("total", data => new SingleValueFormatter(data.Sum()));
         }
 
         /// <inheritdoc/>
-        public ISingleBenchmarkMeasurementBuilder Value()
+        public IBenchmarkMeasurementBuilder<ISingleBenchmarkOutputBuilder> Value()
         {
             var metric = new Metric("single", data => new SingleValueFormatter(data.Single()), samples);
             metrics.Add(metric);
 
-            return new SingleBenchmarkMeasurementBuilder(metric, this);
+            return new BenchmarkMeasurementBuilder<ISingleBenchmarkOutputBuilder>(metric, this);
         }
 
         /// <inheritdoc/>

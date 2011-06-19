@@ -5,7 +5,7 @@ namespace Agdur.Abstractions
     /// <summary>
     /// Used to define how the output should be presented.
     /// </summary>
-    public interface IBenchmarkOutputBuilder : IBenchmarkMetricBuilder
+    public interface IBenchmarkOutputBuilder : IBenchmarkMetricBuilder<IBenchmarkOutputBuilder>
     {
         /// <summary>
         /// Writes the output to the console.

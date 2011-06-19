@@ -8,12 +8,12 @@
         /// <summary>
         /// Specifies that the action should be run once.
         /// </summary>
-        ISingleBenchmarkMetricBuilder Once();
+        ISingleBenchmarkMetricBuilder<ISingleBenchmarkOutputBuilder> Once();
 
         /// <summary>
         /// Specifies the number of times that the action to be benchmarked should be run.
         /// </summary>
         /// <param name="numberOfTimes">The number of times that the action to be benchmarked should be run.</param>
-        IBenchmarkMetricBuilder Times(int numberOfTimes);
+        IBenchmarkMetricBuilder<IBenchmarkOutputBuilder> Times(int numberOfTimes);
     }
 }
