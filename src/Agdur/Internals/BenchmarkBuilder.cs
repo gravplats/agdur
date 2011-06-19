@@ -31,7 +31,7 @@ namespace Agdur.Internals
         }
 
         /// <inheritdoc/>
-        public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Custom(string nameOfMetric, Func<IEnumerable<long>, IMetricFormatter> metricFunc)
+        public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Custom(string nameOfMetric, Func<IEnumerable<double>, IMetricFormatter> metricFunc)
         {
             Ensure.ArgumentNotNull(metricFunc, "metric");
 

@@ -11,7 +11,7 @@ namespace Agdur.Internals
     public class Metric
     {
         private readonly string nameOfMetric;
-        private readonly Func<IEnumerable<long>, IMetricFormatter> metric;
+        private readonly Func<IEnumerable<double>, IMetricFormatter> metric;
         private readonly IEnumerable<TimeSpan> samples;
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace Agdur.Internals
         /// <param name="nameOfMetric">The name of the metric.</param>
         /// <param name="metric">The function for calculating the result of the metric.</param>
         /// <param name="samples">The sample data.</param>
-        public Metric(string nameOfMetric, Func<IEnumerable<long>, IMetricFormatter> metric, IEnumerable<TimeSpan> samples)
+        public Metric(string nameOfMetric, Func<IEnumerable<double>, IMetricFormatter> metric, IEnumerable<TimeSpan> samples)
         {
             Ensure.ArgumentNotNull(nameOfMetric, "nameOfMetric");
             Ensure.ArgumentNotNull(metric, "metric");
@@ -34,7 +34,7 @@ namespace Agdur.Internals
         /// <summary>
         /// Gets or sets the data provider.
         /// </summary>
-        public Func<TimeSpan, long> DataProvider { get; set; }
+        public Func<TimeSpan, IConvertible> DataProvider { get; set; }
 
         /// <summary>
         /// Gets or sets the unit of measurement.
@@ -55,7 +55,7 @@ namespace Agdur.Internals
 
         private IMetricFormatter GetResultOfMetric()
         {
-            var data = samples.Select(DataProvider);
+            var data = samples.Select(DataProvider).Select(convertible => convertible.ToDouble(null));
             return metric(data);
         }
 

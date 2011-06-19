@@ -10,7 +10,7 @@ namespace Agdur.Tests
         [Fact]
         public void CanReturnProperOutputForOnlyOneSample()
         {
-            var values = Enumerable.Range(1, 1).Select(Convert.ToInt64);
+            var values = Enumerable.Range(1, 1).Select(Convert.ToDouble);
             var container = new MultipleValueFormatter(values.Count(), values);
 
             string result = container.GetOutput("first", "ms");
@@ -22,7 +22,7 @@ namespace Agdur.Tests
         [Fact]
         public void CanReturnProperOutputForNumberLessThanTen()
         {
-            var values = Enumerable.Range(1, 9).Select(Convert.ToInt64);
+            var values = Enumerable.Range(1, 9).Select(Convert.ToDouble);
             var container = new MultipleValueFormatter(values.Count(), values);
 
             string result = container.GetOutput("first", "ms");
@@ -34,7 +34,7 @@ namespace Agdur.Tests
         [Fact]
         public void CanReturnProperOutputForNumbersGreaterThanNine()
         {
-            var values = Enumerable.Range(1, 10).Select(Convert.ToInt64);
+            var values = Enumerable.Range(1, 10).Select(Convert.ToDouble);
             var container = new MultipleValueFormatter(values.Count(), values);
 
             string result = container.GetOutput("first", "ms");

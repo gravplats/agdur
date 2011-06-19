@@ -44,7 +44,7 @@ namespace Agdur.Internals
         }
 
         /// <inheritdoc/>
-        public TOutput InCustomUnitOfTime(Func<TimeSpan, long> provider, string unitOfMeasurement)
+        public TOutput InCustomUnitOfTime(Func<TimeSpan, IConvertible> provider, string unitOfMeasurement)
         {
             Ensure.ArgumentNotNull(provider, "provider");
 

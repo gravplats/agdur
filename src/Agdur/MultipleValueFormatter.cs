@@ -10,14 +10,14 @@ namespace Agdur
     public class MultipleValueFormatter : IMetricFormatter
     {
         private readonly int numberOfSamples;
-        private readonly IEnumerable<long> samples;
+        private readonly IEnumerable<double> samples;
 
         /// <summary>
         /// Creates a new instance of the <see cref="MultipleValueFormatter"/> class.
         /// </summary>
         /// <param name="numberOfSamples">The number of samples; "cached" since we're dealing with an <see cref="IEnumerable&lt;T&gt;"/></param>
         /// <param name="samples">The samples.</param>
-        public MultipleValueFormatter(int numberOfSamples, IEnumerable<long> samples)
+        public MultipleValueFormatter(int numberOfSamples, IEnumerable<double> samples)
         {
             this.numberOfSamples = numberOfSamples;
             this.samples = samples;
