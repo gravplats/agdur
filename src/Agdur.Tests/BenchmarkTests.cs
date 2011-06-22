@@ -110,10 +110,10 @@ namespace Agdur.Tests
         public void CanSetCustomBenchmarkAlgorithmProvider()
         {
             bool wasCalled = false;
-            Benchmark.SetBenchmarkAlgorithmProvider(action =>
+            Benchmark.SetBenchmarkStrategyProvider(action =>
             {
                 wasCalled = true;
-                return new DefaultBenchmarkAlgorithm(action);
+                return new DefaultBenchmarkStrategy(action);
             });
 
             Benchmark.This(() => new object());

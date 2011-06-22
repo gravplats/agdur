@@ -4,9 +4,9 @@ using System.Collections.Generic;
 namespace Agdur.Abstractions
 {
     /// <summary>
-    /// Provides functionality for implementing a benchmark algorithm.
+    /// Provides functionality for implementing a benchmark strategy.
     /// </summary>
-    public interface IBenchmarkAlgorithm
+    public interface IBenchmarkStrategy
     {
         /// <summary>
         /// Runs the benchmark the specified number of times.
