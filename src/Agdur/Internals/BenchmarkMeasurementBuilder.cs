@@ -28,17 +28,17 @@ namespace Agdur.Internals
         /// <inheritdoc/>
         public TOutput InMilliseconds()
         {
-            return InCustomUnitOfTime(span => span.Milliseconds, "ms");
+            return InCustom(span => span.Milliseconds, "ms");
         }
 
         /// <inheritdoc/>
         public TOutput InTicks()
         {
-            return InCustomUnitOfTime(span => span.Ticks, "ticks");
+            return InCustom(span => span.Ticks, "ticks");
         }
 
         /// <inheritdoc/>
-        public TOutput InCustomUnitOfTime(Func<TimeSpan, IConvertible> provider, string unitOfMeasurement)
+        public TOutput InCustom(Func<TimeSpan, IConvertible> provider, string unitOfMeasurement)
         {
             Ensure.ArgumentNotNull(provider, "provider");
 

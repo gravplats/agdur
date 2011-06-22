@@ -14,7 +14,8 @@ namespace Agdur.Tests
         {
             var builder = Benchmark.This(() => new object()).Times(1)
                 .Average().InMilliseconds()
-                .Average().InTicks();
+                .Average().InTicks()
+                .Average().InCustom(sample => sample.Seconds, "s");
 
             builder.ToConsole();
             builder.ToWriter(new StringWriter());
@@ -25,7 +26,8 @@ namespace Agdur.Tests
         {
             var builder = Benchmark.This(() => new object()).Times(10)
                 .Custom("custom", data => new SimpleMetricFormatter(data.Sum())).InMilliseconds()
-                .Custom("custom", data => new SimpleMetricFormatter(data.Sum())).InTicks();
+                .Custom("custom", data => new SimpleMetricFormatter(data.Sum())).InTicks()
+                .Custom("custom", data => new SimpleMetricFormatter(data.Sum())).InCustom(sample => sample.Seconds, "s");
 
             builder.ToConsole();
             builder.ToWriter(new StringWriter());
@@ -36,7 +38,8 @@ namespace Agdur.Tests
         {
             var builder = Benchmark.This(() => new object()).Times(1)
                 .First(1).InMilliseconds()
-                .First(1).InTicks();
+                .First(1).InTicks()
+                .First(1).InCustom(sample => sample.Seconds, "s");
 
             builder.ToConsole();
             builder.ToWriter(new StringWriter());
@@ -47,7 +50,8 @@ namespace Agdur.Tests
         {
             var builder = Benchmark.This(() => new object()).Times(1)
                 .Max().InMilliseconds()
-                .Max().InTicks();
+                .Max().InTicks()
+                .Max().InCustom(sample => sample.Seconds, "s");
 
             builder.ToConsole();
             builder.ToWriter(new StringWriter());
@@ -58,7 +62,8 @@ namespace Agdur.Tests
         {
             var builder = Benchmark.This(() => new object()).Times(1)
                 .Min().InMilliseconds()
-                .Min().InTicks();
+                .Min().InTicks()
+                .Min().InCustom(sample => sample.Seconds, "s");
 
             builder.ToConsole();
             builder.ToWriter(new StringWriter());
@@ -69,7 +74,8 @@ namespace Agdur.Tests
         {
             var builder = Benchmark.This(() => new object()).Times(1)
                 .Total().InMilliseconds()
-                .Total().InTicks();
+                .Total().InTicks()
+                .Total().InCustom(sample => sample.Seconds, "s");
 
             builder.ToConsole();
             builder.ToWriter(new StringWriter());
@@ -80,17 +86,8 @@ namespace Agdur.Tests
         {
             var builder = Benchmark.This(() => new object()).Once()
                 .Value().InMilliseconds()
-                .Value().InTicks();
-
-            builder.ToConsole();
-            builder.ToWriter(new StringWriter());
-        }
-
-        [Fact]
-        public void CanBenchmarkWithCustomUnitOfTimeUsingLambda()
-        {
-            var builder = Benchmark.This(() => new object()).Times(1)
-                .Total().InCustomUnitOfTime(sample => sample.Seconds, "s");
+                .Value().InTicks()
+                .Value().InCustom(sample => sample.Seconds, "s");
 
             builder.ToConsole();
             builder.ToWriter(new StringWriter());
@@ -100,6 +97,13 @@ namespace Agdur.Tests
         public void CanBenchmarkWithProfile()
         {
             Benchmark.This(() => new object()).With<BenchmarkProfile>();
+        }
+
+        [Fact]
+        public void CanBenmarchWithFuncProfile()
+        {
+            Action<IBenchmarkRepetitionBuilder> profile = builder => builder.Times(10000).Average().InMilliseconds().ToConsole();
+            Benchmark.This(() => new object()).With(profile);
         }
 
         [Fact]
@@ -115,13 +119,6 @@ namespace Agdur.Tests
             Benchmark.This(() => new object());
 
             wasCalled.ShouldBeTrue();
-        }
-
-        [Fact]
-        public void CanBenmarchWithFuncProfile()
-        {
-            Action<IBenchmarkRepetitionBuilder> profile = builder => builder.Times(10000).Average().InMilliseconds().ToConsole();
-            Benchmark.This(() => new object()).With(profile);
         }
 
         public class BenchmarkProfile : IBenchmarkProfile

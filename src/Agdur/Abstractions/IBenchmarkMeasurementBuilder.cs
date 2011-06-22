@@ -23,6 +23,6 @@ namespace Agdur.Abstractions
         /// </summary>
         /// <param name="provider">The custom data provider.</param>
         /// <param name="unitOfMeasurement">The unit of measurement of the custom data selector.</param>
-        TOutput InCustomUnitOfTime(Func<TimeSpan, IConvertible> provider, string unitOfMeasurement);
+        TOutput InCustom(Func<TimeSpan, IConvertible> provider, string unitOfMeasurement);
     }
 }
