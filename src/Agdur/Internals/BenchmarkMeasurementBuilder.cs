@@ -28,19 +28,13 @@ namespace Agdur.Internals
         /// <inheritdoc/>
         public TOutput InMilliseconds()
         {
-            result.DataProvider = span => span.Milliseconds;
-            result.UnitOfMeasurement = "ms";
-
-            return builder;
+            return InCustomUnitOfTime(span => span.Milliseconds, "ms");
         }
 
         /// <inheritdoc/>
         public TOutput InTicks()
         {
-            result.DataProvider = span => span.Ticks;
-            result.UnitOfMeasurement = "ticks";
-
-            return builder;
+            return InCustomUnitOfTime(span => span.Ticks, "ticks");
         }
 
         /// <inheritdoc/>
