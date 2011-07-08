@@ -7,6 +7,9 @@ namespace Agdur.Abstractions
     /// </summary>
     public interface IBenchmarkOutputBuilder : IBenchmarkMetricBuilder<IBenchmarkOutputBuilder>
     {
+
+        void ToBaseline(string path);
+
         /// <summary>
         /// Writes the output to the console.
         /// </summary>

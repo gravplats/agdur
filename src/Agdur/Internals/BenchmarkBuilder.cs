@@ -75,6 +75,11 @@ namespace Agdur.Internals
             return new BenchmarkMeasurementBuilder<ISingleBenchmarkOutputBuilder>(metric, this);
         }
 
+        public void ToBaseline(string path)
+        {
+            
+        }
+
         /// <inheritdoc/>
         public void ToConsole()
         {
