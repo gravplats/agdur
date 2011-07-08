@@ -43,6 +43,7 @@
     <Compile Include="Abstractions\ISingleBenchmarkOutputBuilder.cs" />
     <Compile Include="Abstractions\IMetric.cs" />
     <Compile Include="Abstractions\IMetricOutputVisitor.cs" />
+    <Compile Include="Abstractions\MetricBase.cs" />
     <Compile Include="Internals\MultipleValueMetric.cs" />
     <Compile Include="Internals\SingleValueMetric.cs" />
     <Compile Include="Internals\StringMetricOutputVisitor.cs" />
