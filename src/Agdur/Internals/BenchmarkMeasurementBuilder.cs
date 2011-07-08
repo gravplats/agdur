@@ -8,20 +8,20 @@ namespace Agdur.Internals
     /// </summary>
     public class BenchmarkMeasurementBuilder<TOutput> : IBenchmarkMeasurementBuilder<TOutput>
     {
-        private readonly Metric result;
+        private readonly IMetric metric;
         private readonly TOutput builder;
 
         /// <summary>
         /// Creates a new instance of the <see cref="BenchmarkMeasurementBuilder{TOutput}"/> class.
         /// </summary>
-        /// <param name="result">The metric result.</param>
+        /// <param name="metric">The metric.</param>
         /// <param name="builder">The benchmark configuration builder.</param>
-        public BenchmarkMeasurementBuilder(Metric result, TOutput builder)
+        public BenchmarkMeasurementBuilder(IMetric metric, TOutput builder)
         {
-            Ensure.ArgumentNotNull(result, "result");
+            Ensure.ArgumentNotNull(metric, "result");
             Ensure.ArgumentNotNull(builder, "builder");
 
-            this.result = result;
+            this.metric = metric;
             this.builder = builder;
         }
 
@@ -42,8 +42,8 @@ namespace Agdur.Internals
         {
             Ensure.ArgumentNotNull(provider, "provider");
 
-            result.DataProvider = provider;
-            result.UnitOfMeasurement = unitOfMeasurement;
+            metric.DataProvider = provider;
+            metric.UnitOfMeasurement = unitOfMeasurement;
 
             return builder;
         }

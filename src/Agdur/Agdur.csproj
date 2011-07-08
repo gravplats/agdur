@@ -35,11 +35,18 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\ISingleBenchmarkMetricBuilder.cs" />
     <Compile Include="Abstractions\ISingleBenchmarkOutputBuilder.cs" />
-    <Compile Include="SimpleMetricFormatter.cs" />
+    <Compile Include="Abstractions\IMetric.cs" />
+    <Compile Include="Abstractions\IMetricOutputVisitor.cs" />
+    <Compile Include="Internals\MultipleValueMetric.cs" />
+    <Compile Include="Internals\SingleValueMetric.cs" />
+    <Compile Include="Internals\StringMetricOutputVisitor.cs" />
+    <Compile Include="Internals\XmlMetricOutputVisitor.cs" />
     <Compile Include="Benchmark.cs" />
     <Compile Include="DefaultBenchmarkStrategy.cs" />
     <Compile Include="Abstractions\IBenchmarkStrategy.cs" />
@@ -55,7 +62,6 @@
     <Compile Include="Abstractions\IBenchmarkMetricBuilder.cs" />
     <Compile Include="Abstractions\IBenchmarkOutputBuilder.cs" />
     <Compile Include="Abstractions\IFluentSyntax.cs" />
-    <Compile Include="Internals\Metric.cs" />
     <Compile Include="MultipleValueFormatter.cs" />
     <Compile Include="Internals\NumberToStringMapper.cs" />
     <Compile Include="SingleValueFormatter.cs" />

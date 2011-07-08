@@ -12,7 +12,7 @@ namespace Agdur.Internals
     public class BenchmarkBuilder : IBenchmarkOutputBuilder, ISingleBenchmarkOutputBuilder
     {
         private readonly IEnumerable<TimeSpan> samples;
-        private readonly List<Metric> metrics = new List<Metric>();
+        private readonly List<IMetric> metrics = new List<IMetric>();
 
         /// <summary>
         /// Creates a new instance of the <see cref="BenchmarkBuilder"/> class.
@@ -27,17 +27,15 @@ namespace Agdur.Internals
         /// <inheritdoc/>
         public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Average()
         {
-            return Custom("average", data => new SingleValueFormatter(data.Average()));
+            return Custom(new SingleValueMetric("average", data => data.Average()));
         }
 
         /// <inheritdoc/>
-        public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Custom(string nameOfMetric, Func<IEnumerable<double>, IMetricFormatter> metricFunc)
+        public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Custom(IMetric metric)
         {
-            Ensure.ArgumentNotNull(metricFunc, "metric");
-
-            var metric = new Metric(nameOfMetric, metricFunc, samples);
+            metric.Samples = samples;
             metrics.Add(metric);
-            
+
             return new BenchmarkMeasurementBuilder<IBenchmarkOutputBuilder>(metric, this);
         }
 
@@ -45,39 +43,40 @@ namespace Agdur.Internals
         public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> First(int numberOfSamples)
         {
             Ensure.GreaterThanZero(numberOfSamples, "numberOfSamples");
-            return Custom("first", data => new MultipleValueFormatter(numberOfSamples, data.Take(numberOfSamples)));
+            return Custom(new MultipleValueMetric("first", data => data.Take(numberOfSamples)));
         }
 
         /// <inheritdoc/>
         public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Max()
         {
-            return Custom("maximum", data => new SingleValueFormatter(data.Max()));
+            return Custom(new SingleValueMetric("maximum", data => data.Max()));
         }
 
         /// <inheritdoc/>
         public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Min()
         {
-            return Custom("minimum", data => new SingleValueFormatter(data.Min()));
+            return Custom(new SingleValueMetric("minimum", data => data.Min()));
         }
 
         /// <inheritdoc/>
         public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Total()
         {
-            return Custom("total", data => new SingleValueFormatter(data.Sum()));
+            return Custom(new SingleValueMetric("total", data => data.Sum()));
         }
 
         /// <inheritdoc/>
         public IBenchmarkMeasurementBuilder<ISingleBenchmarkOutputBuilder> Value()
         {
-            var metric = new Metric("single", data => new SingleValueFormatter(data.Single()), samples);
+            var metric = new SingleValueMetric("single", data => data.Single()) { Samples = samples };
             metrics.Add(metric);
 
             return new BenchmarkMeasurementBuilder<ISingleBenchmarkOutputBuilder>(metric, this);
         }
 
+        /// <inheritdoc/>
         public void ToBaseline(string path)
         {
-            
+
         }
 
         /// <inheritdoc/>
@@ -96,10 +95,11 @@ namespace Agdur.Internals
         private void Write(Action<string> write)
         {
             Ensure.ArgumentNotNull(write, "write");
+
+            var visitor = new StringMetricOutputVisitor(write);
             foreach (var metric in metrics)
             {
-                string output = metric.GetResult();
-                write(output);
+                metric.Accept(visitor);
             }
         }
     }

@@ -1,32 +1,22 @@
-﻿using Agdur.Abstractions;
+﻿using System.Linq;
+using Agdur.Abstractions;
 
 namespace Agdur
 {
     /// <summary>
     /// Formats a single value result.
     /// </summary>
-    public class SingleValueFormatter : IMetricFormatter
+    public static class SingleValueFormatter
     {
         /// <summary>
         /// The output message for a single value result.
         /// </summary>
         public static string OutputMessage = "The {0} value is {1} {2}.";
 
-        private readonly object valueOfMetric;
-
-        /// <summary>
-        /// Creates a new instance of the <see cref="SingleValueFormatter"/> class.
-        /// </summary>
-        /// <param name="valueOfMetric">The value of the metric.</param>
-        public SingleValueFormatter(object valueOfMetric)
+        public static string Output(IMetric metric)
         {
-            this.valueOfMetric = valueOfMetric;
-        }
-
-        /// <inheritdoc/>
-        public string GetOutput(string nameOfMetric, string unitOfMeasurement)
-        {
-            return string.Format(OutputMessage, nameOfMetric, valueOfMetric, unitOfMeasurement);
+            double value = metric.GetValues().Single();
+            return string.Format(OutputMessage, metric.Name, value, metric.UnitOfMeasurement);
         }
     }
 }

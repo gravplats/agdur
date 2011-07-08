@@ -11,9 +11,9 @@ namespace Agdur.Tests
         public void CanReturnProperOutputForOnlyOneSample()
         {
             var values = Enumerable.Range(1, 1).Select(Convert.ToDouble);
-            var container = new MultipleValueFormatter(values.Count(), values);
+            var metric = new TestMetric("first", "ms", values);
 
-            string result = container.GetOutput("first", "ms");
+            string result = MultipleValueFormatter.Output(metric);
 
             string expected = string.Format(SingleValueFormatter.OutputMessage, "first", 1, "ms");
             result.ShouldBe(expected);
@@ -23,11 +23,11 @@ namespace Agdur.Tests
         public void CanReturnProperOutputForNumberLessThanTen()
         {
             var values = Enumerable.Range(1, 9).Select(Convert.ToDouble);
-            var container = new MultipleValueFormatter(values.Count(), values);
+            var metric = new TestMetric("first", "ms", values);
 
-            string result = container.GetOutput("first", "ms");
+            string result = MultipleValueFormatter.Output(metric);
 
-            string expected = string.Format("The first nine values are {0} ms.", container);
+            string expected = string.Format("The first nine values are {0} ms.", string.Join(", ", values));
             result.ShouldBe(expected);
         }
 
@@ -35,9 +35,9 @@ namespace Agdur.Tests
         public void CanReturnProperOutputForNumbersGreaterThanNine()
         {
             var values = Enumerable.Range(1, 10).Select(Convert.ToDouble);
-            var container = new MultipleValueFormatter(values.Count(), values);
+            var metric = new TestMetric("first", "ms", values);
 
-            string result = container.GetOutput("first", "ms");
+            string result = MultipleValueFormatter.Output(metric);
             result.ShouldBe("The first 10 values are 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ms.");
         }
     }

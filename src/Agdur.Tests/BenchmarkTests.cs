@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using Agdur.Abstractions;
+using Agdur.Internals;
 using Agdur.Tests.Utilities;
 using Xunit;
 
@@ -25,9 +26,9 @@ namespace Agdur.Tests
         public void CanBenchmarkCustom()
         {
             var builder = Benchmark.This(() => new object()).Times(10)
-                .Custom("custom", data => new SimpleMetricFormatter(data.Sum())).InMilliseconds()
-                .Custom("custom", data => new SimpleMetricFormatter(data.Sum())).InTicks()
-                .Custom("custom", data => new SimpleMetricFormatter(data.Sum())).InCustom(sample => sample.Seconds, "s");
+                .Custom(new SingleValueMetric("custom", data => data.Sum())).InMilliseconds()
+                .Custom(new SingleValueMetric("custom", data => data.Sum())).InTicks()
+                .Custom(new SingleValueMetric("custom", data => data.Sum())).InCustom(sample => sample.Seconds, "s");
 
             builder.ToConsole();
             builder.ToWriter(new StringWriter());
