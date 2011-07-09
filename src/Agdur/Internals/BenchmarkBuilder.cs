@@ -103,7 +103,7 @@ namespace Agdur.Internals
         {
             using (var xmlWriter = xmlWriterProvider())
             {
-                var visitor = new XmlMetricOutputVisitor(xmlWriter);
+                var visitor = new XmlOutputMetricVisitor(xmlWriter);
                 xmlWriter.WriteStartElement("benchmark");
 
                 foreach (var metric in metrics)
@@ -132,7 +132,7 @@ namespace Agdur.Internals
         {
             Ensure.ArgumentNotNull(write, "write");
 
-            var visitor = new StringMetricOutputVisitor(write);
+            var visitor = new FormattedOutputMetricVisitor(write);
             foreach (var metric in metrics)
             {
                 metric.Accept(visitor);

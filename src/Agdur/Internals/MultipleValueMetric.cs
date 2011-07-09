@@ -14,7 +14,7 @@ namespace Agdur.Internals
             this.func = func;
         }
 
-        public override void Accept(IMetricOutputVisitor visitor)
+        public override void Accept(IMetricVisitor visitor)
         {
             visitor.Visit(this);
         }

@@ -20,7 +20,7 @@ namespace Agdur.Internals
         
         public string UnitOfMeasurement { get; set; }
 
-        public abstract void Accept(IMetricOutputVisitor visitor);
+        public abstract void Accept(IMetricVisitor visitor);
 
         public abstract IEnumerable<double> GetValues();
 

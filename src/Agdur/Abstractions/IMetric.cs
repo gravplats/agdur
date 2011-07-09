@@ -13,7 +13,7 @@ namespace Agdur.Abstractions
 
         string UnitOfMeasurement { get; set; }
 
-        void Accept(IMetricOutputVisitor visitor);
+        void Accept(IMetricVisitor visitor);
 
         IEnumerable<double> GetValues();
     }

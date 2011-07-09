@@ -31,7 +31,7 @@ namespace Agdur.Tests
 
         public string UnitOfMeasurement { get; set; }
 
-        public void Accept(IMetricOutputVisitor visitor)
+        public void Accept(IMetricVisitor visitor)
         {
             throw new NotImplementedException();
         }

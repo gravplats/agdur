@@ -44,12 +44,12 @@
     <Compile Include="Abstractions\ISingleBenchmarkMetricBuilder.cs" />
     <Compile Include="Abstractions\ISingleBenchmarkOutputBuilder.cs" />
     <Compile Include="Abstractions\IMetric.cs" />
-    <Compile Include="Abstractions\IMetricOutputVisitor.cs" />
+    <Compile Include="Abstractions\IMetricVisitor.cs" />
     <Compile Include="Internals\MetricBase.cs" />
     <Compile Include="Internals\MultipleValueMetric.cs" />
     <Compile Include="Internals\SingleValueMetric.cs" />
-    <Compile Include="Internals\StringMetricOutputVisitor.cs" />
-    <Compile Include="Internals\XmlMetricOutputVisitor.cs" />
+    <Compile Include="Internals\FormattedOutputMetricVisitor.cs" />
+    <Compile Include="Internals\XmlOutputMetricVisitor.cs" />
     <Compile Include="Benchmark.cs" />
     <Compile Include="DefaultBenchmarkStrategy.cs" />
     <Compile Include="Abstractions\IBenchmarkStrategy.cs" />

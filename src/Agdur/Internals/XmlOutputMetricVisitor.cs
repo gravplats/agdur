@@ -4,21 +4,30 @@ using Agdur.Abstractions;
 
 namespace Agdur.Internals
 {
-    public class XmlMetricOutputVisitor : IMetricOutputVisitor
+    /// <summary>
+    /// Provides XML output of the results of a metric.
+    /// </summary>
+    public class XmlOutputMetricVisitor : IMetricVisitor
     {
         private readonly XmlWriter writer;
 
-        public XmlMetricOutputVisitor(XmlWriter writer)
+        /// <summary>
+        /// Creates a new instance of the <see cref="XmlOutputMetricVisitor"/> class.
+        /// </summary>
+        /// <param name="writer"></param>
+        public XmlOutputMetricVisitor(XmlWriter writer)
         {
             this.writer = writer;
         }
 
+        /// <inheritdoc/>
         public void Visit(SingleValueMetric metric)
         {
             var value = metric.GetValues().Single().ToString();
             writer.WriteElementString(metric.Name, value);
         }
 
+        /// <inheritdoc/>
         public void Visit(MultipleValueMetric metric)
         {
             var values = metric.GetValues().ToList();
