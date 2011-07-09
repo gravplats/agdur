@@ -26,12 +26,6 @@ namespace Agdur.Internals
         }
 
         /// <inheritdoc/>
-        public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Average()
-        {
-            return Custom("average", data => data.Average());
-        }
-
-        /// <inheritdoc/>
         public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Custom(string name, Func<IEnumerable<double>, double> func)
         {
             return Custom(new SingleValueMetric(name, func));
@@ -50,31 +44,6 @@ namespace Agdur.Internals
             metrics.Add(metric);
 
             return new BenchmarkMeasurementBuilder<IBenchmarkOutputBuilder>(metric, this);
-        }
-
-        /// <inheritdoc/>
-        public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> First(int numberOfSamples)
-        {
-            Ensure.GreaterThanZero(numberOfSamples, "numberOfSamples");
-            return Custom("first", data => data.Take(numberOfSamples));
-        }
-
-        /// <inheritdoc/>
-        public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Max()
-        {
-            return Custom("maximum", data => data.Max());
-        }
-
-        /// <inheritdoc/>
-        public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Min()
-        {
-            return Custom("minimum", data => data.Min());
-        }
-
-        /// <inheritdoc/>
-        public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Total()
-        {
-            return Custom("total", data => data.Sum());
         }
 
         /// <inheritdoc/>
