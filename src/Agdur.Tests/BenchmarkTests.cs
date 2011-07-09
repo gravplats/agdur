@@ -95,20 +95,13 @@ namespace Agdur.Tests
         }
 
         [Fact]
-        public void CanBenchmarkWithBaselineUsingWriter()
+        public void CanBenchmarkAsBaselineUsingWriter()
         {
             var writer = new StringWriter();
-            Benchmark.This(() => new object()).ToBaseline<BenchmarkBaselineProfile>(writer);
+            Benchmark.This(() => new object()).AsBaseline<BenchmarkBaselineProfile>(writer);
             
             string result = writer.ToString();
             Console.WriteLine(result);
-        }
-
-        [Fact]
-        public void CanBenchmarkWithBaselineUsingPath()
-        {
-            string path = "";
-            Benchmark.This(() => new object()).ToBaseline<BenchmarkBaselineProfile>(path);
         }
 
         [Fact]

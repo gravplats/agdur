@@ -13,7 +13,7 @@ namespace Agdur.Abstractions
         /// </summary>
         /// <typeparam name="TProfile">The baseline profile type.</typeparam>
         /// <param name="path">The path that the baseline should be written to.</param>
-        void ToBaseline<TProfile>(string path) 
+        void AsBaseline<TProfile>(string path) 
             where TProfile : IBenchmarkBaselineProfile, new();
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace Agdur.Abstractions
         /// </summary>
         /// <typeparam name="TProfile">The baseline profile type.</typeparam>
         /// <param name="writer">The writer that the baseline should be written to.</param>
-        void ToBaseline<TProfile>(TextWriter writer)
+        void AsBaseline<TProfile>(TextWriter writer)
             where TProfile : IBenchmarkBaselineProfile, new();
 
         /// <summary>
