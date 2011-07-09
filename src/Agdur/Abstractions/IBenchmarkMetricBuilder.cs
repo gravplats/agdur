@@ -1,4 +1,7 @@
-﻿namespace Agdur.Abstractions
+﻿using System;
+using System.Collections.Generic;
+
+namespace Agdur.Abstractions
 {
     /// <summary>
     /// Used to define the type of metric.
@@ -10,6 +13,20 @@
         /// Specifies that the average value should be calculated.
         /// </summary>
         IBenchmarkMeasurementBuilder<TOutput> Average();
+
+        /// <summary>
+        /// Specifies how the value of the custom metric should be calculated.
+        /// </summary>
+        /// <param name="name">The name of the custom metric.</param>
+        /// <param name="func">The metric.</param>
+        IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Custom(string name, Func<IEnumerable<double>, double> func);
+
+        /// <summary>
+        /// Specifies how the value of the custom metric should be calculated.
+        /// </summary>
+        /// <param name="name">The name of the custom metric.</param>
+        /// <param name="func">The metric.</param>
+        IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Custom(string name, Func<IEnumerable<double>, IEnumerable<double>> func);
 
         /// <summary>
         /// Specifies how the value of the custom metric should be calculated.

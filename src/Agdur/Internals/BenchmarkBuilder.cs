@@ -27,7 +27,19 @@ namespace Agdur.Internals
         /// <inheritdoc/>
         public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Average()
         {
-            return Custom(new SingleValueMetric("average", data => data.Average()));
+            return Custom("average", data => data.Average());
+        }
+
+        /// <inheritdoc/>
+        public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Custom(string name, Func<IEnumerable<double>, double> func)
+        {
+            return Custom(new SingleValueMetric(name, func));
+        }
+
+        /// <inheritdoc/>
+        public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Custom(string name, Func<IEnumerable<double>, IEnumerable<double>> func)
+        {
+            return Custom(new MultipleValueMetric(name, func));
         }
 
         /// <inheritdoc/>
@@ -43,25 +55,25 @@ namespace Agdur.Internals
         public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> First(int numberOfSamples)
         {
             Ensure.GreaterThanZero(numberOfSamples, "numberOfSamples");
-            return Custom(new MultipleValueMetric("first", data => data.Take(numberOfSamples)));
+            return Custom("first", data => data.Take(numberOfSamples));
         }
 
         /// <inheritdoc/>
         public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Max()
         {
-            return Custom(new SingleValueMetric("maximum", data => data.Max()));
+            return Custom("maximum", data => data.Max());
         }
 
         /// <inheritdoc/>
         public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Min()
         {
-            return Custom(new SingleValueMetric("minimum", data => data.Min()));
+            return Custom("minimum", data => data.Min());
         }
 
         /// <inheritdoc/>
         public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Total()
         {
-            return Custom(new SingleValueMetric("total", data => data.Sum()));
+            return Custom("total", data => data.Sum());
         }
 
         /// <inheritdoc/>
