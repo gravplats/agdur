@@ -55,7 +55,6 @@
     <Compile Include="Abstractions\IBenchmarkStrategy.cs" />
     <Compile Include="Abstractions\IBenchmarkProfile.cs" />
     <Compile Include="Abstractions\IBenchmarkBuilder.cs" />
-    <Compile Include="Abstractions\IMetricFormatter.cs" />
     <Compile Include="Internals\BenchmarkMeasurementBuilder.cs" />
     <Compile Include="Internals\BenchmarkBuilder.cs" />
     <Compile Include="Internals\Ensure.cs" />
