@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml;
 using Agdur.Abstractions;
 
 namespace Agdur.Internals
@@ -88,13 +89,30 @@ namespace Agdur.Internals
         /// <inheritdoc/>
         public void ToBaseline(string path)
         {
-            
+            ToBaseline(() => XmlWriter.Create(path));
         }
 
         /// <inheritdoc/>
         public void ToBaseline(TextWriter writer)
         {
-            
+            Ensure.ArgumentNotNull(writer, "writer");
+            ToBaseline(() => XmlWriter.Create(writer));
+        }
+
+        private void ToBaseline(Func<XmlWriter> xmlWriterProvider)
+        {
+            using (var xmlWriter = xmlWriterProvider())
+            {
+                var visitor = new XmlMetricOutputVisitor(xmlWriter);
+                xmlWriter.WriteStartElement("benchmark");
+
+                foreach (var metric in metrics)
+                {
+                    metric.Accept(visitor);
+                }
+
+                xmlWriter.WriteEndElement();
+            }
         }
 
         /// <inheritdoc/>

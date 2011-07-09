@@ -99,6 +99,9 @@ namespace Agdur.Tests
         {
             var writer = new StringWriter();
             Benchmark.This(() => new object()).ToBaseline<BenchmarkBaselineProfile>(writer);
+            
+            string result = writer.ToString();
+            Console.WriteLine(result);
         }
 
         [Fact]
@@ -148,7 +151,9 @@ namespace Agdur.Tests
         {
             public IBenchmarkBaselineBuilder Define(IBenchmarkRepetitionBuilder builder)
             {
-                return builder.Times(10000).Average().InMilliseconds();
+                return builder.Times(10)
+                    .Average().InMilliseconds()
+                    .First(5).InMilliseconds();
             }
         }
     }
