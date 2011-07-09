@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BenchmarkTests.cs" />
+    <Compile Include="CompareTests.cs" />
     <Compile Include="Internals\NumberToStringMapperTests.cs" />
     <Compile Include="MultipleValueFormatterTests.cs" />
     <Compile Include="SingleValueFormatterTests.cs" />
