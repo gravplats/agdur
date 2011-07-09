@@ -95,6 +95,20 @@ namespace Agdur.Tests
         }
 
         [Fact]
+        public void CanBenchmarkWithBaselineUsingWriter()
+        {
+            var writer = new StringWriter();
+            Benchmark.This(() => new object()).ToBaseline<BenchmarkBaselineProfile>(writer);
+        }
+
+        [Fact]
+        public void CanBenchmarkWithBaselineUsingPath()
+        {
+            string path = "";
+            Benchmark.This(() => new object()).ToBaseline<BenchmarkBaselineProfile>(path);
+        }
+
+        [Fact]
         public void CanBenchmarkWithProfile()
         {
             Benchmark.This(() => new object()).With<BenchmarkProfile>();
@@ -127,6 +141,14 @@ namespace Agdur.Tests
             public void Define(IBenchmarkRepetitionBuilder builder)
             {
                 builder.Times(10000).Average().InMilliseconds().ToConsole();
+            }
+        }
+
+        public class BenchmarkBaselineProfile : IBenchmarkBaselineProfile
+        {
+            public IBenchmarkBaselineBuilder Define(IBenchmarkRepetitionBuilder builder)
+            {
+                return builder.Times(10000).Average().InMilliseconds();
             }
         }
     }

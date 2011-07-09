@@ -88,7 +88,13 @@ namespace Agdur.Internals
         /// <inheritdoc/>
         public void ToBaseline(string path)
         {
+            
+        }
 
+        /// <inheritdoc/>
+        public void ToBaseline(TextWriter writer)
+        {
+            
         }
 
         /// <inheritdoc/>

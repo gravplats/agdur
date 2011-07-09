@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using Agdur.Abstractions;
 using Agdur.Internals;
@@ -43,7 +44,26 @@ namespace Agdur
         }
 
         /// <inheritdoc/>
-        public void With<TProfile>() where TProfile : IBenchmarkProfile, new()
+        public void ToBaseline<TProfile>(string path) 
+            where TProfile : IBenchmarkBaselineProfile, new()
+        {
+            var profile = new TProfile();
+            profile.Define(this).ToBaseline(path);
+        }
+
+        /// <inheritdoc/>
+        public void ToBaseline<TProfile>(TextWriter writer) 
+            where TProfile : IBenchmarkBaselineProfile, new()
+        {
+            Ensure.ArgumentNotNull(writer, "writer");
+
+            var profile = new TProfile();
+            profile.Define(this).ToBaseline(writer);
+        }
+
+        /// <inheritdoc/>
+        public void With<TProfile>() 
+            where TProfile : IBenchmarkProfile, new()
         {
             var profile = new TProfile();
             profile.Define(this);

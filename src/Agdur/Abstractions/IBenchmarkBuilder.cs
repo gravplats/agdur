@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace Agdur.Abstractions
 {
@@ -7,6 +8,22 @@ namespace Agdur.Abstractions
     /// </summary>
     public interface IBenchmarkBuilder : IBenchmarkRepetitionBuilder
     {
+        /// <summary>
+        /// Specifies a predefined profile that should be used for creating a baseline.
+        /// </summary>
+        /// <typeparam name="TProfile">The baseline profile type.</typeparam>
+        /// <param name="path">The path that the baseline should be written to.</param>
+        void ToBaseline<TProfile>(string path) 
+            where TProfile : IBenchmarkBaselineProfile, new();
+
+        /// <summary>
+        /// Specifies a predefined profile that should be used for creating a baseline.
+        /// </summary>
+        /// <typeparam name="TProfile">The baseline profile type.</typeparam>
+        /// <param name="writer">The writer that the baseline should be written to.</param>
+        void ToBaseline<TProfile>(TextWriter writer)
+            where TProfile : IBenchmarkBaselineProfile, new();
+
         /// <summary>
         /// Specifies a predefined profile that should be used for benchmarking and reporting the
         /// result of the benchmark.
