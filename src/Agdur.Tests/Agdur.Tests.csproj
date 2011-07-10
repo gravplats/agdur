@@ -52,6 +52,7 @@
     <Compile Include="Utilities\AssertExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Should.cs" />
+    <Compile Include="XmlParserTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agdur\Agdur.csproj">

@@ -145,8 +145,7 @@ namespace Agdur.Tests
             public IBenchmarkBaselineBuilder Define(IBenchmarkRepetitionBuilder builder)
             {
                 return builder.Times(10)
-                    .Average().InMilliseconds()
-                    .First(5).InMilliseconds();
+                    .Average().InMilliseconds();
             }
         }
     }

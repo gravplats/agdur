@@ -9,7 +9,9 @@ namespace Agdur.Tests
         [Fact]
         public void CanCompareToBaseline()
         {
-            var reader = new StringReader("");
+            string xml = "<?xml version=\"1.0\" encoding=\"utf-16\"?><benchmark><average>0</average></benchmark>";
+            var reader = new StringReader(xml);
+
             Compare.This(() => new object()).ToBaseline<BenchmarkBaselineProfile>(reader);
         }
 
@@ -18,8 +20,7 @@ namespace Agdur.Tests
             public IBenchmarkBaselineBuilder Define(IBenchmarkRepetitionBuilder builder)
             {
                 return builder.Times(10)
-                    .Average().InMilliseconds()
-                    .First(5).InMilliseconds();
+                    .Average().InMilliseconds();
             }
         }
     }

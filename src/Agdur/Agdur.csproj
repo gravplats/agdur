@@ -47,6 +47,7 @@
     <Compile Include="Abstractions\IMetric.cs" />
     <Compile Include="Abstractions\IMetricVisitor.cs" />
     <Compile Include="Compare.cs" />
+    <Compile Include="CompareBuilder.cs" />
     <Compile Include="Internals\CompareBuilder.cs" />
     <Compile Include="Abstractions\ICompareBuilder.cs" />
     <Compile Include="Internals\MetricBase.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Internals\NumberToStringMapper.cs" />
     <Compile Include="SingleValueFormatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XmlParser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,6 +1,5 @@
 ﻿using System;
 using Agdur.Abstractions;
-using Agdur.Internals;
 
 namespace Agdur
 {
@@ -8,7 +7,8 @@ namespace Agdur
     {
         public static ICompareBuilder This(Action action)
         {
-            return new CompareBuilder();
+            var builder = Benchmark.This(action);
+            return new CompareBuilder(builder);
         }
     }
 }
