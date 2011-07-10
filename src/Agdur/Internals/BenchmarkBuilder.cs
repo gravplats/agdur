@@ -56,13 +56,13 @@ namespace Agdur.Internals
         }
 
         /// <inheritdoc/>
-        public void ToBaseline(string path)
+        public void ToXml(string path)
         {
             ToBaseline(() => XmlWriter.Create(path));
         }
 
         /// <inheritdoc/>
-        public void ToBaseline(TextWriter writer)
+        public void ToXml(TextWriter writer)
         {
             Ensure.ArgumentNotNull(writer, "writer");
             ToBaseline(() => XmlWriter.Create(writer));

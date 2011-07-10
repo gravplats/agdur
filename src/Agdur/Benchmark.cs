@@ -48,7 +48,7 @@ namespace Agdur
             where TProfile : IBenchmarkBaselineProfile, new()
         {
             var profile = new TProfile();
-            profile.Define(this).ToBaseline(path);
+            profile.Define(this).ToXml(path);
         }
 
         /// <inheritdoc/>
@@ -58,7 +58,7 @@ namespace Agdur
             Ensure.ArgumentNotNull(writer, "writer");
 
             var profile = new TProfile();
-            profile.Define(this).ToBaseline(writer);
+            profile.Define(this).ToXml(writer);
         }
 
         /// <inheritdoc/>

@@ -19,15 +19,15 @@ namespace Agdur.Abstractions
         void ToWriter(TextWriter writer);
 
         /// <summary>
-        /// Writes the output the specified path.
+        /// Writes the XML output the specified path.
         /// </summary>
-        /// <param name="path">The path that the output should be written to.</param>
-        void ToBaseline(string path);
+        /// <param name="path">The path that the XML output should be written to.</param>
+        void ToXml(string path);
 
         /// <summary>
-        /// Writes the output to the specified writer.
+        /// Writes the XML output to the specified writer.
         /// </summary>
-        /// <param name="writer">The writer that the output should be written to.</param>
-        void ToBaseline(TextWriter writer);
+        /// <param name="writer">The writer that the XML output should be written to.</param>
+        void ToXml(TextWriter writer);
     }
 }
