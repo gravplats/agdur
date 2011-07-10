@@ -39,6 +39,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="XmlBenchmarkOutputBuilderExtensions.cs" />
     <Compile Include="BenchmarkMetricBuilderExtensions.cs" />
     <Compile Include="Abstractions\IBenchmarkBaselineProfile.cs" />
     <Compile Include="Abstractions\ISingleBenchmarkMetricBuilder.cs" />

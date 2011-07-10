@@ -19,15 +19,9 @@ namespace Agdur.Abstractions
         void ToWriter(TextWriter writer);
 
         /// <summary>
-        /// Writes the XML output the specified path.
+        /// Uses the specified visitor to display the results of the metrics.
         /// </summary>
-        /// <param name="path">The path that the XML output should be written to.</param>
-        void ToXml(string path);
-
-        /// <summary>
-        /// Writes the XML output to the specified writer.
-        /// </summary>
-        /// <param name="writer">The writer that the XML output should be written to.</param>
-        void ToXml(TextWriter writer);
+        /// <param name="visitor">The visitor that should be used to display the results of the metrics.</param>
+        void ToVisitor(IMetricVisitor visitor);
     }
 }

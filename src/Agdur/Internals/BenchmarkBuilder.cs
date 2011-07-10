@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Xml;
 using Agdur.Abstractions;
 
 namespace Agdur.Internals
@@ -56,35 +55,6 @@ namespace Agdur.Internals
         }
 
         /// <inheritdoc/>
-        public void ToXml(string path)
-        {
-            ToBaseline(() => XmlWriter.Create(path));
-        }
-
-        /// <inheritdoc/>
-        public void ToXml(TextWriter writer)
-        {
-            Ensure.ArgumentNotNull(writer, "writer");
-            ToBaseline(() => XmlWriter.Create(writer));
-        }
-
-        private void ToBaseline(Func<XmlWriter> xmlWriterProvider)
-        {
-            using (var xmlWriter = xmlWriterProvider())
-            {
-                var visitor = new XmlOutputMetricVisitor(xmlWriter);
-                xmlWriter.WriteStartElement("benchmark");
-
-                foreach (var metric in metrics)
-                {
-                    metric.Accept(visitor);
-                }
-
-                xmlWriter.WriteEndElement();
-            }
-        }
-
-        /// <inheritdoc/>
         public void ToConsole()
         {
             Write(Console.WriteLine);
@@ -102,6 +72,15 @@ namespace Agdur.Internals
             Ensure.ArgumentNotNull(write, "write");
 
             var visitor = new FormattedOutputMetricVisitor(write);
+            foreach (var metric in metrics)
+            {
+                metric.Accept(visitor);
+            }
+        }
+
+        public void ToVisitor(IMetricVisitor visitor)
+        {
+            Ensure.ArgumentNotNull(visitor, "visitor");
             foreach (var metric in metrics)
             {
                 metric.Accept(visitor);
