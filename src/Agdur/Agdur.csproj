@@ -40,7 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BenchmarkMetricBuilderExtensions.cs" />
-    <Compile Include="Abstractions\IBenchmarkBaselineBuilder.cs" />
     <Compile Include="Abstractions\IBenchmarkBaselineProfile.cs" />
     <Compile Include="Abstractions\ISingleBenchmarkMetricBuilder.cs" />
     <Compile Include="Abstractions\ISingleBenchmarkOutputBuilder.cs" />

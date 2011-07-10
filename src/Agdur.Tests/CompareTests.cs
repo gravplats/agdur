@@ -17,7 +17,7 @@ namespace Agdur.Tests
 
         public class BenchmarkBaselineProfile : IBenchmarkBaselineProfile
         {
-            public IBenchmarkBaselineBuilder Define(IBenchmarkRepetitionBuilder builder)
+            public IBenchmarkOutputBuilder Define(IBenchmarkRepetitionBuilder builder)
             {
                 return builder.Times(10)
                     .Average().InMilliseconds();
