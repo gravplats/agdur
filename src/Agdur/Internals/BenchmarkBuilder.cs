@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Agdur.Abstractions;
 
@@ -8,10 +9,10 @@ namespace Agdur.Internals
     /// <summary>
     /// Provides a root for the fluent syntax associated with benchmarking.
     /// </summary>
-    public class BenchmarkBuilder : IBenchmarkOutputBuilder, ISingleBenchmarkOutputBuilder
+    public class BenchmarkBuilder : IBenchmarkBuilderContinutation, ISingleBenchmarkBuilderContinuation
     {
         private readonly IEnumerable<TimeSpan> samples;
-        private readonly List<IMetric> metrics = new List<IMetric>();
+        private readonly IList<IMetric> metrics = new List<IMetric>();
 
         /// <summary>
         /// Creates a new instance of the <see cref="BenchmarkBuilder"/> class.
@@ -24,43 +25,39 @@ namespace Agdur.Internals
         }
 
         /// <inheritdoc/>
-        public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Custom(string name, Func<IEnumerable<double>, double> func)
+        public IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> Custom(string name, Func<IEnumerable<double>, double> func)
         {
             return Custom(new SingleValueMetric(name, func));
         }
 
         /// <inheritdoc/>
-        public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Custom(string name, Func<IEnumerable<double>, IEnumerable<double>> func)
+        public IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> Custom(string name, Func<IEnumerable<double>, IEnumerable<double>> func)
         {
             return Custom(new MultipleValueMetric(name, func));
         }
 
         /// <inheritdoc/>
-        public IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> Custom(IMetric metric)
+        public IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> Custom(IMetric metric)
         {
             metric.Samples = samples;
             metrics.Add(metric);
 
-            return new BenchmarkMeasurementBuilder<IBenchmarkOutputBuilder>(metric, this);
+            return new BenchmarkMeasurementBuilder<IBenchmarkBuilderContinutation>(metric, this);
         }
 
         /// <inheritdoc/>
-        public IBenchmarkMeasurementBuilder<ISingleBenchmarkOutputBuilder> Value()
+        public IBenchmarkBuilderInSyntax<ISingleBenchmarkBuilderContinuation> Value()
         {
             var metric = new SingleValueMetric("single", data => data.Single()) { Samples = samples };
             metrics.Add(metric);
 
-            return new BenchmarkMeasurementBuilder<ISingleBenchmarkOutputBuilder>(metric, this);
+            return new BenchmarkMeasurementBuilder<ISingleBenchmarkBuilderContinuation>(metric, this);
         }
 
         /// <inheritdoc/>
-        public void ToVisitor(IMetricVisitor visitor)
+        public IBenchmarkBuilderAsSyntax ToCustom(TextWriter writer)
         {
-            Ensure.ArgumentNotNull(visitor, "visitor");
-            foreach (var metric in metrics)
-            {
-                metric.Accept(visitor);
-            }
+            return new BenchmarkBuilderAsSyntax(writer, metrics);
         }
     }
 }

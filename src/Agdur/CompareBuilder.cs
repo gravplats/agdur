@@ -29,7 +29,7 @@ namespace Agdur
             using (var writer = new StringWriter())
             {
                 var profile = new TProfile();
-                profile.Define(builder).ToXml(writer);
+                profile.Define(builder).ToCustom(writer).AsXml();
 
                 string xml = writer.ToString();
                 string baseline = reader.ReadToEnd();

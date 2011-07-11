@@ -6,7 +6,7 @@ namespace Agdur.Abstractions
     /// Used to define the type of measurement that should be used for presenting the metric.
     /// </summary>
     /// <typeparam name="TOutput">The type of the output builder.</typeparam>
-    public interface IBenchmarkMeasurementBuilder<out TOutput> : IFluentSyntax
+    public interface IBenchmarkBuilderInSyntax<out TOutput> : IFluentSyntax
     {
         /// <summary>
         /// States that the metric should be in milliseconds.

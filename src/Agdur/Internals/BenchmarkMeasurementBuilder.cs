@@ -6,7 +6,7 @@ namespace Agdur.Internals
     /// <summary>
     /// The measurement builder.
     /// </summary>
-    public class BenchmarkMeasurementBuilder<TOutput> : IBenchmarkMeasurementBuilder<TOutput>
+    public class BenchmarkMeasurementBuilder<TOutput> : IBenchmarkBuilderInSyntax<TOutput>
     {
         private readonly IMetric metric;
         private readonly TOutput builder;

@@ -24,13 +24,13 @@ namespace Agdur
         }
 
         /// <inheritdoc/>
-        public ISingleBenchmarkMetricBuilder<ISingleBenchmarkOutputBuilder> Once()
+        public ISingleBenchmarkBuilderWithSyntax<ISingleBenchmarkBuilderContinuation> Once()
         {
             return CreateBuilder(1);
         }
 
         /// <inheritdoc/>
-        public IBenchmarkMetricBuilder<IBenchmarkOutputBuilder> Times(int numberOfTimes)
+        public IBenchmarkBuilderWithSyntax<IBenchmarkBuilderContinutation> Times(int numberOfTimes)
         {
             return CreateBuilder(numberOfTimes);
         }
@@ -48,7 +48,7 @@ namespace Agdur
             where TProfile : IBenchmarkBaselineProfile, new()
         {
             var profile = new TProfile();
-            profile.Define(this).ToXml(path);
+            profile.Define(this).ToPath(path).AsXml();
         }
 
         /// <inheritdoc/>
@@ -58,7 +58,7 @@ namespace Agdur
             Ensure.ArgumentNotNull(writer, "writer");
 
             var profile = new TProfile();
-            profile.Define(this).ToXml(writer);
+            profile.Define(this).ToCustom(writer).AsXml();
         }
 
         /// <inheritdoc/>

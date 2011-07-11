@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Agdur.Abstractions;
@@ -20,18 +21,18 @@ namespace Agdur.Tests
             Console.WriteLine(result);
         }
 
-        [Fact]
-        public void Should_be_able_to_benchmark_with_profile()
-        {
-            Benchmark.This(() => new object()).With<BenchmarkProfile>();
-        }
+        //[Fact]
+        //public void Should_be_able_to_benchmark_with_profile()
+        //{
+        //    Benchmark.This(() => new object()).With<BenchmarkProfile>();
+        //}
 
-        [Fact]
-        public void Should_be_able_to_benchmark_with_func_profile()
-        {
-            Action<IBenchmarkRepetitionBuilder> profile = builder => builder.Times(10000).Average().InMilliseconds().ToConsole();
-            Benchmark.This(() => new object()).With(profile);
-        }
+        //[Fact]
+        //public void Should_be_able_to_benchmark_with_func_profile()
+        //{
+        //    Action<IBenchmarkRepetitionBuilder> profile = builder => builder.Times(10000).Average().InMilliseconds().ToConsole();
+        //    Benchmark.This(() => new object()).With(profile);
+        //}
 
         [Fact]
         public void Should_be_able_to_set_custom_benchmark_strategy_provider()
@@ -48,17 +49,17 @@ namespace Agdur.Tests
             wasCalled.ShouldBeTrue();
         }
 
-        public class BenchmarkProfile : IBenchmarkProfile
-        {
-            public void Define(IBenchmarkRepetitionBuilder builder)
-            {
-                builder.Times(10000).Average().InMilliseconds().ToConsole();
-            }
-        }
+        //public class BenchmarkProfile : IBenchmarkProfile
+        //{
+        //    public void Define(IBenchmarkRepetitionBuilder builder)
+        //    {
+        //        builder.Times(10000).Average().InMilliseconds().ToConsole();
+        //    }
+        //}
 
         public class BenchmarkBaselineProfile : IBenchmarkBaselineProfile
         {
-            public IBenchmarkOutputBuilder Define(IBenchmarkRepetitionBuilder builder)
+            public IBenchmarkBuilderContinutation Define(IBenchmarkRepetitionBuilder builder)
             {
                 return builder.Times(10)
                     .Average().InMilliseconds();
@@ -68,7 +69,7 @@ namespace Agdur.Tests
 
     public class Should_be_able_to_benchmark_using
     {
-        private readonly IBenchmarkMetricBuilder<IBenchmarkOutputBuilder> builder =
+        private readonly IBenchmarkBuilderWithSyntax<IBenchmarkBuilderContinutation> builder =
             Benchmark.This(() => new object()).Times(1);
 
         [Fact]
@@ -122,7 +123,7 @@ namespace Agdur.Tests
 
     public class Should_be_able_to_benchmark_in
     {
-        private readonly IBenchmarkMeasurementBuilder<IBenchmarkOutputBuilder> builder =
+        private readonly IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> builder =
             Benchmark.This(() => new object()).Times(1).Custom(new MultipleValueMetric("custom", data => data));
 
         [Fact]
@@ -146,7 +147,7 @@ namespace Agdur.Tests
 
     public class Should_be_able_to_benchmark_once_in
     {
-        private readonly IBenchmarkMeasurementBuilder<ISingleBenchmarkOutputBuilder> builder =
+        private readonly IBenchmarkBuilderInSyntax<ISingleBenchmarkBuilderContinuation> builder =
             Benchmark.This(() => new object()).Once().Value();
 
         [Fact]
@@ -170,14 +171,8 @@ namespace Agdur.Tests
 
     public class Should_be_able_to_benchmark_to
     {
-        private readonly IBenchmarkOutputBuilder builder =
+        private readonly IBenchmarkBuilderContinutation builder =
             Benchmark.This(() => new object()).Times(10).Custom(new SingleValueMetric("custom", data => data.Sum())).InCustom(sample => sample.Seconds, "s");
-
-        [Fact]
-        public void Visitor()
-        {
-            builder.ToVisitor(new StubMetricVisitor());
-        }
 
         [Fact]
         public void Console()
@@ -186,22 +181,44 @@ namespace Agdur.Tests
         }
 
         [Fact]
+        public void Path()
+        {
+            builder.ToPath("");
+        }
+
+        [Fact]
         public void Writer()
         {
-            builder.ToWriter(new StringWriter());
+            builder.ToCustom(new StringWriter());
+        }
+    }
+
+    public class Should_be_able_to_benchmark_as
+    {
+        private readonly IBenchmarkBuilderAsSyntax builder =
+            Benchmark.This(() => new object()).Times(10).Custom(new SingleValueMetric("custom", data => data.Sum())).InCustom(sample => sample.Seconds, "s").ToCustom(new StringWriter());
+
+        [Fact]
+        public void Custom()
+        {
+            builder.AsCustom(new CustomOutputStrategy());
+        }
+
+        [Fact]
+        public void FormattedString()
+        {
+            builder.AsFormattedString();
         }
 
         [Fact]
         public void Xml()
         {
-            builder.ToXml(new StringWriter());
+            builder.AsXml();
         }
+    }
 
-        public class StubMetricVisitor : IMetricVisitor
-        {
-            public void Visit(SingleValueMetric metric) { }
-
-            public void Visit(MultipleValueMetric metric) { }
-        }
+    public class CustomOutputStrategy : OutputStrategyBase
+    {
+        public override void Execute(TextWriter writer, IList<IMetric> metrics) { }
     }
 }
