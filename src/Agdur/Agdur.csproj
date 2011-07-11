@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Abstractions\BenchmarkBuilderWithSyntaxExtensions.cs" />
     <Compile Include="BenchmarkBuilderAsSyntax.cs" />
+    <Compile Include="BenchmarkBuilderExtensions.cs" />
     <Compile Include="BenchmarkBuilderInSyntaxExtensions.cs" />
     <Compile Include="BenchmarkBuilderToSyntaxExtensions.cs" />
     <Compile Include="FormattedOutputStrategy.cs" />

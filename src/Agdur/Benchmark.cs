@@ -42,24 +42,6 @@ namespace Agdur
             return new BenchmarkBuilderContinuation(samples);
         }
 
-        /// <inheritdoc/>
-        public void AsBaseline<TProfile>(string path)
-            where TProfile : IBenchmarkProfile, new()
-        {
-            var profile = new TProfile();
-            profile.Define(this).ToPath(path).AsXml();
-        }
-
-        /// <inheritdoc/>
-        public void AsBaseline<TProfile>(TextWriter writer)
-            where TProfile : IBenchmarkProfile, new()
-        {
-            Ensure.ArgumentNotNull(writer, "writer");
-
-            var profile = new TProfile();
-            profile.Define(this).ToCustom(writer).AsXml();
-        }
-
         private static readonly Func<Action, IBenchmarkStrategy> DefaultBenchmarkStrategyProvider = action => new DefaultBenchmarkStrategy(action);
         private static Func<Action, IBenchmarkStrategy> BenchmarkStrategyProvider = DefaultBenchmarkStrategyProvider;
 
