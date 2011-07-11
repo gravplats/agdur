@@ -64,6 +64,7 @@
     <Compile Include="PathBenchmarkBuilderAsSyntax.cs" />
     <Compile Include="SingleValueMetric.cs" />
     <Compile Include="FormattedOutputMetricVisitor.cs" />
+    <Compile Include="TextGenerator.cs" />
     <Compile Include="XmlOutputMetricVisitor.cs" />
     <Compile Include="Benchmark.cs" />
     <Compile Include="DefaultBenchmarkStrategy.cs" />

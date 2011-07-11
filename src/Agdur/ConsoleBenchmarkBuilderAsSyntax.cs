@@ -6,20 +6,18 @@ namespace Agdur
 {
     public class ConsoleBenchmarkBuilderAsSyntax : IBenchmarkBuilderAsSyntax
     {
-        private readonly IBenchmarkBuilderContinutation builder;
+        private readonly TextGenerator generator;
 
-        public ConsoleBenchmarkBuilderAsSyntax(IBenchmarkBuilderContinutation builder)
+        public ConsoleBenchmarkBuilderAsSyntax(TextGenerator generator)
         {
-            this.builder = builder;
+            this.generator = generator;
         }
 
         public void AsCustom(OutputStrategyBase outputStrategy)
         {
             using (var writer = new StringWriter())
             {
-                builder.ToCustom(writer).AsCustom(outputStrategy);
-
-                string result = writer.ToString();
+                string result = generator.Generate(writer, outputStrategy);
                 Console.WriteLine(result);
             }
         }

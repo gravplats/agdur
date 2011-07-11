@@ -6,12 +6,14 @@ namespace Agdur
     {
         public static IBenchmarkBuilderAsSyntax ToConsole(this IBenchmarkBuilderContinutation builder)
         {
-            return new ConsoleBenchmarkBuilderAsSyntax(builder);
+            var generator = new TextGenerator(builder);
+            return new ConsoleBenchmarkBuilderAsSyntax(generator);
         }
 
         public static IBenchmarkBuilderAsSyntax ToPath(this IBenchmarkBuilderContinutation builder, string path)
         {
-            return new PathBenchmarkBuilderAsSyntax(builder, path);
+            var generator = new TextGenerator(builder);
+            return new PathBenchmarkBuilderAsSyntax(generator, path);
         }
     }
 }

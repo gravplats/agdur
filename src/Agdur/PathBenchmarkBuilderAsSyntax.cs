@@ -5,12 +5,12 @@ namespace Agdur
 {
     public class PathBenchmarkBuilderAsSyntax : IBenchmarkBuilderAsSyntax
     {
-        private readonly IBenchmarkBuilderContinutation builder;
+        private readonly TextGenerator generator;
         private readonly string path;
 
-        public PathBenchmarkBuilderAsSyntax(IBenchmarkBuilderContinutation builder, string path)
+        public PathBenchmarkBuilderAsSyntax(TextGenerator generator, string path)
         {
-            this.builder = builder;
+            this.generator = generator;
             this.path = path;
         }
 
@@ -19,9 +19,7 @@ namespace Agdur
             using (var stream = File.Open(path, FileMode.CreateNew))
             using (var writer = new StreamWriter(stream))
             {
-                builder.ToCustom(writer).AsCustom(outputStrategy);
-
-                string result = writer.ToString();
+                string result = generator.Generate(writer, outputStrategy);
                 writer.WriteLine(result);
             }
         }
