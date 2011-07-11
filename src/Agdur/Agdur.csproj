@@ -66,12 +66,11 @@
     <Compile Include="Benchmark.cs" />
     <Compile Include="DefaultBenchmarkStrategy.cs" />
     <Compile Include="Abstractions\IBenchmarkStrategy.cs" />
-    <Compile Include="Abstractions\IBenchmarkBuilder.cs" />
     <Compile Include="BenchmarkBuilderInSyntax.cs" />
     <Compile Include="BenchmarkBuilderContinuation.cs" />
     <Compile Include="Ensure.cs" />
     <Compile Include="Abstractions\IBenchmarkActionBuilder.cs" />
-    <Compile Include="Abstractions\IBenchmarkRepetitionBuilder.cs" />
+    <Compile Include="Abstractions\IBenchmarkBuilder.cs" />
     <Compile Include="Abstractions\IBenchmarkBuilderInSyntax.cs" />
     <Compile Include="Abstractions\IBenchmarkBuilderWithSyntax.cs" />
     <Compile Include="Abstractions\IBenchmarkBuilderContinutation.cs" />

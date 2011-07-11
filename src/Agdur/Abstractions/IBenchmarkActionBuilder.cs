@@ -11,6 +11,6 @@ namespace Agdur.Abstractions
         /// Benchmarks the specified action.
         /// </summary>
         /// <param name="action">The action to be benchmarked.</param>
-        IBenchmarkRepetitionBuilder This(Action action);
+        IBenchmarkBuilder This(Action action);
     }
 }

@@ -9,6 +9,6 @@
         /// Defines the profile.
         /// </summary>
         /// <param name="builder">The builder on which the profile should be defined.</param>
-        IBenchmarkBuilderContinutation Define(IBenchmarkRepetitionBuilder builder);
+        IBenchmarkBuilderContinutation Define(IBenchmarkBuilder builder);
     }
 }
