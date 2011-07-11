@@ -173,7 +173,7 @@ namespace Agdur.Tests
     public class Should_be_able_to_benchmark_as
     {
         private readonly IBenchmarkBuilderAsSyntax builder =
-            Benchmark.This(() => new object()).Times(10).WithCustom(new SingleValueMetric("custom", data => data.Sum())).InCustom(sample => sample.Seconds, "s").ToCustom(new StringWriter());
+            Benchmark.This(() => new object()).Times(10).WithCustom(new SingleValueMetric("custom", data => data.Sum())).InCustom(sample => sample.Seconds, "s").ToConsole();
 
         [Fact]
         public void Custom()
