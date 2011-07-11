@@ -26,24 +26,9 @@ namespace Agdur
         }
 
         /// <inheritdoc/>
-        public IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> Custom(string name, Func<IEnumerable<double>, double> func)
+        public IBenchmarkBuilderAsSyntax ToCustom(TextWriter writer)
         {
-            return Custom(new SingleValueMetric(name, func));
-        }
-
-        /// <inheritdoc/>
-        public IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> Custom(string name, Func<IEnumerable<double>, IEnumerable<double>> func)
-        {
-            return Custom(new MultipleValueMetric(name, func));
-        }
-
-        /// <inheritdoc/>
-        public IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> Custom(IMetric metric)
-        {
-            metric.Samples = samples;
-            metrics.Add(metric);
-
-            return new BenchmarkMeasurementBuilder<IBenchmarkBuilderContinutation>(metric, this);
+            return new BenchmarkBuilderAsSyntax(writer, metrics);
         }
 
         /// <inheritdoc/>
@@ -56,9 +41,12 @@ namespace Agdur
         }
 
         /// <inheritdoc/>
-        public IBenchmarkBuilderAsSyntax ToCustom(TextWriter writer)
+        public IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> WithCustom(IMetric metric)
         {
-            return new BenchmarkBuilderAsSyntax(writer, metrics);
+            metric.Samples = samples;
+            metrics.Add(metric);
+
+            return new BenchmarkMeasurementBuilder<IBenchmarkBuilderContinutation>(metric, this);
         }
     }
 }

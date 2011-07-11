@@ -67,7 +67,7 @@ namespace Agdur.Tests
         }
     }
 
-    public class Should_be_able_to_benchmark_using
+    public class Should_be_able_to_benchmark_with
     {
         private readonly IBenchmarkBuilderWithSyntax<IBenchmarkBuilderContinutation> builder =
             Benchmark.This(() => new object()).Times(1);
@@ -75,19 +75,19 @@ namespace Agdur.Tests
         [Fact]
         public void Custom_metric()
         {
-            builder.Custom(new MultipleValueMetric("custom", data => data));
+            builder.WithCustom(new MultipleValueMetric("custom", data => data));
         }
 
         [Fact]
         public void Custom_simplified_single_metric()
         {
-            builder.Custom("custom", data => data.Sum());
+            builder.WithCustom("custom", data => data.Sum());
         }
 
         [Fact]
         public void Custom_simplified_multiple_metric()
         {
-            builder.Custom("custom", data => data);
+            builder.WithCustom("custom", data => data);
         }
 
         [Fact]
@@ -124,7 +124,7 @@ namespace Agdur.Tests
     public class Should_be_able_to_benchmark_in
     {
         private readonly IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> builder =
-            Benchmark.This(() => new object()).Times(1).Custom(new MultipleValueMetric("custom", data => data));
+            Benchmark.This(() => new object()).Times(1).WithCustom(new MultipleValueMetric("custom", data => data));
 
         [Fact]
         public void Milliseconds()
@@ -172,7 +172,7 @@ namespace Agdur.Tests
     public class Should_be_able_to_benchmark_to
     {
         private readonly IBenchmarkBuilderContinutation builder =
-            Benchmark.This(() => new object()).Times(10).Custom(new SingleValueMetric("custom", data => data.Sum())).InCustom(sample => sample.Seconds, "s");
+            Benchmark.This(() => new object()).Times(10).WithCustom(new SingleValueMetric("custom", data => data.Sum())).InCustom(sample => sample.Seconds, "s");
 
         [Fact]
         public void Console()
@@ -196,7 +196,7 @@ namespace Agdur.Tests
     public class Should_be_able_to_benchmark_as
     {
         private readonly IBenchmarkBuilderAsSyntax builder =
-            Benchmark.This(() => new object()).Times(10).Custom(new SingleValueMetric("custom", data => data.Sum())).InCustom(sample => sample.Seconds, "s").ToCustom(new StringWriter());
+            Benchmark.This(() => new object()).Times(10).WithCustom(new SingleValueMetric("custom", data => data.Sum())).InCustom(sample => sample.Seconds, "s").ToCustom(new StringWriter());
 
         [Fact]
         public void Custom()

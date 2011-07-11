@@ -11,7 +11,7 @@ namespace Agdur
         /// </summary>
         public static IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> Average(this IBenchmarkBuilderWithSyntax<IBenchmarkBuilderContinutation> builder)
         {
-            return builder.Custom("average", data => data.Average());
+            return builder.WithCustom("average", data => data.Average());
         }
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace Agdur
         public static IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> First(this IBenchmarkBuilderWithSyntax<IBenchmarkBuilderContinutation> builder, int numberOfSamples)
         {
             Ensure.GreaterThanZero(numberOfSamples, "numberOfSamples");
-            return builder.Custom("first", data => data.Take(numberOfSamples));
+            return builder.WithCustom("first", data => data.Take(numberOfSamples));
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Agdur
         /// </summary>
         public static IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> Max(this IBenchmarkBuilderWithSyntax<IBenchmarkBuilderContinutation> builder)
         {
-            return builder.Custom("maximum", data => data.Max());
+            return builder.WithCustom("maximum", data => data.Max());
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Agdur
         /// </summary>
         public static IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> Min(this IBenchmarkBuilderWithSyntax<IBenchmarkBuilderContinutation> builder)
         {
-            return builder.Custom("minimum", data => data.Min());
+            return builder.WithCustom("minimum", data => data.Min());
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Agdur
         /// </summary>
         public static IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> Total(this IBenchmarkBuilderWithSyntax<IBenchmarkBuilderContinutation> builder)
         {
-            return builder.Custom("total", data => data.Sum());
+            return builder.WithCustom("total", data => data.Sum());
         }
     }
 }
