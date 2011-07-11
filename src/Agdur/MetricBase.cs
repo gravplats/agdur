@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Agdur.Abstractions;
 
-namespace Agdur.Internals
+namespace Agdur
 {
     /// <summary>
     /// Provides a base class for metrics.

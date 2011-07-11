@@ -2,7 +2,6 @@
 using System.IO;
 using System.Xml;
 using Agdur.Abstractions;
-using Agdur.Internals;
 
 namespace Agdur
 {

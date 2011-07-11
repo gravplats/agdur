@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml;
 
-namespace Agdur.Internals
+namespace Agdur
 {
     /// <summary>
     /// Provides XML output of the results of a metric.

@@ -1,8 +1,7 @@
-using Agdur.Internals;
 using Agdur.Tests.Utilities;
 using Xunit.Extensions;
 
-namespace Agdur.Tests.Internals
+namespace Agdur.Tests
 {
     public class NumberToStringMapperTests
     {

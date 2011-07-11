@@ -1,6 +1,5 @@
 ﻿using System;
 using Agdur.Abstractions;
-using Agdur.Internals;
 
 namespace Agdur
 {

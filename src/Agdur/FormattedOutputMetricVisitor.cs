@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace Agdur.Internals
+namespace Agdur
 {
     /// <summary>
     /// Provides pretty output of the results of a metric.

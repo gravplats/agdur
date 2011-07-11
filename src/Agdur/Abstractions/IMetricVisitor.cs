@@ -1,6 +1,4 @@
-﻿using Agdur.Internals;
-
-namespace Agdur.Abstractions
+﻿namespace Agdur.Abstractions
 {
     /// <summary>
     /// Provides functionality for visiting a metric.

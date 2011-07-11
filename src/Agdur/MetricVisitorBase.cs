@@ -2,7 +2,7 @@
 using System.Linq;
 using Agdur.Abstractions;
 
-namespace Agdur.Internals
+namespace Agdur
 {
     public abstract class MetricVisitorBase : IMetricVisitor
     {

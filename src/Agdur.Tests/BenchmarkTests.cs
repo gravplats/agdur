@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Agdur.Abstractions;
-using Agdur.Internals;
 using Agdur.Tests.Utilities;
 using Xunit;
 

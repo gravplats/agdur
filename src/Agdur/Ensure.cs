@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Agdur.Internals
+namespace Agdur
 {
     /// <summary>
     /// Provides functionality for ensuring the proper value of arguments and properties.

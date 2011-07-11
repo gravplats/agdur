@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Agdur.Abstractions;
 
-namespace Agdur.Internals
+namespace Agdur
 {
     /// <summary>
     /// Defines a multiple value metric.
