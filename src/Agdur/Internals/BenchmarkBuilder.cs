@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using Agdur.Abstractions;
 
@@ -55,29 +54,6 @@ namespace Agdur.Internals
         }
 
         /// <inheritdoc/>
-        public void ToConsole()
-        {
-            Write(Console.WriteLine);
-        }
-
-        /// <inheritdoc/>
-        public void ToWriter(TextWriter writer)
-        {
-            Ensure.ArgumentNotNull(writer, "writer");
-            Write(writer.WriteLine);
-        }
-
-        private void Write(Action<string> write)
-        {
-            Ensure.ArgumentNotNull(write, "write");
-
-            var visitor = new FormattedOutputMetricVisitor(write);
-            foreach (var metric in metrics)
-            {
-                metric.Accept(visitor);
-            }
-        }
-
         public void ToVisitor(IMetricVisitor visitor)
         {
             Ensure.ArgumentNotNull(visitor, "visitor");
