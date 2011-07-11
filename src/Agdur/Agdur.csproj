@@ -39,7 +39,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\BenchmarkBuilderWithSyntaxExtensions.cs" />
     <Compile Include="BenchmarkBuilderAsSyntax.cs" />
     <Compile Include="BenchmarkBuilderExtensions.cs" />
     <Compile Include="BenchmarkBuilderInSyntaxExtensions.cs" />
