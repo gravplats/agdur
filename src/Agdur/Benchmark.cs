@@ -35,12 +35,12 @@ namespace Agdur
             return CreateBuilder(numberOfTimes);
         }
 
-        private BenchmarkBuilder CreateBuilder(int numberOfTimes)
+        private BenchmarkBuilderContinuation CreateBuilder(int numberOfTimes)
         {
             Ensure.GreaterThanZero(numberOfTimes, "numberOfTimes");
 
             var samples = benchmark.Run(numberOfTimes).ToList();
-            return new BenchmarkBuilder(samples);
+            return new BenchmarkBuilderContinuation(samples);
         }
 
         /// <inheritdoc/>

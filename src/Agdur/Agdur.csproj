@@ -68,7 +68,7 @@
     <Compile Include="Abstractions\IBenchmarkProfile.cs" />
     <Compile Include="Abstractions\IBenchmarkBuilder.cs" />
     <Compile Include="Internals\BenchmarkMeasurementBuilder.cs" />
-    <Compile Include="Internals\BenchmarkBuilder.cs" />
+    <Compile Include="BenchmarkBuilderContinuation.cs" />
     <Compile Include="Internals\Ensure.cs" />
     <Compile Include="Abstractions\IBenchmarkActionBuilder.cs" />
     <Compile Include="Abstractions\IBenchmarkRepetitionBuilder.cs" />

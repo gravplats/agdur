@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Agdur.Abstractions;
+using Agdur.Internals;
 
-namespace Agdur.Internals
+namespace Agdur
 {
     /// <summary>
     /// Provides a root for the fluent syntax associated with benchmarking.
     /// </summary>
-    public class BenchmarkBuilder : IBenchmarkBuilderContinutation, ISingleBenchmarkBuilderContinuation
+    public class BenchmarkBuilderContinuation : IBenchmarkBuilderContinutation, ISingleBenchmarkBuilderContinuation
     {
         private readonly IEnumerable<TimeSpan> samples;
         private readonly IList<IMetric> metrics = new List<IMetric>();
 
         /// <summary>
-        /// Creates a new instance of the <see cref="BenchmarkBuilder"/> class.
+        /// Creates a new instance of the <see cref="BenchmarkBuilderContinuation"/> class.
         /// </summary>
         /// <param name="samples">The samples.</param>
-        public BenchmarkBuilder(IEnumerable<TimeSpan> samples)
+        public BenchmarkBuilderContinuation(IEnumerable<TimeSpan> samples)
         {
             Ensure.ArgumentNotNull(samples, "samples");
             this.samples = samples;
