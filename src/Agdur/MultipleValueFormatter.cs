@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Agdur.Abstractions;
+﻿using System.Collections.Generic;
 using Agdur.Internals;
 
 namespace Agdur
@@ -9,19 +8,18 @@ namespace Agdur
     /// </summary>
     public static class MultipleValueFormatter
     {
-        public static string Output(IMetric metric)
+        public static string Output(string name, IList<string> values, string unitOfMeasurement)
         {
-            var values = metric.GetValues();
             string result = string.Join(", ", values);
 
-            int numberOfSamples = values.Count();
+            int numberOfSamples = values.Count;
             if (numberOfSamples > 1)
             {
                 string word = NumberToStringMapper.GetWordOrDefault(numberOfSamples);
-                return string.Format("The {0} {1} values are {2} {3}.", metric.Name, word, result, metric.UnitOfMeasurement);
+                return string.Format("The {0} {1} values are {2} {3}.", name, word, result, unitOfMeasurement);
             }
 
-            return string.Format(SingleValueFormatter.OutputMessage, metric.Name, result, metric.UnitOfMeasurement);
+            return string.Format(SingleValueFormatter.OutputMessage, name, result, unitOfMeasurement);
         }
     }
 }

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Agdur.Tests.Utilities;
 using Xunit;
 
@@ -9,7 +8,7 @@ namespace Agdur.Tests
         [Fact]
         public void CanGetOutput()
         {
-            string result = SingleValueFormatter.Output(new TestMetric("test", "ms", new List<double> { 1 }));
+            string result = SingleValueFormatter.Output("test", "1", "ms");
 
             string expected = string.Format(SingleValueFormatter.OutputMessage, "test", 1, "ms");
             result.ShouldBe(expected);

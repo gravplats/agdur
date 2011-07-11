@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using Agdur.Abstractions;
-
-namespace Agdur
+﻿namespace Agdur
 {
     /// <summary>
     /// Formats a single value result.
@@ -13,10 +10,9 @@ namespace Agdur
         /// </summary>
         public static string OutputMessage = "The {0} value is {1} {2}.";
 
-        public static string Output(IMetric metric)
+        public static string Output(string name, string value, string unitOfMeasurement)
         {
-            double value = metric.GetValues().Single();
-            return string.Format(OutputMessage, metric.Name, value, metric.UnitOfMeasurement);
+            return string.Format(OutputMessage, name, value, unitOfMeasurement);
         }
     }
 }
