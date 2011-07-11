@@ -104,6 +104,12 @@ namespace Agdur.Tests
             Benchmark.This(() => new object()).Times(1).WithCustom(new MultipleValueMetric("custom", data => data));
 
         [Fact]
+        public void Custom_time()
+        {
+            builder.InCustom(sample => sample.Seconds, "s");
+        }
+
+        [Fact]
         public void Milliseconds()
         {
             builder.InMilliseconds();
@@ -113,12 +119,6 @@ namespace Agdur.Tests
         public void Ticks()
         {
             builder.InTicks();
-        }
-
-        [Fact]
-        public void Custom_time()
-        {
-            builder.InCustom(sample => sample.Seconds, "s");
         }
     }
 
@@ -128,6 +128,12 @@ namespace Agdur.Tests
             Benchmark.This(() => new object()).Once().Value();
 
         [Fact]
+        public void Custom_time()
+        {
+            builder.InCustom(sample => sample.Seconds, "s");
+        }
+
+        [Fact]
         public void Milliseconds()
         {
             builder.InMilliseconds();
@@ -138,18 +144,18 @@ namespace Agdur.Tests
         {
             builder.InTicks();
         }
-
-        [Fact]
-        public void Custom_time()
-        {
-            builder.InCustom(sample => sample.Seconds, "s");
-        }
     }
 
     public class Should_be_able_to_benchmark_to
     {
         private readonly IBenchmarkBuilderContinutation builder =
             Benchmark.This(() => new object()).Times(10).WithCustom(new SingleValueMetric("custom", data => data.Sum())).InCustom(sample => sample.Seconds, "s");
+
+        [Fact]
+        public void Custom()
+        {
+            builder.ToCustom(new StringWriter());
+        }
 
         [Fact]
         public void Console()
@@ -161,12 +167,6 @@ namespace Agdur.Tests
         public void Path()
         {
             builder.ToPath("");
-        }
-
-        [Fact]
-        public void Writer()
-        {
-            builder.ToCustom(new StringWriter());
         }
     }
 
@@ -192,10 +192,10 @@ namespace Agdur.Tests
         {
             builder.AsXml();
         }
-    }
 
-    public class CustomOutputStrategy : OutputStrategyBase
-    {
-        public override void Execute(TextWriter writer, IList<IMetric> metrics) { }
+        public class CustomOutputStrategy : OutputStrategyBase
+        {
+            public override void Execute(TextWriter writer, IList<IMetric> metrics) { }
+        }
     }
 }
