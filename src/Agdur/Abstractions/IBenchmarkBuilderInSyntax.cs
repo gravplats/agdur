@@ -9,16 +9,6 @@ namespace Agdur.Abstractions
     public interface IBenchmarkBuilderInSyntax<out TOutput> : IFluentSyntax
     {
         /// <summary>
-        /// States that the metric should be in milliseconds.
-        /// </summary>
-        TOutput InMilliseconds();
-
-        /// <summary>
-        /// States that the metric should be in milliseconds.
-        /// </summary>
-        TOutput InTicks();
-
-        /// <summary>
         /// States that the metric should use a custom unit of time based on the specified provider.
         /// </summary>
         /// <param name="provider">The custom data provider.</param>

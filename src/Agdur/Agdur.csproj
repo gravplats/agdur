@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Abstractions\BenchmarkBuilderWithSyntaxExtensions.cs" />
     <Compile Include="BenchmarkBuilderAsSyntax.cs" />
+    <Compile Include="BenchmarkBuilderInSyntaxExtensions.cs" />
     <Compile Include="BenchmarkBuilderToSyntaxExtensions.cs" />
     <Compile Include="FormattedOutputStrategy.cs" />
     <Compile Include="OutputStrategyBase.cs" />
@@ -68,7 +69,7 @@
     <Compile Include="Abstractions\IBenchmarkStrategy.cs" />
     <Compile Include="Abstractions\IBenchmarkProfile.cs" />
     <Compile Include="Abstractions\IBenchmarkBuilder.cs" />
-    <Compile Include="Internals\BenchmarkMeasurementBuilder.cs" />
+    <Compile Include="BenchmarkBuilderInSyntax.cs" />
     <Compile Include="BenchmarkBuilderContinuation.cs" />
     <Compile Include="Internals\Ensure.cs" />
     <Compile Include="Abstractions\IBenchmarkActionBuilder.cs" />

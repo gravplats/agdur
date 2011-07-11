@@ -37,7 +37,7 @@ namespace Agdur
             var metric = new SingleValueMetric("single", data => data.Single()) { Samples = samples };
             metrics.Add(metric);
 
-            return new BenchmarkMeasurementBuilder<ISingleBenchmarkBuilderContinuation>(metric, this);
+            return new BenchmarkBuilderInSyntax<ISingleBenchmarkBuilderContinuation>(metric, this);
         }
 
         /// <inheritdoc/>
@@ -46,7 +46,7 @@ namespace Agdur
             metric.Samples = samples;
             metrics.Add(metric);
 
-            return new BenchmarkMeasurementBuilder<IBenchmarkBuilderContinutation>(metric, this);
+            return new BenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation>(metric, this);
         }
     }
 }
