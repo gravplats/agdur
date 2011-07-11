@@ -20,19 +20,6 @@ namespace Agdur.Tests
             Console.WriteLine(result);
         }
 
-        //[Fact]
-        //public void Should_be_able_to_benchmark_with_profile()
-        //{
-        //    Benchmark.This(() => new object()).With<BenchmarkProfile>();
-        //}
-
-        //[Fact]
-        //public void Should_be_able_to_benchmark_with_func_profile()
-        //{
-        //    Action<IBenchmarkRepetitionBuilder> profile = builder => builder.Times(10000).Average().InMilliseconds().ToConsole();
-        //    Benchmark.This(() => new object()).With(profile);
-        //}
-
         [Fact]
         public void Should_be_able_to_set_custom_benchmark_strategy_provider()
         {
@@ -47,14 +34,6 @@ namespace Agdur.Tests
 
             wasCalled.ShouldBeTrue();
         }
-
-        //public class BenchmarkProfile : IBenchmarkProfile
-        //{
-        //    public void Define(IBenchmarkRepetitionBuilder builder)
-        //    {
-        //        builder.Times(10000).Average().InMilliseconds().ToConsole();
-        //    }
-        //}
 
         public class BenchmarkBaselineProfile : IBenchmarkBaselineProfile
         {

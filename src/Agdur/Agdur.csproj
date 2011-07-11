@@ -66,7 +66,6 @@
     <Compile Include="Benchmark.cs" />
     <Compile Include="DefaultBenchmarkStrategy.cs" />
     <Compile Include="Abstractions\IBenchmarkStrategy.cs" />
-    <Compile Include="Abstractions\IBenchmarkProfile.cs" />
     <Compile Include="Abstractions\IBenchmarkBuilder.cs" />
     <Compile Include="BenchmarkBuilderInSyntax.cs" />
     <Compile Include="BenchmarkBuilderContinuation.cs" />

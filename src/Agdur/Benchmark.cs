@@ -60,20 +60,6 @@ namespace Agdur
             profile.Define(this).ToCustom(writer).AsXml();
         }
 
-        /// <inheritdoc/>
-        public void With<TProfile>()
-            where TProfile : IBenchmarkProfile, new()
-        {
-            var profile = new TProfile();
-            profile.Define(this);
-        }
-
-        /// <inheritdoc/>
-        public void With(Action<IBenchmarkRepetitionBuilder> profile)
-        {
-            profile(this);
-        }
-
         private static readonly Func<Action, IBenchmarkStrategy> DefaultBenchmarkStrategyProvider = action => new DefaultBenchmarkStrategy(action);
         private static Func<Action, IBenchmarkStrategy> BenchmarkStrategyProvider = DefaultBenchmarkStrategyProvider;
 
