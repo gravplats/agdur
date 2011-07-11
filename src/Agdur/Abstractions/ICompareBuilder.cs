@@ -5,9 +5,9 @@ namespace Agdur.Abstractions
     public interface ICompareBuilder
     {
         void ToBaseline<TProfile>(string path)
-            where TProfile : IBenchmarkBaselineProfile, new();
+            where TProfile : IBenchmarkProfile, new();
 
         void ToBaseline<TProfile>(TextReader reader)
-            where TProfile : IBenchmarkBaselineProfile, new();
+            where TProfile : IBenchmarkProfile, new();
     }
 }

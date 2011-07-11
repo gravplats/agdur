@@ -44,7 +44,7 @@ namespace Agdur
 
         /// <inheritdoc/>
         public void AsBaseline<TProfile>(string path)
-            where TProfile : IBenchmarkBaselineProfile, new()
+            where TProfile : IBenchmarkProfile, new()
         {
             var profile = new TProfile();
             profile.Define(this).ToPath(path).AsXml();
@@ -52,7 +52,7 @@ namespace Agdur
 
         /// <inheritdoc/>
         public void AsBaseline<TProfile>(TextWriter writer)
-            where TProfile : IBenchmarkBaselineProfile, new()
+            where TProfile : IBenchmarkProfile, new()
         {
             Ensure.ArgumentNotNull(writer, "writer");
 

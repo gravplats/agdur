@@ -12,10 +12,10 @@ namespace Agdur.Tests
             string xml = "<?xml version=\"1.0\" encoding=\"utf-16\"?><benchmark><average>0</average></benchmark>";
             var reader = new StringReader(xml);
 
-            Compare.This(() => new object()).ToBaseline<BenchmarkBaselineProfile>(reader);
+            Compare.This(() => new object()).ToBaseline<BenchmarkProfile>(reader);
         }
 
-        public class BenchmarkBaselineProfile : IBenchmarkBaselineProfile
+        public class BenchmarkProfile : IBenchmarkProfile
         {
             public IBenchmarkBuilderContinutation Define(IBenchmarkRepetitionBuilder builder)
             {

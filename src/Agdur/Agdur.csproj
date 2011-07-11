@@ -50,7 +50,7 @@
     <Compile Include="MetricVisitorBase.cs" />
     <Compile Include="BenchmarkBuilderAsSyntaxExtensions.cs" />
     <Compile Include="BenchmarkBuilderWithSyntaxExtensions.cs" />
-    <Compile Include="Abstractions\IBenchmarkBaselineProfile.cs" />
+    <Compile Include="Abstractions\IBenchmarkProfile.cs" />
     <Compile Include="Abstractions\ISingleBenchmarkBuilderWithSyntax.cs" />
     <Compile Include="Abstractions\ISingleBenchmarkBuilderContinuation.cs" />
     <Compile Include="Abstractions\IMetric.cs" />

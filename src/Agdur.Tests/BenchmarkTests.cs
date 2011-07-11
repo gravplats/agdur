@@ -14,7 +14,7 @@ namespace Agdur.Tests
         public void Should_be_able_to_benchmark_as_baseline_using_writer()
         {
             var writer = new StringWriter();
-            Benchmark.This(() => new object()).AsBaseline<BenchmarkBaselineProfile>(writer);
+            Benchmark.This(() => new object()).AsBaseline<BenchmarkProfile>(writer);
 
             string result = writer.ToString();
             Console.WriteLine(result);
@@ -35,12 +35,11 @@ namespace Agdur.Tests
             wasCalled.ShouldBeTrue();
         }
 
-        public class BenchmarkBaselineProfile : IBenchmarkBaselineProfile
+        public class BenchmarkProfile : IBenchmarkProfile
         {
             public IBenchmarkBuilderContinutation Define(IBenchmarkRepetitionBuilder builder)
             {
-                return builder.Times(10)
-                    .Average().InMilliseconds();
+                return builder.Times(10).Average().InMilliseconds();
             }
         }
     }

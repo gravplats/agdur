@@ -12,7 +12,7 @@ namespace Agdur
             this.builder = builder;
         }
 
-        public void ToBaseline<TProfile>(string path) where TProfile : IBenchmarkBaselineProfile, new()
+        public void ToBaseline<TProfile>(string path) where TProfile : IBenchmarkProfile, new()
         {
             using (var stream = File.Open(path, FileMode.Open))
             using (var reader = new StreamReader(stream))
@@ -21,7 +21,7 @@ namespace Agdur
             }
         }
 
-        public void ToBaseline<TProfile>(TextReader reader) where TProfile : IBenchmarkBaselineProfile, new()
+        public void ToBaseline<TProfile>(TextReader reader) where TProfile : IBenchmarkProfile, new()
         {
             Ensure.ArgumentNotNull(reader, "reader");
 
