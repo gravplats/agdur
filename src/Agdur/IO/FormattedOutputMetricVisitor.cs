@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Agdur.Abstractions;
 
-namespace Agdur
+namespace Agdur.IO
 {
     /// <summary>
     /// Provides pretty output of the results of a metric.

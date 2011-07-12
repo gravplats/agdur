@@ -1,7 +1,7 @@
 ﻿using System.Xml;
 using Agdur.Abstractions;
 
-namespace Agdur
+namespace Agdur.IO
 {
     /// <summary>
     /// Provides XML output of the results of a metric.

@@ -1,4 +1,4 @@
-﻿namespace Agdur
+﻿namespace Agdur.IO
 {
     /// <summary>
     /// Formats a single value result.

@@ -1,7 +1,8 @@
+using Agdur.IO;
 using Agdur.Tests.Utilities;
 using Xunit;
 
-namespace Agdur.Tests
+namespace Agdur.Tests.IO
 {
     public class SingleValueFormatterTests
     {

@@ -2,7 +2,7 @@
 using System.IO;
 using Agdur.Abstractions;
 
-namespace Agdur
+namespace Agdur.IO
 {
     public class FormattedOutputStrategy : IOutputStrategy
     {

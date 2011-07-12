@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Agdur
+namespace Agdur.IO
 {
     /// <summary>
     /// Format a multiple value result.
