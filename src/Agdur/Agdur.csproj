@@ -71,7 +71,7 @@
     <Compile Include="Abstractions\IBenchmarkStrategy.cs" />
     <Compile Include="BenchmarkBuilderInSyntax.cs" />
     <Compile Include="BenchmarkBuilderContinuation.cs" />
-    <Compile Include="Ensure.cs" />
+    <Compile Include="Introspection\Ensure.cs" />
     <Compile Include="Abstractions\IBenchmarkActionBuilder.cs" />
     <Compile Include="Abstractions\IBenchmarkBuilder.cs" />
     <Compile Include="Abstractions\IBenchmarkBuilderInSyntax.cs" />

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Agdur
+namespace Agdur.Introspection
 {
     /// <summary>
     /// Provides functionality for ensuring the proper value of arguments and properties.
@@ -15,7 +15,10 @@ namespace Agdur
         /// <param name="message">The message that should be displayed if the argument is null.</param>
         public static void ArgumentNotNull(object obj, string paramName, string message = "Cannot be null.")
         {
-            if (obj == null) throw new ArgumentNullException(paramName, message);
+            if (obj == null)
+            {
+                throw new ArgumentNullException(paramName, message);
+            }
         }
 
         /// <summary>
@@ -25,7 +28,10 @@ namespace Agdur
         /// <param name="message">The message that should be displayed if the argument is null.</param>
         public static void NotNull(object obj, string message)
         {
-            if (obj == null) throw new InvalidOperationException(message);
+            if (obj == null)
+            {
+                throw new InvalidOperationException(message);
+            }
         }
 
         /// <summary>
@@ -35,7 +41,10 @@ namespace Agdur
         /// <param name="paramName">The name of the parameter.</param>
         public static void GreaterThanZero(int value, string paramName)
         {
-            if (value <= 0) throw new ArgumentOutOfRangeException(paramName, "Must be greater than 0.");
+            if (value <= 0)
+            {
+                throw new ArgumentOutOfRangeException(paramName, "Must be greater than 0.");
+            }
         }
     }
 }
