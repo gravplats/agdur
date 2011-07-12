@@ -1,5 +1,6 @@
 ﻿using System.Xml;
 using Agdur.Abstractions;
+using Agdur.Introspection;
 
 namespace Agdur.IO
 {
@@ -16,16 +17,22 @@ namespace Agdur.IO
         /// <param name="writer"></param>
         public XmlOutputMetricVisitor(XmlWriter writer)
         {
+            Ensure.ArgumentNotNull(writer, "writer");
             this.writer = writer;
         }
 
+        /// <inheritdoc/>
         public void Visit(SingleValueMetric metric)
         {
+            Ensure.ArgumentNotNull(metric, "metric");
             writer.WriteElementString(metric.Name, metric.GetValue());
         }
 
+        /// <inheritdoc/>
         public void Visit(MultipleValueMetric metric)
         {
+            Ensure.ArgumentNotNull(metric, "metric");
+
             var values = metric.GetValues();
             for (int index = 0; index < values.Count; index++)
             {

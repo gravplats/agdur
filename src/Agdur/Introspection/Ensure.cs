@@ -22,19 +22,6 @@ namespace Agdur.Introspection
         }
 
         /// <summary>
-        /// Ensure that the property is not null.
-        /// </summary>
-        /// <param name="obj">The property that should not be null.</param>
-        /// <param name="message">The message that should be displayed if the argument is null.</param>
-        public static void NotNull(object obj, string message)
-        {
-            if (obj == null)
-            {
-                throw new InvalidOperationException(message);
-            }
-        }
-
-        /// <summary>
         /// Ensure that the value is greater than zero.
         /// </summary>
         /// <param name="value">The value that should be greater than zero.</param>
@@ -44,6 +31,33 @@ namespace Agdur.Introspection
             if (value <= 0)
             {
                 throw new ArgumentOutOfRangeException(paramName, "Must be greater than 0.");
+            }
+        }
+
+        /// <summary>
+        /// Ensure that the text is not null or empty.
+        /// </summary>
+        /// <param name="text">The text that should not be null or empty.</param>
+        /// <param name="paramName">The name of the parameter.</param>
+        /// <param name="message">The message that should be displayed if the text is null or empty.</param>
+        public static void NotNullOrEmpty(string text, string paramName, string message = "Cannot be null or empty.")
+        {
+            if (string.IsNullOrEmpty(text))
+            {
+                throw new ArgumentException(message, paramName);
+            }
+        }
+
+        /// <summary>
+        /// Ensure that the property is not null.
+        /// </summary>
+        /// <param name="obj">The property that should not be null.</param>
+        /// <param name="message">The message that should be displayed if the argument is null.</param>
+        public static void NotNull(object obj, string message)
+        {
+            if (obj == null)
+            {
+                throw new InvalidOperationException(message);
             }
         }
     }

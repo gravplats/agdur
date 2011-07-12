@@ -5,8 +5,12 @@ using Agdur.Abstractions;
 
 namespace Agdur.IO
 {
+    /// <summary>
+    /// Provides functionality for outputting the results as XML.
+    /// </summary>
     public class XmlOutputStrategy : IOutputStrategy
     {
+        /// <inheritdoc/>
         public void Execute(TextWriter writer, IList<IMetric> metrics)
         {
             using (var xmlWriter = XmlWriter.Create(writer))
