@@ -33,11 +33,5 @@ namespace Agdur.Abstractions
         /// </summary>
         /// <param name="visitor">The visitor to be accepted.</param>
         void Accept(IMetricVisitor visitor);
-
-        /// <summary>
-        /// Gets the values of the metric.
-        /// </summary>
-        /// <returns>The values of the metric.</returns>
-        IEnumerable<double> GetValues();
     }
 }

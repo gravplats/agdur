@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Agdur.Abstractions;
 
 namespace Agdur
@@ -9,17 +10,17 @@ namespace Agdur
     /// </summary>
     public class MultipleValueMetric : MetricBase
     {
-        private readonly Func<IEnumerable<double>, IEnumerable<double>> func;
+        private readonly Func<IEnumerable<double>, IEnumerable<double>> metric;
 
         /// <summary>
         /// Creates a new instance of the <see cref="MultipleValueMetric"/> class.
         /// </summary>
         /// <param name="name">The name of the metric.</param>
-        /// <param name="func">The metric.</param>
-        public MultipleValueMetric(string name, Func<IEnumerable<double>, IEnumerable<double>> func)
+        /// <param name="metric">The metric.</param>
+        public MultipleValueMetric(string name, Func<IEnumerable<double>, IEnumerable<double>> metric)
             : base(name)
         {
-            this.func = func;
+            this.metric = metric;
         }
 
         /// <inheritdoc/>
@@ -28,11 +29,12 @@ namespace Agdur
             visitor.Visit(this);
         }
 
-        /// <inheritdoc/>
-        public override IEnumerable<double> GetValues()
+        public IList<string> GetValues()
         {
             var data = GetData();
-            return func(data);
+            var values = metric(data);
+
+            return values.Select(value => value.ToString()).ToList();
         }
     }
 }

@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Xml;
+﻿using System.Xml;
+using Agdur.Abstractions;
 
 namespace Agdur
 {
     /// <summary>
     /// Provides XML output of the results of a metric.
     /// </summary>
-    public class XmlOutputMetricVisitor : MetricVisitorBase
+    public class XmlOutputMetricVisitor : IMetricVisitor
     {
         private readonly XmlWriter writer;
 
@@ -19,16 +19,17 @@ namespace Agdur
             this.writer = writer;
         }
 
-        protected override void HandleSingleValueMetric(string name, string value, string unitOfMeasurement)
+        public void Visit(SingleValueMetric metric)
         {
-            writer.WriteElementString(name, value);
+            writer.WriteElementString(metric.Name, metric.GetValue());
         }
 
-        protected override void HandleMultipleValueMetric(string name, IList<string> values, string unitOfMeasurement)
+        public void Visit(MultipleValueMetric metric)
         {
+            var values = metric.GetValues();
             for (int index = 0; index < values.Count; index++)
             {
-                writer.WriteStartElement(name);
+                writer.WriteStartElement(metric.Name);
                 writer.WriteAttributeString("index", index.ToString());
 
                 string value = values[index];

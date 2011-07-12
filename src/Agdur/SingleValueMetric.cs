@@ -28,11 +28,12 @@ namespace Agdur
             visitor.Visit(this);
         }
 
-        /// <inheritdoc/>
-        public override IEnumerable<double> GetValues()
+        public string GetValue()
         {
             var data = GetData();
-            yield return func(data);
+            double value = func(data);
+
+            return value.ToString();
         }
     }
 }

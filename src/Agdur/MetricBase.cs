@@ -30,9 +30,6 @@ namespace Agdur
         /// <inheritdoc/>
         public abstract void Accept(IMetricVisitor visitor);
 
-        /// <inheritdoc/>
-        public abstract IEnumerable<double> GetValues();
-
         protected IEnumerable<double> GetData()
         {
             return Samples.Select(DataProvider).Select(convertible => convertible.ToDouble(null));

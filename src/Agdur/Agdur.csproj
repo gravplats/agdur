@@ -48,7 +48,6 @@
     <Compile Include="OutputStrategyBase.cs" />
     <Compile Include="Abstractions\IBenchmarkBuilderAsSyntax.cs" />
     <Compile Include="Abstractions\IBenchmarkBuilderToSyntax.cs" />
-    <Compile Include="MetricVisitorBase.cs" />
     <Compile Include="BenchmarkBuilderAsSyntaxExtensions.cs" />
     <Compile Include="BenchmarkBuilderWithSyntaxExtensions.cs" />
     <Compile Include="Abstractions\IBenchmarkProfile.cs" />
