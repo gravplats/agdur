@@ -4,12 +4,12 @@ using Agdur.Abstractions;
 
 namespace Agdur
 {
-    public class FormattedOutputStrategy : OutputStrategyBase
+    public class FormattedOutputStrategy : IOutputStrategy
     {
-        public override void Execute(TextWriter writer, IList<IMetric> metrics)
+        public void Execute(TextWriter writer, IList<IMetric> metrics)
         {
             var visitor = new FormattedOutputMetricVisitor(writer);
-            Visit(visitor, metrics);
+            metrics.Accept(visitor);
         }
     }
 }

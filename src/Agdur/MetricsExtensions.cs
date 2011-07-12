@@ -1,14 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using Agdur.Abstractions;
 
 namespace Agdur
 {
-    public abstract class OutputStrategyBase
+    public static class MetricsExtensions
     {
-        public abstract void Execute(TextWriter writer, IList<IMetric> metrics);
-
-        protected void Visit(IMetricVisitor visitor, IList<IMetric> metrics)
+        public static void Accept(this IEnumerable<IMetric> metrics, IMetricVisitor visitor)
         {
             foreach (var metric in metrics)
             {

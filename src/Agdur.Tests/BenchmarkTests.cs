@@ -193,9 +193,9 @@ namespace Agdur.Tests
             builder.AsXml();
         }
 
-        public class CustomOutputStrategy : OutputStrategyBase
+        public class CustomOutputStrategy : IOutputStrategy
         {
-            public override void Execute(TextWriter writer, IList<IMetric> metrics) { }
+            public void Execute(TextWriter writer, IList<IMetric> metrics) { }
         }
     }
 }

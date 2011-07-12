@@ -13,7 +13,7 @@ namespace Agdur
             this.generator = generator;
         }
 
-        public void AsCustom(OutputStrategyBase outputStrategy)
+        public void AsCustom(IOutputStrategy outputStrategy)
         {
             using (var writer = new StringWriter())
             {

@@ -45,7 +45,7 @@
     <Compile Include="BenchmarkBuilderToSyntaxExtensions.cs" />
     <Compile Include="ConsoleBenchmarkBuilderAsSyntax.cs" />
     <Compile Include="FormattedOutputStrategy.cs" />
-    <Compile Include="OutputStrategyBase.cs" />
+    <Compile Include="Abstractions\IOutputStrategy.cs" />
     <Compile Include="Abstractions\IBenchmarkBuilderAsSyntax.cs" />
     <Compile Include="Abstractions\IBenchmarkBuilderToSyntax.cs" />
     <Compile Include="BenchmarkBuilderAsSyntaxExtensions.cs" />
@@ -58,6 +58,7 @@
     <Compile Include="Compare.cs" />
     <Compile Include="CompareBuilder.cs" />
     <Compile Include="Abstractions\ICompareBuilder.cs" />
+    <Compile Include="MetricsExtensions.cs" />
     <Compile Include="MultipleValueMetric.cs" />
     <Compile Include="PathBenchmarkBuilderAsSyntax.cs" />
     <Compile Include="SamplesExtensions.cs" />

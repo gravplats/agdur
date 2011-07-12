@@ -15,7 +15,7 @@ namespace Agdur
             this.metrics = metrics;
         }
 
-        public void AsCustom(OutputStrategyBase output)
+        public void AsCustom(IOutputStrategy output)
         {
             output.Execute(writer, metrics);
         }

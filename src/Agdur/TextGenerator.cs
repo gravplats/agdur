@@ -12,7 +12,7 @@ namespace Agdur
             this.builder = builder;
         }
 
-        public string Generate(TextWriter writer, OutputStrategyBase outputStrategy)
+        public string Generate(TextWriter writer, IOutputStrategy outputStrategy)
         {
             builder.ToCustom(writer).AsCustom(outputStrategy);
             return writer.ToString();

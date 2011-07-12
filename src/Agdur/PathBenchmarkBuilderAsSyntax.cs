@@ -14,7 +14,7 @@ namespace Agdur
             this.path = path;
         }
 
-        public void AsCustom(OutputStrategyBase outputStrategy)
+        public void AsCustom(IOutputStrategy outputStrategy)
         {
             using (var stream = File.Open(path, FileMode.CreateNew))
             using (var writer = new StreamWriter(stream))
