@@ -8,7 +8,7 @@ namespace Agdur
     /// <summary>
     /// Defines a multiple value metric.
     /// </summary>
-    public class MultipleValueMetric : MetricBase
+    public class MultipleValueMetric : IMetric
     {
         private readonly Func<IEnumerable<double>, IEnumerable<double>> metric;
 
@@ -18,20 +18,32 @@ namespace Agdur
         /// <param name="name">The name of the metric.</param>
         /// <param name="metric">The metric.</param>
         public MultipleValueMetric(string name, Func<IEnumerable<double>, IEnumerable<double>> metric)
-            : base(name)
         {
+            Name = name;
             this.metric = metric;
         }
 
         /// <inheritdoc/>
-        public override void Accept(IMetricVisitor visitor)
+        public Func<TimeSpan, IConvertible> DataProvider { get; set; }
+
+        /// <inheritdoc/>
+        public string Name { get; private set; }
+
+        /// <inheritdoc/>
+        public IEnumerable<TimeSpan> Samples { get; set; }
+
+        /// <inheritdoc/>
+        public string UnitOfMeasurement { get; set; }
+
+        /// <inheritdoc/>
+        public void Accept(IMetricVisitor visitor)
         {
             visitor.Visit(this);
         }
 
         public IList<string> GetValues()
         {
-            var data = GetData();
+            var data = Samples.GetData(DataProvider);
             var values = metric(data);
 
             return values.Select(value => value.ToString()).ToList();

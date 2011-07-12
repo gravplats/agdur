@@ -7,31 +7,43 @@ namespace Agdur
     /// <summary>
     /// Defines a single value metric.
     /// </summary>
-    public class SingleValueMetric : MetricBase
+    public class SingleValueMetric : IMetric
     {
-        private readonly Func<IEnumerable<double>, double> func;
+        private readonly Func<IEnumerable<double>, double> metric;
 
         /// <summary>
         /// Creates a new instance of the <see cref="SingleValueMetric"/> class.
         /// </summary>
         /// <param name="name">The name of the metric.</param>
-        /// <param name="func">The metric.</param>
-        public SingleValueMetric(string name, Func<IEnumerable<double>, double> func)
-            : base(name)
+        /// <param name="metric">The metric.</param>
+        public SingleValueMetric(string name, Func<IEnumerable<double>, double> metric)
         {
-            this.func = func;
+            Name = name;
+            this.metric = metric;
         }
 
         /// <inheritdoc/>
-        public override void Accept(IMetricVisitor visitor)
+        public Func<TimeSpan, IConvertible> DataProvider { get; set; }
+
+        /// <inheritdoc/>
+        public string Name { get; private set; }
+
+        /// <inheritdoc/>
+        public IEnumerable<TimeSpan> Samples { get; set; }
+
+        /// <inheritdoc/>
+        public string UnitOfMeasurement { get; set; }
+
+        /// <inheritdoc/>
+        public void Accept(IMetricVisitor visitor)
         {
             visitor.Visit(this);
         }
 
         public string GetValue()
         {
-            var data = GetData();
-            double value = func(data);
+            var data = Samples.GetData(DataProvider);
+            double value = metric(data);
 
             return value.ToString();
         }
