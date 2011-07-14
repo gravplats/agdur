@@ -6,12 +6,20 @@ namespace Agdur
 {
     public static class BenchmarkBuilderToSyntaxExtensions
     {
+        /// <summary>
+        /// Writes the output to the console.
+        /// </summary>
         public static IBenchmarkBuilderAsSyntax ToConsole(this IBenchmarkBuilderContinutation builder)
         {
             var generator = new TextGenerator(builder);
             return new ConsoleBenchmarkBuilderAsSyntax(generator);
         }
 
+        /// <summary>
+        /// Writes the output to the specified path or filename. If a filename or relative path is specified it will be
+        /// relative the current base directory of the executing app domain.
+        /// </summary>
+        /// <param name="filenameOrPath"></param>
         public static IBenchmarkBuilderAsSyntax ToPath(this IBenchmarkBuilderContinutation builder, string filenameOrPath)
         {
             Ensure.NotNullOrEmpty(filenameOrPath, "filenameOrPath", "Please specify a valid path or filename");
