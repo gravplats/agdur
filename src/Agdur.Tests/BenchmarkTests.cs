@@ -166,7 +166,7 @@ namespace Agdur.Tests
         [Fact]
         public void Path()
         {
-            builder.ToPath("");
+            builder.ToPath("filename");
         }
     }
 
