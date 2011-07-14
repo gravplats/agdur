@@ -28,6 +28,7 @@ namespace Agdur
         /// <inheritdoc/>
         public IBenchmarkBuilderAsSyntax ToCustom(TextWriter writer)
         {
+            Ensure.ArgumentNotNull(writer, "writer");
             return new BenchmarkBuilderAsSyntax(writer, metrics);
         }
 
@@ -43,6 +44,8 @@ namespace Agdur
         /// <inheritdoc/>
         public IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> WithCustom(IMetric metric)
         {
+            Ensure.ArgumentNotNull(metric, "metric");
+
             metric.Samples = samples;
             metrics.Add(metric);
 

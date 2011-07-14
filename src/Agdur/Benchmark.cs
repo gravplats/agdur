@@ -51,6 +51,8 @@ namespace Agdur
         /// <param name="action">The action to be benchmarked.</param>
         public static IBenchmarkBuilder This(Action action)
         {
+            Ensure.ArgumentNotNull(action, "action");
+
             var benchmark = BenchmarkStrategyProvider(action);
             return new Benchmark(benchmark);
         }
