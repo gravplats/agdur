@@ -45,9 +45,12 @@
   <ItemGroup>
     <Compile Include="BenchmarkTests.cs" />
     <Compile Include="CompareTests.cs" />
+    <Compile Include="IO\FormattedOutputStrategyTests.cs" />
     <Compile Include="IO\NumberToStringMapperTests.cs" />
     <Compile Include="IO\MultipleValueFormatterTests.cs" />
+    <Compile Include="IO\OutputStrategyContext.cs" />
     <Compile Include="IO\SingleValueFormatterTests.cs" />
+    <Compile Include="IO\XmlOutputStrategyTests.cs" />
     <Compile Include="TestMetric.cs" />
     <Compile Include="Utilities\AssertExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
