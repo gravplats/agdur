@@ -61,6 +61,7 @@
     <Compile Include="MetricsExtensions.cs" />
     <Compile Include="MultipleValueMetric.cs" />
     <Compile Include="IO\PathBenchmarkBuilderAsSyntax.cs" />
+    <Compile Include="PathGenerator.cs" />
     <Compile Include="SamplesExtensions.cs" />
     <Compile Include="SingleValueMetric.cs" />
     <Compile Include="IO\FormattedOutputMetricVisitor.cs" />

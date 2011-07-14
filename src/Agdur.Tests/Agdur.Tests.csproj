@@ -49,6 +49,7 @@
     <Compile Include="IO\NumberToStringMapperTests.cs" />
     <Compile Include="IO\MultipleValueFormatterTests.cs" />
     <Compile Include="IO\OutputStrategyContext.cs" />
+    <Compile Include="IO\PathGeneratorTests.cs" />
     <Compile Include="IO\SingleValueFormatterTests.cs" />
     <Compile Include="IO\XmlOutputStrategyTests.cs" />
     <Compile Include="TestMetric.cs" />

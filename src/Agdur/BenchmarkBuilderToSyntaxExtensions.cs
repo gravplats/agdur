@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using Agdur.Abstractions;
+﻿using Agdur.Abstractions;
 using Agdur.Introspection;
 using Agdur.IO;
 
@@ -14,19 +12,13 @@ namespace Agdur
             return new ConsoleBenchmarkBuilderAsSyntax(generator);
         }
 
-        public static IBenchmarkBuilderAsSyntax ToPath(this IBenchmarkBuilderContinutation builder, string pathOrFilename)
+        public static IBenchmarkBuilderAsSyntax ToPath(this IBenchmarkBuilderContinutation builder, string filenameOrPath)
         {
-            Ensure.NotNullOrEmpty(pathOrFilename, "path", "Please specify a valid path or filename");
-                
-            string path = pathOrFilename;
-            if (!Path.IsPathRooted(pathOrFilename))
-            {
-                string filename = pathOrFilename;
-                string directory = AppDomain.CurrentDomain.BaseDirectory;
-                path = Path.Combine(directory, filename);
-            }
+            Ensure.NotNullOrEmpty(filenameOrPath, "filenameOrPath", "Please specify a valid path or filename");
 
             var generator = new TextGenerator(builder);
+            string path = PathGenerator.Generate(filenameOrPath);
+            
             return new PathBenchmarkBuilderAsSyntax(generator, path);
         }
     }
