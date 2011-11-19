@@ -9,7 +9,7 @@ namespace Agdur
         /// </summary>
         public static TOutput InMilliseconds<TOutput>(this IBenchmarkBuilderInSyntax<TOutput> builder)
         {
-            return builder.InCustom(span => span.Milliseconds, "ms");
+            return builder.InCustom(span => span.TotalMilliseconds, "ms");
         }
 
         /// <summary>
