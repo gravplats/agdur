@@ -1,4 +1,5 @@
 ﻿using Agdur.Abstractions;
+using System;
 
 namespace Agdur
 {
@@ -9,7 +10,7 @@ namespace Agdur
         /// </summary>
         public static TOutput InMilliseconds<TOutput>(this IBenchmarkBuilderInSyntax<TOutput> builder)
         {
-            return builder.InCustom(span => span.Milliseconds, "ms");
+            return builder.InCustom(span => Math.Round(span.TotalMilliseconds, MidpointRounding.AwayFromZero), "ms");
         }
 
         /// <summary>

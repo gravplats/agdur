@@ -9,13 +9,13 @@ namespace Agdur.IO
     /// </summary>
     public class TextGenerator
     {
-        private readonly IBenchmarkBuilderContinutation builder;
+        private readonly IBenchmarkBuilderToSyntax builder;
 
         /// <summary>
         /// Creates a new instance of the <see cref="TextGenerator"/> class.
         /// </summary>
         /// <param name="builder"></param>
-        public TextGenerator(IBenchmarkBuilderContinutation builder)
+        public TextGenerator(IBenchmarkBuilderToSyntax builder)
         {
             Ensure.NotNull(builder, "builder");
             this.builder = builder;
