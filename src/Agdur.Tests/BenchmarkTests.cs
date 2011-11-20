@@ -98,6 +98,20 @@ namespace Agdur.Tests
         }
     }
 
+    public class Should_be_able_to_benchmark_with_multiple_times
+    {
+        private readonly IBenchmarkBuilderWithSyntax<IBenchmarkBuilderContinutation> builder =
+            Benchmark.This(() => new object()).Times(1);
+
+        [Fact]
+        public void Multiple_custom_metrics()
+        {
+            builder
+                .WithCustom("custom", data => data.Sum()).InTicks()
+                .WithCustom("custom", data => data.Sum()).InTicks();
+        }
+    }
+
     public class Should_be_able_to_benchmark_in
     {
         private readonly IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> builder =
