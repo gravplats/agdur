@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Agdur.Tests.IO
+namespace Agdur.Tests
 {
     public abstract class OutputStrategyTestBase
     {

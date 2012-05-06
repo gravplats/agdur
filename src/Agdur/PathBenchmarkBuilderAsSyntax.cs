@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Agdur.Introspection;
 
-namespace Agdur.IO
+namespace Agdur
 {
     /// <summary>
     /// Provides functionality for outputting the results to a path.

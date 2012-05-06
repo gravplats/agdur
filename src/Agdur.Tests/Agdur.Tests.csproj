@@ -40,13 +40,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BenchmarkTests.cs" />
-    <Compile Include="IO\FormattedOutputStrategyTests.cs" />
-    <Compile Include="IO\NumberToStringMapperTests.cs" />
-    <Compile Include="IO\MultipleValueFormatterTests.cs" />
-    <Compile Include="IO\OutputStrategyTestBase.cs" />
-    <Compile Include="IO\PathGeneratorTests.cs" />
-    <Compile Include="IO\SingleValueFormatterTests.cs" />
-    <Compile Include="IO\XmlOutputStrategyTests.cs" />
+    <Compile Include="FormattedOutputStrategyTests.cs" />
+    <Compile Include="NumberToStringMapperTests.cs" />
+    <Compile Include="MultipleValueFormatterTests.cs" />
+    <Compile Include="OutputStrategyTestBase.cs" />
+    <Compile Include="PathGeneratorTests.cs" />
+    <Compile Include="SingleValueFormatterTests.cs" />
+    <Compile Include="XmlOutputStrategyTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

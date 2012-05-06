@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using Agdur.IO;
 using NUnit.Framework;
 
-namespace Agdur.Tests.IO
+namespace Agdur.Tests
 {
     public class FormattedOutputStrategyTests : OutputStrategyTestBase
     {

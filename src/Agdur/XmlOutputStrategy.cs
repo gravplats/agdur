@@ -3,7 +3,7 @@ using System.IO;
 using System.Xml;
 using Agdur.Introspection;
 
-namespace Agdur.IO
+namespace Agdur
 {
     /// <summary>
     /// Provides functionality for outputting the results as XML.

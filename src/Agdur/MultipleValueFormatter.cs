@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Agdur.Introspection;
 
-namespace Agdur.IO
+namespace Agdur
 {
     /// <summary>
     /// Format a multiple value result.

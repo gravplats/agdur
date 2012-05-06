@@ -1,6 +1,4 @@
-﻿using Agdur.IO;
-
-namespace Agdur
+﻿namespace Agdur
 {
     public static class BenchmarkBuilderAsSyntaxExtensions
     {

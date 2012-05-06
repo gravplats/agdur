@@ -1,7 +1,6 @@
-﻿using Agdur.IO;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
-namespace Agdur.Tests.IO
+namespace Agdur.Tests
 {
     public class XmlOutputStrategyTests : OutputStrategyTestBase
     {

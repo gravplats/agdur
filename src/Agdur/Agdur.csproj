@@ -42,8 +42,8 @@
     <Compile Include="BenchmarkBuilderAsSyntax.cs" />
     <Compile Include="BenchmarkBuilderInSyntaxExtensions.cs" />
     <Compile Include="BenchmarkBuilderToSyntaxExtensions.cs" />
-    <Compile Include="IO\ConsoleBenchmarkBuilderAsSyntax.cs" />
-    <Compile Include="IO\FormattedOutputStrategy.cs" />
+    <Compile Include="ConsoleBenchmarkBuilderAsSyntax.cs" />
+    <Compile Include="FormattedOutputStrategy.cs" />
     <Compile Include="IOutputStrategy.cs" />
     <Compile Include="IBenchmarkBuilderAsSyntax.cs" />
     <Compile Include="IBenchmarkBuilderToSyntax.cs" />
@@ -55,11 +55,11 @@
     <Compile Include="IMetricVisitor.cs" />
     <Compile Include="MetricsExtensions.cs" />
     <Compile Include="MultipleValueMetric.cs" />
-    <Compile Include="IO\PathBenchmarkBuilderAsSyntax.cs" />
+    <Compile Include="PathBenchmarkBuilderAsSyntax.cs" />
     <Compile Include="PathGenerator.cs" />
     <Compile Include="SamplesExtensions.cs" />
     <Compile Include="SingleValueMetric.cs" />
-    <Compile Include="IO\TextGenerator.cs" />
+    <Compile Include="TextGenerator.cs" />
     <Compile Include="Benchmark.cs" />
     <Compile Include="DefaultBenchmarkStrategy.cs" />
     <Compile Include="IBenchmarkStrategy.cs" />
@@ -71,11 +71,11 @@
     <Compile Include="IBenchmarkBuilderWithSyntax.cs" />
     <Compile Include="IBenchmarkBuilderContinutation.cs" />
     <Compile Include="IFluentSyntax.cs" />
-    <Compile Include="IO\MultipleValueFormatter.cs" />
-    <Compile Include="IO\NumberToStringMapper.cs" />
-    <Compile Include="IO\SingleValueFormatter.cs" />
+    <Compile Include="MultipleValueFormatter.cs" />
+    <Compile Include="NumberToStringMapper.cs" />
+    <Compile Include="SingleValueFormatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IO\XmlOutputStrategy.cs" />
+    <Compile Include="XmlOutputStrategy.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

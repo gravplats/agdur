@@ -1,6 +1,6 @@
 ﻿using Agdur.Introspection;
 
-namespace Agdur.IO
+namespace Agdur
 {
     /// <summary>
     /// Formats a single value result.

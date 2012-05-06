@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Agdur.IO
+namespace Agdur
 {
     /// <summary>
     /// Provides functionality for converting a number to a string (or word).
