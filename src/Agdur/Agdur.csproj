@@ -59,9 +59,7 @@
     <Compile Include="PathGenerator.cs" />
     <Compile Include="SamplesExtensions.cs" />
     <Compile Include="SingleValueMetric.cs" />
-    <Compile Include="IO\FormattedOutputMetricVisitor.cs" />
     <Compile Include="IO\TextGenerator.cs" />
-    <Compile Include="IO\XmlOutputMetricVisitor.cs" />
     <Compile Include="Benchmark.cs" />
     <Compile Include="DefaultBenchmarkStrategy.cs" />
     <Compile Include="Abstractions\IBenchmarkStrategy.cs" />
