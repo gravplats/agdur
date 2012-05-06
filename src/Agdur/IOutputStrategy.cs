@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace Agdur.Abstractions
+namespace Agdur
 {
     /// <summary>
     /// Provides functionality for outputting the results.

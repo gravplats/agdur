@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Xml;
-using Agdur.Abstractions;
 using Agdur.Introspection;
 
 namespace Agdur.IO

@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using Agdur.Abstractions;
 using Agdur.Introspection;
 
 namespace Agdur

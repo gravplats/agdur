@@ -1,4 +1,4 @@
-﻿namespace Agdur.Abstractions
+﻿namespace Agdur
 {
     /// <summary>
     /// Used to define the type of metric.

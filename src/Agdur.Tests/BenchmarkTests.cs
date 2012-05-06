@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Agdur.Abstractions;
 using NUnit.Framework;
 
 namespace Agdur.Tests

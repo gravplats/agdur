@@ -1,4 +1,4 @@
-﻿namespace Agdur.Abstractions
+﻿namespace Agdur
 {
     /// <summary>
     /// Provides functionality for visiting a metric.

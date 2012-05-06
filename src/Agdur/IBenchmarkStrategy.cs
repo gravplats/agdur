@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Agdur.Abstractions
+namespace Agdur
 {
     /// <summary>
     /// Provides functionality for implementing a benchmark strategy.

@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using Agdur.Abstractions;
 using Agdur.Introspection;
 
 namespace Agdur.IO

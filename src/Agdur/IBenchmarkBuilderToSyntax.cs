@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Agdur.Abstractions
+namespace Agdur
 {
     public interface IBenchmarkBuilderToSyntax
     {

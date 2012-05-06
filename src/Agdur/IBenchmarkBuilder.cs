@@ -1,4 +1,4 @@
-﻿namespace Agdur.Abstractions
+﻿namespace Agdur
 {
     /// <summary>
     /// Used to define the number of times the action to be benchmarked should be run.

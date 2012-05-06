@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace Agdur.Abstractions
+namespace Agdur
 {
     /// <summary>
     /// A hack to hide methods defined on <see cref="object"/> for IntelliSense on fluent interfaces.

@@ -1,4 +1,4 @@
-﻿namespace Agdur.Abstractions
+﻿namespace Agdur
 {
     public interface IBenchmarkBuilderAsSyntax
     {

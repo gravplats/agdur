@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Agdur.Abstractions
+namespace Agdur
 {
     /// <summary>
     /// Used to define the type of measurement that should be used for presenting the metric.
