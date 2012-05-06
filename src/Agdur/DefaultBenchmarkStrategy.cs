@@ -47,7 +47,7 @@ namespace Agdur
         /// <summary>
         /// Give the test as good a change as possible of avoiding garbage collection.
         /// </summary>
-        private void WarmUp()
+        protected virtual void WarmUp()
         {
             GC.Collect();
             GC.WaitForPendingFinalizers();
