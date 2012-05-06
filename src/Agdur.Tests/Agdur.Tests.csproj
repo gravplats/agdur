@@ -54,10 +54,7 @@
     <Compile Include="IO\PathGeneratorTests.cs" />
     <Compile Include="IO\SingleValueFormatterTests.cs" />
     <Compile Include="IO\XmlOutputStrategyTests.cs" />
-    <Compile Include="TestMetric.cs" />
-    <Compile Include="Utilities\AssertExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agdur\Agdur.csproj">
