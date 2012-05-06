@@ -49,7 +49,6 @@
     <Compile Include="Abstractions\IBenchmarkBuilderToSyntax.cs" />
     <Compile Include="BenchmarkBuilderAsSyntaxExtensions.cs" />
     <Compile Include="BenchmarkBuilderWithSyntaxExtensions.cs" />
-    <Compile Include="Abstractions\IBenchmarkProfile.cs" />
     <Compile Include="Abstractions\ISingleBenchmarkBuilderWithSyntax.cs" />
     <Compile Include="Abstractions\ISingleBenchmarkBuilderContinuation.cs" />
     <Compile Include="Abstractions\IMetric.cs" />
@@ -69,7 +68,6 @@
     <Compile Include="BenchmarkBuilderInSyntax.cs" />
     <Compile Include="BenchmarkBuilderContinuation.cs" />
     <Compile Include="Introspection\Ensure.cs" />
-    <Compile Include="Abstractions\IBenchmarkActionBuilder.cs" />
     <Compile Include="Abstractions\IBenchmarkBuilder.cs" />
     <Compile Include="Abstractions\IBenchmarkBuilderInSyntax.cs" />
     <Compile Include="Abstractions\IBenchmarkBuilderWithSyntax.cs" />

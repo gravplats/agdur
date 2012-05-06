@@ -22,14 +22,6 @@ namespace Agdur.Tests
 
             Assert.That(wasCalled, Is.True);
         }
-
-        public class BenchmarkProfile : IBenchmarkProfile
-        {
-            public IBenchmarkBuilderContinutation Define(IBenchmarkBuilder builder)
-            {
-                return builder.Times(10).Average().InMilliseconds();
-            }
-        }
     }
 
     // "Assert" that we don't break the fluent interface for multiple samples '.WithCustom()'.
