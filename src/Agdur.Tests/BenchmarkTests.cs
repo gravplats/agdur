@@ -2,14 +2,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Agdur.Abstractions;
-using Agdur.Tests.Utilities;
-using Xunit;
+using NUnit.Framework;
 
 namespace Agdur.Tests
 {
     public class BenchmarkTests
     {
-        [Fact]
+        [Test]
         public void Should_be_able_to_set_custom_benchmark_strategy_provider()
         {
             bool wasCalled = false;
@@ -21,7 +20,7 @@ namespace Agdur.Tests
 
             Benchmark.This(() => new object());
 
-            wasCalled.ShouldBeTrue();
+            Assert.That(wasCalled, Is.True);
         }
 
         public class BenchmarkProfile : IBenchmarkProfile
@@ -33,167 +32,159 @@ namespace Agdur.Tests
         }
     }
 
+    // "Assert" that we don't break the fluent interface for multiple samples '.WithCustom()'.
     public class Should_be_able_to_benchmark_with
     {
-        private readonly IBenchmarkBuilderWithSyntax<IBenchmarkBuilderContinutation> builder =
+        private readonly IBenchmarkBuilderWithSyntax<IBenchmarkBuilderContinutation> tbuilder = 
             Benchmark.This(() => new object()).Times(1);
 
-        [Fact]
+        [Test]
         public void Custom_metric()
         {
-            builder.WithCustom(new MultipleValueMetric("custom", data => data));
+            tbuilder.WithCustom(new MultipleValueMetric("custom", data => data));
         }
 
-        [Fact]
-        public void Custom_simplified_single_metric()
-        {
-            builder.WithCustom("custom", data => data.Sum());
-        }
-
-        [Fact]
-        public void Custom_simplified_multiple_metric()
-        {
-            builder.WithCustom("custom", data => data);
-        }
-
-        [Fact]
-        public void Average()
-        {
-            builder.Average();
-        }
-
-        [Fact]
-        public void First()
-        {
-            builder.First(1);
-        }
-
-        [Fact]
-        public void Max()
-        {
-            builder.Max();
-        }
-
-        [Fact]
-        public void Min()
-        {
-            builder.Min();
-        }
-
-        [Fact]
-        public void Total()
-        {
-            builder.Total();
-        }
-    }
-
-    public class Should_be_able_to_benchmark_with_multiple_times
-    {
-        private readonly IBenchmarkBuilderWithSyntax<IBenchmarkBuilderContinutation> builder =
-            Benchmark.This(() => new object()).Times(1);
-
-        [Fact]
+        [Test]
         public void Multiple_custom_metrics()
         {
-            builder
+            tbuilder
                 .WithCustom("custom", data => data.Sum()).InTicks()
                 .WithCustom("custom", data => data.Sum()).InTicks();
         }
+
+        [Test]
+        public void Custom_simplified_single_metric()
+        {
+            tbuilder.WithCustom("custom", data => data.Sum());
+        }
+
+        [Test]
+        public void Custom_simplified_multiple_metric()
+        {
+            tbuilder.WithCustom("custom", data => data);
+        }
+
+        [Test]
+        public void Average()
+        {
+            tbuilder.Average();
+        }
+
+        [Test]
+        public void First()
+        {
+            tbuilder.First(1);
+        }
+
+        [Test]
+        public void Max()
+        {
+            tbuilder.Max();
+        }
+
+        [Test]
+        public void Min()
+        {
+            tbuilder.Min();
+        }
+
+        [Test]
+        public void Total()
+        {
+            tbuilder.Total();
+        }
     }
 
+    // "Assert" that we don't break the fluent interface for '.InCustom()'.
     public class Should_be_able_to_benchmark_in
     {
-        private readonly IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> builder =
+        private readonly IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> tbuilder =
             Benchmark.This(() => new object()).Times(1).WithCustom(new MultipleValueMetric("custom", data => data));
 
-        [Fact]
-        public void Custom_time()
-        {
-            builder.InCustom(sample => sample.Seconds, "s");
-        }
-
-        [Fact]
-        public void Milliseconds()
-        {
-            builder.InMilliseconds();
-        }
-
-        [Fact]
-        public void Ticks()
-        {
-            builder.InTicks();
-        }
-    }
-
-    public class Should_be_able_to_benchmark_once_in
-    {
-        private readonly IBenchmarkBuilderInSyntax<ISingleBenchmarkBuilderContinuation> builder =
+        private readonly IBenchmarkBuilderInSyntax<ISingleBenchmarkBuilderContinuation> obuilder =
             Benchmark.This(() => new object()).Once().Value();
 
-        [Fact]
+        [Test]
         public void Custom_time()
         {
-            builder.InCustom(sample => sample.Seconds, "s");
+            tbuilder.InCustom(sample => sample.Seconds, "s");
+            obuilder.InCustom(sample => sample.Seconds, "s");
         }
 
-        [Fact]
+        [Test]
         public void Milliseconds()
         {
-            builder.InMilliseconds();
+            tbuilder.InMilliseconds();
+            obuilder.InMilliseconds();
         }
 
-        [Fact]
+        [Test]
         public void Ticks()
         {
-            builder.InTicks();
+            tbuilder.InTicks();
+            obuilder.InTicks();
         }
     }
 
+    // "Assert" that we don't break the fluent interface for '.ToCustom()'.
     public class Should_be_able_to_benchmark_to
     {
-        private readonly IBenchmarkBuilderContinutation builder =
-            Benchmark.This(() => new object()).Times(10).WithCustom(new SingleValueMetric("custom", data => data.Sum())).InCustom(sample => sample.Seconds, "s");
+        private readonly IBenchmarkBuilderContinutation tbuilder =
+            Benchmark.This(() => new object()).Times(1).WithCustom(new SingleValueMetric("custom", data => data.Sum())).InCustom(sample => sample.Seconds, "s");
 
-        [Fact]
+        private readonly ISingleBenchmarkBuilderContinuation obuilder =
+            Benchmark.This(() => new object()).Once().Value().InCustom(sample => sample.Seconds, "s");
+
+        [Test]
         public void Custom()
         {
-            builder.ToCustom(new StringWriter());
+            tbuilder.ToCustom(new StringWriter());
+            obuilder.ToCustom(new StringWriter());
         }
 
-        [Fact]
+        [Test]
         public void Console()
         {
-            builder.ToConsole();
+            tbuilder.ToConsole();
+            obuilder.ToConsole();
         }
 
-        [Fact]
+        [Test]
         public void Path()
         {
-            builder.ToPath("filename");
+            tbuilder.ToPath("filename");
+            obuilder.ToPath("filename");
         }
     }
 
+    // "Assert" that we don't break the fluent interface for '.AsCustom()'.
     public class Should_be_able_to_benchmark_as
     {
-        private readonly IBenchmarkBuilderAsSyntax builder =
-            Benchmark.This(() => new object()).Times(10).WithCustom(new SingleValueMetric("custom", data => data.Sum())).InCustom(sample => sample.Seconds, "s").ToConsole();
+        private readonly IBenchmarkBuilderAsSyntax tbuilder =
+            Benchmark.This(() => new object()).Times(10).WithCustom(new SingleValueMetric("custom", data => data.Sum())).InCustom(sample => sample.Seconds, "s").ToCustom(new StringWriter());
 
-        [Fact]
+        private readonly IBenchmarkBuilderAsSyntax obuilder =
+            Benchmark.This(() => new object()).Once().Value().InCustom(sample => sample.Seconds, "s").ToCustom(new StringWriter());
+
+        [Test]
         public void Custom()
         {
-            builder.AsCustom(new CustomOutputStrategy());
+            tbuilder.AsCustom(new CustomOutputStrategy());
+            obuilder.AsCustom(new CustomOutputStrategy());
         }
 
-        [Fact]
+        [Test]
         public void FormattedString()
         {
-            builder.AsFormattedString();
+            tbuilder.AsFormattedString();
+            obuilder.AsFormattedString();
         }
 
-        [Fact]
+        [Test]
         public void Xml()
         {
-            builder.AsXml();
+            tbuilder.AsXml();
+            obuilder.AsXml();
         }
 
         public class CustomOutputStrategy : IOutputStrategy
