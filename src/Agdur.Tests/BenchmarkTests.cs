@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,16 +9,6 @@ namespace Agdur.Tests
 {
     public class BenchmarkTests
     {
-        [Fact]
-        public void Should_be_able_to_benchmark_as_baseline_using_writer()
-        {
-            var writer = new StringWriter();
-            Benchmark.This(() => new object()).AsBaseline<BenchmarkProfile>(writer);
-
-            string result = writer.ToString();
-            Console.WriteLine(result);
-        }
-
         [Fact]
         public void Should_be_able_to_set_custom_benchmark_strategy_provider()
         {

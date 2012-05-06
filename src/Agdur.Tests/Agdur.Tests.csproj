@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\lib\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BenchmarkTests.cs" />
-    <Compile Include="CompareTests.cs" />
     <Compile Include="IO\FormattedOutputStrategyTests.cs" />
     <Compile Include="IO\NumberToStringMapperTests.cs" />
     <Compile Include="IO\MultipleValueFormatterTests.cs" />
@@ -63,6 +65,9 @@
       <Project>{090F8A80-66AD-4B95-A1FE-E9EA49448B8F}</Project>
       <Name>Agdur</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

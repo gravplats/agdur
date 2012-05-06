@@ -40,7 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BenchmarkBuilderAsSyntax.cs" />
-    <Compile Include="BenchmarkBuilderExtensions.cs" />
     <Compile Include="BenchmarkBuilderInSyntaxExtensions.cs" />
     <Compile Include="BenchmarkBuilderToSyntaxExtensions.cs" />
     <Compile Include="IO\ConsoleBenchmarkBuilderAsSyntax.cs" />
@@ -55,9 +54,6 @@
     <Compile Include="Abstractions\ISingleBenchmarkBuilderContinuation.cs" />
     <Compile Include="Abstractions\IMetric.cs" />
     <Compile Include="Abstractions\IMetricVisitor.cs" />
-    <Compile Include="Compare.cs" />
-    <Compile Include="CompareBuilder.cs" />
-    <Compile Include="Abstractions\ICompareBuilder.cs" />
     <Compile Include="MetricsExtensions.cs" />
     <Compile Include="MultipleValueMetric.cs" />
     <Compile Include="IO\PathBenchmarkBuilderAsSyntax.cs" />
