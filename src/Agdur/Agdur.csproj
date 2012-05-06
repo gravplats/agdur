@@ -65,7 +65,7 @@
     <Compile Include="IBenchmarkStrategy.cs" />
     <Compile Include="BenchmarkBuilderInSyntax.cs" />
     <Compile Include="BenchmarkBuilderContinuation.cs" />
-    <Compile Include="Introspection\Ensure.cs" />
+    <Compile Include="Ensure.cs" />
     <Compile Include="IBenchmarkBuilder.cs" />
     <Compile Include="IBenchmarkBuilderInSyntax.cs" />
     <Compile Include="IBenchmarkBuilderWithSyntax.cs" />

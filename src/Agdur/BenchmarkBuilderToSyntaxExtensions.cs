@@ -1,6 +1,4 @@
-﻿using Agdur.Introspection;
-
-namespace Agdur
+﻿namespace Agdur
 {
     public static class BenchmarkBuilderToSyntaxExtensions
     {
