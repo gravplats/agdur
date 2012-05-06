@@ -102,7 +102,7 @@ namespace Agdur.Tests
             Benchmark.This(() => new object()).Times(1).WithCustom(new MultipleValueMetric("custom", data => data));
 
         private readonly IBenchmarkBuilderInSyntax<ISingleBenchmarkBuilderContinuation> obuilder =
-            Benchmark.This(() => new object()).Once().Value();
+            Benchmark.This(() => new object()).Once();
 
         [Test]
         public void Custom_time()
@@ -133,7 +133,7 @@ namespace Agdur.Tests
             Benchmark.This(() => new object()).Times(1).WithCustom(new SingleValueMetric("custom", data => data.Sum())).InCustom(sample => sample.Seconds, "s");
 
         private readonly ISingleBenchmarkBuilderContinuation obuilder =
-            Benchmark.This(() => new object()).Once().Value().InCustom(sample => sample.Seconds, "s");
+            Benchmark.This(() => new object()).Once().InCustom(sample => sample.Seconds, "s");
 
         [Test]
         public void Custom()
@@ -164,7 +164,7 @@ namespace Agdur.Tests
             Benchmark.This(() => new object()).Times(10).WithCustom(new SingleValueMetric("custom", data => data.Sum())).InCustom(sample => sample.Seconds, "s").ToCustom(new StringWriter());
 
         private readonly IBenchmarkBuilderAsSyntax obuilder =
-            Benchmark.This(() => new object()).Once().Value().InCustom(sample => sample.Seconds, "s").ToCustom(new StringWriter());
+            Benchmark.This(() => new object()).Once().InCustom(sample => sample.Seconds, "s").ToCustom(new StringWriter());
 
         [Test]
         public void Custom()

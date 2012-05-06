@@ -8,7 +8,7 @@
         /// <summary>
         /// Specifies that the action should be run once.
         /// </summary>
-        ISingleBenchmarkBuilderWithSyntax<ISingleBenchmarkBuilderContinuation> Once();
+        IBenchmarkBuilderInSyntax<ISingleBenchmarkBuilderContinuation> Once();
 
         /// <summary>
         /// Specifies the number of times that the action to be benchmarked should be run.
