@@ -80,7 +80,6 @@
     <Compile Include="IO\SingleValueFormatter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IO\XmlOutputStrategy.cs" />
-    <Compile Include="XmlParser.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

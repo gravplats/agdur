@@ -1,18 +1,17 @@
 using Agdur.IO;
-using Agdur.Tests.Utilities;
-using Xunit;
+using NUnit.Framework;
 
 namespace Agdur.Tests.IO
 {
     public class SingleValueFormatterTests
     {
-        [Fact]
-        public void CanGetOutput()
+        [Test]
+        public void Should_able_to_generate_output_for_single_value()
         {
             string result = SingleValueFormatter.Output("test", "ms", "1");
 
             string expected = string.Format(SingleValueFormatter.OutputMessage, "test", 1, "ms");
-            result.ShouldBe(expected);
+            Assert.That(result, Is.EqualTo(expected));
         }
     }
 }

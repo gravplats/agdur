@@ -1,23 +1,22 @@
 using System;
 using System.IO;
-using Agdur.Tests.Utilities;
-using Xunit;
+using NUnit.Framework;
 
 namespace Agdur.Tests.IO
 {
     public class PathGeneratorTests
     {
-        [Fact]
-        public void Should_echo_absolute_path()
+        [Test]
+        public void If_path_contains_absolute_path_should_return_path()
         {
             string path = "c:\\absolute\\filename";
             string result = PathGenerator.Generate(path);
 
-            result.ShouldBe(path);
+            Assert.That(result, Is.EqualTo(path));
         }
 
-        [Fact]
-        public void Should_add_current_path_if_filename()
+        [Test]
+        public void If_path_contains_filename_should_append_path()
         {
             string filename = "filename";
             string result = PathGenerator.Generate(filename);
@@ -25,7 +24,7 @@ namespace Agdur.Tests.IO
             string directory = AppDomain.CurrentDomain.BaseDirectory;
             string expected = Path.Combine(directory, filename);
 
-            result.ShouldBe(expected);
+            Assert.That(result, Is.EqualTo(expected));
         }
     }
 }

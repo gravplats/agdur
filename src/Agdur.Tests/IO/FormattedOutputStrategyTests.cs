@@ -1,22 +1,20 @@
 using System.Collections.Generic;
 using Agdur.IO;
-using Agdur.Tests.Utilities;
-using Xunit;
+using NUnit.Framework;
 
 namespace Agdur.Tests.IO
 {
-    public class FormattedOutputStrategyTests : OutputStrategyContext
+    public class FormattedOutputStrategyTests : OutputStrategyTestBase
     {
-        [Fact]
-        public void Can_produce_formatted_output()
+        [Test]
+        public void Should_be_able_to_generate_output_as_formatted_text()
         {
-            var outputStrategy = new FormattedOutputStrategy();
-            string result = GetOutput(outputStrategy);
+            string result = BuildOutputUsing(new FormattedOutputStrategy());
 
-            result.ShouldBe(string.Format("{0}\r\n{1}\r\n",
+            Assert.That(result, Is.EqualTo(string.Format("{0}\r\n{1}\r\n",
                 SingleValueFormatter.Output("single", "ticks", "100"),
                 MultipleValueFormatter.Output("multiple", "ticks", new List<string> { "50", "75" })
-            ));
+            )));
         }
     }
 }

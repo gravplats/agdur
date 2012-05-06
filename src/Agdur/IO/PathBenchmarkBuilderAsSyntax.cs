@@ -5,7 +5,7 @@ using Agdur.Introspection;
 namespace Agdur.IO
 {
     /// <summary>
-    /// Provides functionality for outputtting the results to a path.
+    /// Provides functionality for outputting the results to a path.
     /// </summary>
     public class PathBenchmarkBuilderAsSyntax : IBenchmarkBuilderAsSyntax
     {

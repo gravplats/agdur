@@ -6,9 +6,9 @@ using Agdur.Abstractions;
 
 namespace Agdur.Tests.IO
 {
-    public abstract class OutputStrategyContext
+    public abstract class OutputStrategyTestBase
     {
-        protected string GetOutput(IOutputStrategy outputStrategy)
+        protected static string BuildOutputUsing(IOutputStrategy outputStrategy)
         {
             var single = new SingleValueMetric("single", data => data.Sum())
             {

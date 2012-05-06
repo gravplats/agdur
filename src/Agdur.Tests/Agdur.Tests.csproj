@@ -50,7 +50,7 @@
     <Compile Include="IO\FormattedOutputStrategyTests.cs" />
     <Compile Include="IO\NumberToStringMapperTests.cs" />
     <Compile Include="IO\MultipleValueFormatterTests.cs" />
-    <Compile Include="IO\OutputStrategyContext.cs" />
+    <Compile Include="IO\OutputStrategyTestBase.cs" />
     <Compile Include="IO\PathGeneratorTests.cs" />
     <Compile Include="IO\SingleValueFormatterTests.cs" />
     <Compile Include="IO\XmlOutputStrategyTests.cs" />
@@ -58,7 +58,6 @@
     <Compile Include="Utilities\AssertExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Should.cs" />
-    <Compile Include="XmlParserTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agdur\Agdur.csproj">

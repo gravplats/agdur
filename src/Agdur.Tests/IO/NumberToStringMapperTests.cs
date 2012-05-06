@@ -1,31 +1,29 @@
 using Agdur.IO;
-using Agdur.Tests.Utilities;
-using Xunit.Extensions;
+using NUnit.Framework;
 
 namespace Agdur.Tests.IO
 {
     public class NumberToStringMapperTests
     {
-        [Theory]
-        [InlineData(1, "one")]
-        [InlineData(2, "two")]
-        [InlineData(3, "three")]
-        [InlineData(4, "four")]
-        [InlineData(5, "five")]
-        [InlineData(6, "six")]
-        [InlineData(7, "seven")]
-        [InlineData(8, "eight")]
-        [InlineData(9, "nine")]
-        public void ShouldSpellOutSingleDigitWholeNumbers(int number, string word)
+        [TestCase(1, "one")]
+        [TestCase(2, "two")]
+        [TestCase(3, "three")]
+        [TestCase(4, "four")]
+        [TestCase(5, "five")]
+        [TestCase(6, "six")]
+        [TestCase(7, "seven")]
+        [TestCase(8, "eight")]
+        [TestCase(9, "nine")]
+        public void If_value_is_between_one_and_nine_should_return_word(int number, string word)
         {
             string result = NumberToStringMapper.GetWordOrDefault(number);
-            result.ShouldBe(word);
+            Assert.That(result, Is.EqualTo(word));
         }
 
-        public void ShouldUseNumberalsForNumbersGreaterThanNine()
+        public void If_value_is_greater_than_or_equal_to_ten_should_return_number()
         {
             string result = NumberToStringMapper.GetWordOrDefault(10);
-            result.ShouldBe("10");
+            Assert.That(result, Is.EqualTo("10"));
         }
     }
 }
