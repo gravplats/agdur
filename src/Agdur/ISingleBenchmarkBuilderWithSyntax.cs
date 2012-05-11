@@ -9,6 +9,7 @@
         /// <summary>
         /// Specifies that the single value of the sample should be displayed.
         /// </summary>
-        IBenchmarkBuilderInSyntax<TOutput> Value();
+        /// <param name="value">An optional custom name for the metric.</param>
+        IBenchmarkBuilderInSyntax<TOutput> Value(string value = null);
     }
 }

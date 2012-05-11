@@ -31,9 +31,11 @@ namespace Agdur
         }
 
         /// <inheritdoc/>
-        public IBenchmarkBuilderInSyntax<ISingleBenchmarkBuilderContinuation> Value()
+        public IBenchmarkBuilderInSyntax<ISingleBenchmarkBuilderContinuation> Value(string value = null)
         {
-            var metric = new SingleValueMetric("single", data => data.Single()) { Samples = samples };
+            value = value ?? "single";
+
+            var metric = new SingleValueMetric(value, data => data.Single()) { Samples = samples };
             metrics.Add(metric);
 
             return new BenchmarkBuilderInSyntax<ISingleBenchmarkBuilderContinuation>(metric, this);
