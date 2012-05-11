@@ -9,9 +9,10 @@ namespace Agdur
         /// <summary>
         /// Specifies how the value of the custom metric should be calculated.
         /// </summary>
-        /// <param name="name">The name of the custom metric.</param>
+        /// <param name="builder"> </param>
         /// <param name="func">The metric.</param>
-        public static IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> WithCustom(this IBenchmarkBuilderWithSyntax<IBenchmarkBuilderContinutation> builder, string name, Func<IEnumerable<double>, double> func)
+        /// <param name="name">The name of the custom metric.</param>
+        public static IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> WithCustom(this IBenchmarkBuilderWithSyntax<IBenchmarkBuilderContinutation> builder, Func<IEnumerable<double>, double> func, string name)
         {
             return builder.WithCustom(new SingleValueMetric(name, func));
         }
@@ -19,9 +20,10 @@ namespace Agdur
         /// <summary>
         /// Specifies how the value of the custom metric should be calculated.
         /// </summary>
-        /// <param name="name">The name of the custom metric.</param>
+        /// <param name="builder"> </param>
         /// <param name="func">The metric.</param>
-        public static IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> WithCustom(this IBenchmarkBuilderWithSyntax<IBenchmarkBuilderContinutation> builder, string name, Func<IEnumerable<double>, IEnumerable<double>> func)
+        /// <param name="name">The name of the custom metric.</param>
+        public static IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> WithCustom(this IBenchmarkBuilderWithSyntax<IBenchmarkBuilderContinutation> builder, Func<IEnumerable<double>, IEnumerable<double>> func, string name)
         {
             return builder.WithCustom(new MultipleValueMetric(name, func));
         }
@@ -31,7 +33,7 @@ namespace Agdur
         /// </summary>
         public static IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> Average(this IBenchmarkBuilderWithSyntax<IBenchmarkBuilderContinutation> builder)
         {
-            return builder.WithCustom("average", data => data.Average());
+            return builder.WithCustom(data => Enumerable.Average((IEnumerable<double>) data), "average");
         }
 
         /// <summary>
@@ -41,7 +43,7 @@ namespace Agdur
         public static IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> First(this IBenchmarkBuilderWithSyntax<IBenchmarkBuilderContinutation> builder, int numberOfSamples)
         {
             Ensure.GreaterThanZero(numberOfSamples, "numberOfSamples");
-            return builder.WithCustom("first", data => data.Take(numberOfSamples));
+            return builder.WithCustom(data => data.Take(numberOfSamples), "first");
         }
 
         /// <summary>
@@ -49,7 +51,7 @@ namespace Agdur
         /// </summary>
         public static IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> Max(this IBenchmarkBuilderWithSyntax<IBenchmarkBuilderContinutation> builder)
         {
-            return builder.WithCustom("maximum", data => data.Max());
+            return builder.WithCustom(data => Enumerable.Max((IEnumerable<double>) data), "maximum");
         }
 
         /// <summary>
@@ -57,7 +59,7 @@ namespace Agdur
         /// </summary>
         public static IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> Min(this IBenchmarkBuilderWithSyntax<IBenchmarkBuilderContinutation> builder)
         {
-            return builder.WithCustom("minimum", data => data.Min());
+            return builder.WithCustom(data => Enumerable.Min((IEnumerable<double>) data), "minimum");
         }
 
         /// <summary>
@@ -65,7 +67,7 @@ namespace Agdur
         /// </summary>
         public static IBenchmarkBuilderInSyntax<IBenchmarkBuilderContinutation> Total(this IBenchmarkBuilderWithSyntax<IBenchmarkBuilderContinutation> builder)
         {
-            return builder.WithCustom("total", data => data.Sum());
+            return builder.WithCustom(data => Enumerable.Sum((IEnumerable<double>) data), "total");
         }
     }
 }

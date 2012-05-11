@@ -39,20 +39,20 @@ namespace Agdur.Tests
         public void Multiple_custom_metrics()
         {
             tbuilder
-                .WithCustom("custom", data => data.Sum()).InTicks()
-                .WithCustom("custom", data => data.Sum()).InTicks();
+                .WithCustom(data => Enumerable.Sum((IEnumerable<double>) data), "custom").InTicks()
+                .WithCustom(data => Enumerable.Sum((IEnumerable<double>) data), "custom").InTicks();
         }
 
         [Test]
         public void Custom_simplified_single_metric()
         {
-            tbuilder.WithCustom("custom", data => data.Sum());
+            tbuilder.WithCustom(data => Enumerable.Sum((IEnumerable<double>) data), "custom");
         }
 
         [Test]
         public void Custom_simplified_multiple_metric()
         {
-            tbuilder.WithCustom("custom", data => data);
+            tbuilder.WithCustom(data => data, "custom");
         }
 
         [Test]
