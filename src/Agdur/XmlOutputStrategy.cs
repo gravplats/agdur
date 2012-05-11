@@ -45,7 +45,9 @@ namespace Agdur
             public void Visit(SingleValueMetric metric)
             {
                 Ensure.ArgumentNotNull(metric, "metric");
-                writer.WriteElementString(metric.Name, metric.GetValue());
+
+                string output = Format(metric.GetValue(), metric.UnitOfMeasurement);
+                writer.WriteElementString(metric.Name, output);
             }
 
             /// <inheritdoc/>
@@ -60,10 +62,17 @@ namespace Agdur
                     writer.WriteAttributeString("index", index.ToString());
 
                     string value = values[index];
-                    writer.WriteString(value);
+                    string output = Format(value, metric.UnitOfMeasurement);
+
+                    writer.WriteString(output);
 
                     writer.WriteEndElement();
                 }
+            }
+
+            private static string Format(string value, string unitOfMeasurement)
+            {
+                return string.Format("{0} {1}", value, unitOfMeasurement);
             }
         }
     }

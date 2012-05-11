@@ -12,9 +12,9 @@ namespace Agdur.Tests
             string xml = 
                 "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n" +
                 "<benchmark>\r\n" +
-                "  <single>100</single>\r\n" +
-                "  <multiple index=\"0\">50</multiple>\r\n" +
-                "  <multiple index=\"1\">75</multiple>\r\n" +
+                "  <single>100 ticks</single>\r\n" +
+                "  <multiple index=\"0\">50 ticks</multiple>\r\n" +
+                "  <multiple index=\"1\">75 ticks</multiple>\r\n" +
                 "</benchmark>";
 
             Assert.That(result, Is.EqualTo(xml));
