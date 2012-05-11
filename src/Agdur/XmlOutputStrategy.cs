@@ -12,7 +12,8 @@ namespace Agdur
         /// <inheritdoc/>
         public void Execute(TextWriter writer, IList<IMetric> metrics)
         {
-            using (var xmlWriter = XmlWriter.Create(writer))
+            var settings = new XmlWriterSettings { Indent = true };
+            using (var xmlWriter = XmlWriter.Create(writer, settings))
             {
                 xmlWriter.WriteStartElement("benchmark");
 

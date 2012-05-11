@@ -9,7 +9,15 @@ namespace Agdur.Tests
         {
             string result = BuildOutputUsing(new XmlOutputStrategy());
 
-            Assert.That(result, Is.EqualTo("<?xml version=\"1.0\" encoding=\"utf-16\"?><benchmark><single>100</single><multiple index=\"0\">50</multiple><multiple index=\"1\">75</multiple></benchmark>"));
+            string xml = 
+                "<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n" +
+                "<benchmark>\r\n" +
+                "  <single>100</single>\r\n" +
+                "  <multiple index=\"0\">50</multiple>\r\n" +
+                "  <multiple index=\"1\">75</multiple>\r\n" +
+                "</benchmark>";
+
+            Assert.That(result, Is.EqualTo(xml));
         }
     }
 }
