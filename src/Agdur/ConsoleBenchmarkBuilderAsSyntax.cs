@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 
 namespace Agdur
 {
@@ -24,11 +23,7 @@ namespace Agdur
         public void AsCustom(IOutputStrategy outputStrategy)
         {
             Ensure.ArgumentNotNull(outputStrategy, "outputStrategy");
-            using (var writer = new StringWriter())
-            {
-                string result = generator.Generate(writer, outputStrategy);
-                Console.WriteLine(result);
-            }
+            generator.Generate(Console.Out, outputStrategy);
         }
     }
 }

@@ -28,11 +28,11 @@ namespace Agdur
         public void AsCustom(IOutputStrategy outputStrategy)
         {
             Ensure.ArgumentNotNull(outputStrategy, "outputStrategy");
+            
             using (var stream = File.Open(path, FileMode.CreateNew))
             using (var writer = new StreamWriter(stream))
             {
-                string result = generator.Generate(writer, outputStrategy);
-                writer.WriteLine(result);
+                generator.Generate(writer, outputStrategy);
             }
         }
     }

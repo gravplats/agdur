@@ -25,13 +25,12 @@ namespace Agdur
         /// <param name="writer">The writer that should be used to generate the output.</param>
         /// <param name="outputStrategy">The output strategy that should be used to generate the output.</param>
         /// <returns>The output of a benchmark.</returns>
-        public string Generate(TextWriter writer, IOutputStrategy outputStrategy)
+        public void Generate(TextWriter writer, IOutputStrategy outputStrategy)
         {
             Ensure.NotNull(writer, "writer");
             Ensure.NotNull(outputStrategy, "outputStrategy");
 
             builder.ToCustom(writer).AsCustom(outputStrategy);
-            return writer.ToString();
         }
     }
 }
