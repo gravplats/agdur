@@ -33,7 +33,7 @@ namespace Agdur
         /// <inheritdoc/>
         public IBenchmarkBuilderInSyntax<ISingleBenchmarkBuilderContinuation> Value(string value = null)
         {
-            value = value ?? "single";
+            value = value ?? "value";
 
             var metric = new SingleValueMetric(value, data => data.Single()) { Samples = samples };
             metrics.Add(metric);
