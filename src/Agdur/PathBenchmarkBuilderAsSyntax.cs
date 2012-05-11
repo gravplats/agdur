@@ -29,7 +29,7 @@ namespace Agdur
         {
             Ensure.ArgumentNotNull(outputStrategy, "outputStrategy");
             
-            using (var stream = File.Open(path, FileMode.CreateNew))
+            using (var stream = File.Open(path, FileMode.Create))
             using (var writer = new StreamWriter(stream))
             {
                 builder.ToCustom(writer).AsCustom(outputStrategy);

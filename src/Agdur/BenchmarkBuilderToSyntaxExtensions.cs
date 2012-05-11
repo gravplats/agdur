@@ -14,7 +14,7 @@ namespace Agdur
 
         /// <summary>
         /// Writes the output to the specified path or filename. If a filename or relative path is specified it will be
-        /// relative the current base directory of the executing app domain.
+        /// relative the current base directory of the executing app domain. If the file exists, it will be overwritten.
         /// </summary>
         /// <param name="filenameOrPath"></param>
         public static IBenchmarkBuilderAsSyntax ToPath(this IBenchmarkBuilderToSyntax builder, string filenameOrPath)
