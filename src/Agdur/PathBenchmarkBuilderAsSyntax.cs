@@ -7,21 +7,21 @@ namespace Agdur
     /// </summary>
     public class PathBenchmarkBuilderAsSyntax : IBenchmarkBuilderAsSyntax
     {
-        private readonly TextGenerator generator;
+        private readonly IBenchmarkBuilderToSyntax builder;
         private readonly string path;
 
         /// <summary>
         /// Creates a new instance of the <see cref="PathBenchmarkBuilderAsSyntax"/> class.
         /// </summary>
-        /// <param name="generator">The text generator.</param>
+        /// <param name="builder">The builder.</param>
         /// <param name="path">The path that the output should be written to.</param>
-        public PathBenchmarkBuilderAsSyntax(TextGenerator generator, string path)
+        public PathBenchmarkBuilderAsSyntax(IBenchmarkBuilderToSyntax builder, string path)
         {
-            Ensure.ArgumentNotNull(generator, "generator");
+            Ensure.ArgumentNotNull(builder, "builder");
             Ensure.NotNullOrEmpty(path, "path");
-            
-            this.generator = generator;
-            this.path = path;
+
+            this.builder = builder;
+            this.path = path;            
         }
 
         /// <inheritdoc/>
@@ -32,7 +32,7 @@ namespace Agdur
             using (var stream = File.Open(path, FileMode.CreateNew))
             using (var writer = new StreamWriter(stream))
             {
-                generator.Generate(writer, outputStrategy);
+                builder.ToCustom(writer).AsCustom(outputStrategy);
             }
         }
     }

@@ -42,7 +42,6 @@
     <Compile Include="BenchmarkBuilderAsSyntax.cs" />
     <Compile Include="BenchmarkBuilderInSyntaxExtensions.cs" />
     <Compile Include="BenchmarkBuilderToSyntaxExtensions.cs" />
-    <Compile Include="ConsoleBenchmarkBuilderAsSyntax.cs" />
     <Compile Include="FormattedOutputStrategy.cs" />
     <Compile Include="IOutputStrategy.cs" />
     <Compile Include="IBenchmarkBuilderAsSyntax.cs" />
@@ -59,7 +58,6 @@
     <Compile Include="PathGenerator.cs" />
     <Compile Include="SamplesExtensions.cs" />
     <Compile Include="SingleValueMetric.cs" />
-    <Compile Include="TextGenerator.cs" />
     <Compile Include="Benchmark.cs" />
     <Compile Include="DefaultBenchmarkStrategy.cs" />
     <Compile Include="IBenchmarkStrategy.cs" />

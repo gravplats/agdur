@@ -1,4 +1,6 @@
-﻿namespace Agdur
+﻿using System;
+
+namespace Agdur
 {
     public static class BenchmarkBuilderToSyntaxExtensions
     {
@@ -7,8 +9,7 @@
         /// </summary>
         public static IBenchmarkBuilderAsSyntax ToConsole(this IBenchmarkBuilderToSyntax builder)
         {
-            var generator = new TextGenerator(builder);
-            return new ConsoleBenchmarkBuilderAsSyntax(generator);
+            return builder.ToCustom(Console.Out);
         }
 
         /// <summary>
@@ -20,10 +21,8 @@
         {
             Ensure.NotNullOrEmpty(filenameOrPath, "filenameOrPath", "Please specify a valid path or filename");
 
-            var generator = new TextGenerator(builder);
             string path = PathGenerator.Generate(filenameOrPath);
-            
-            return new PathBenchmarkBuilderAsSyntax(generator, path);
+            return new PathBenchmarkBuilderAsSyntax(builder, path);
         }
     }
 }
