@@ -21,9 +21,9 @@ namespace Agdur
         }
 
         /// <inheritdoc/>
-        public IBenchmarkBuilderInSyntax<ISingleBenchmarkBuilderContinuation> Once()
+        public ISingleBenchmarkBuilderWithSyntax<ISingleBenchmarkBuilderContinuation> Once()
         {
-            return CreateBuilder(1).Value();
+            return CreateBuilder(1);
         }
 
         /// <inheritdoc/>
