@@ -9,7 +9,7 @@ properties {
     $sourceDirectory  = "$path\src"
     $solution         = "$sourceDirectory\Agdur.sln"	
     $toolsDirectory   = "$path\tools\"
-    $version          = "0.6"
+    $version          = "1.0"
 }
 
 $framework = '4.0'
@@ -29,7 +29,7 @@ task build -depends clean {
         -description "Micro-benchmarking for the .NET framework" `
         -product "Agdur" `
         -version $version `
-        -copyright "Copyright (C) Mattias Rydengren 2011" `
+        -copyright "Copyright (C) Mattias Rydengren 2011-2013" `
 
     msbuild $solution /p:OutDir=$buildDirectory /p:Configuration=Release | Out-Null
 }
@@ -53,8 +53,8 @@ task nuget -depends release {
         -version $version `
         -description "Agdur is a simple micro-benchmarking library for the .NET framework." `
         -author "Mattias Rydengren" `
-        -licenseUrl "https://github.com/mrydengren/agdur/blob/master/license.txt" `
-        -projectUrl "https://github.com/mrydengren/agdur" `
+        -licenseUrl "https://github.com/coderesque/agdur/blob/master/LICENSE" `
+        -projectUrl "https://github.com/coderesque/agdur" `
         -tags "agdur benchmarking"
         
     Copy-Item -Destination $nugetDirectory\lib\net40 -LiteralPath `
