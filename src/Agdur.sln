@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agdur", "Agdur\Agdur.csproj", "{090F8A80-66AD-4B95-A1FE-E9EA49448B8F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agdur.Tests", "Agdur.Tests\Agdur.Tests.csproj", "{2F25C786-540A-4B9E-BB6A-850B5C725853}"
@@ -8,8 +8,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D3065F07-98EC-4986-AD43-A58FCADFEC36}"
 	ProjectSection(SolutionItems) = preProject
 		..\how to build.txt = ..\how to build.txt
-		..\license.txt = ..\license.txt
-		..\README.markdown = ..\README.markdown
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
 Global
