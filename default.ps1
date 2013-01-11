@@ -62,6 +62,6 @@ task nuget -depends release {
         $buildDirectory\Agdur.pdb, `
         $buildDirectory\Agdur.xml 
     
-    & nuget pack $nugetDirectory\Agdur.nuspec -o $nugetDirectory | Out-Null
+    & $toolsDirectory\nuget-cli\nuget.exe pack $nugetDirectory\Agdur.nuspec -o $nugetDirectory | Out-Null
     Remove-Item -LiteralPath $nugetDirectory\lib, $nugetDirectory\Agdur.nuspec -Force -Recurse -ErrorAction SilentlyContinue
 }
