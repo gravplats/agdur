@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Agdur</id>
+    <version></version>
+    <description>Agdur is a simple micro-benchmarking library for the .NET framework.</description>
+    <authors>Mattias Rydengren</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/coderesque/agdur/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/coderesque/agdur</projectUrl>
+    <tags>agdur benchmarking</tags>
+  </metadata>
+</package>

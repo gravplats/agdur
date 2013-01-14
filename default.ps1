@@ -2,14 +2,20 @@
 include .\extensions.ps1
 
 properties {
-    $path             = resolve-path .
-    $buildDirectory   = "$path\build\"
-    $nugetDirectory   = "$path\nuget"
-    $releaseDirectory = "$path\release\"
-    $sourceDirectory  = "$path\src"
-    $solution         = "$sourceDirectory\Agdur.sln"	
-    $toolsDirectory   = "$path\tools\"
-    $version          = "1.0"
+    $path            = resolve-path .
+    
+	$path_build		 = "$path\build"
+	$path_binaries   = "$path_build\binaries\"
+	$path_nuget      = "$path_build\nuget\"
+    $path_release    = "$path_build\release\"
+    $nuspec			 = "$path_nuget\Agdur.nuspec"
+	
+	$path_source     = "$path\src"
+    $solution        = "$path_source\Agdur.sln"	
+    
+	$path_tools      = "$path\tools\"
+    
+	$version         = "1.0"
 }
 
 $framework = '4.0'
@@ -17,51 +23,48 @@ $framework = '4.0'
 task default -depends release
 
 task clean {
-    Remove-Item -Force -Recurse -ErrorAction SilentlyContinue -LiteralPath $buildDirectory, $nugetDirectory, $releaseDirectory
+    Remove-Item -Force -Recurse -ErrorAction SilentlyContinue -LiteralPath $path_build
 }
 
 task build -depends clean {
-    New-Item $buildDirectory -ItemType Directory | Out-Null
+    New-Item $path_binaries -ItemType Directory | Out-Null
 
     Generate-Assembly-Info `
-        -file "$sourceDirectory\Agdur\Properties\AssemblyInfo.cs" `
+        -file "$path_source\Agdur\Properties\AssemblyInfo.cs" `
         -title "Agdur $version" `
         -description "Micro-benchmarking for the .NET framework" `
         -product "Agdur" `
         -version $version `
         -copyright "Copyright (C) Mattias Rydengren 2011-2013" `
 
-    msbuild $solution /p:OutDir=$buildDirectory /p:Configuration=Release | Out-Null
+    msbuild $solution /p:OutDir=$path_binaries /p:Configuration=Release | Out-Null
 }
 
 task release -depends build {
-    New-Item $releaseDirectory -ItemType Directory | Out-Null
+    New-Item $path_release -ItemType Directory | Out-Null
 
-    & $toolsDirectory\7-zip\7za.exe a $releaseDirectory\agdur-$version-release-net-4.0.zip `
-        $buildDirectory\Agdur.dll `
-        $buildDirectory\Agdur.pdb `
-        $buildDirectory\Agdur.xml `
-        license.txt | Out-Null
+    & $path_tools\7-zip\7za.exe a $path_release\agdur-$version-release-net-4.0.zip `
+        $path_binaries\Agdur.dll `
+        $path_binaries\Agdur.pdb `
+        $path_binaries\Agdur.xml `
+        LICENSE | Out-Null
 }
 
 task nuget -depends release {
-    New-Item $nugetDirectory\lib\net40 -ItemType Directory | Out-Null
+    New-Item $path_nuget\lib\net40 -ItemType Directory | Out-Null
+	
+	Copy-Item Agdur.nuspec $path_nuget
         
-    Generate-NuGet-Spec `
-        -file "$nugetDirectory\Agdur.nuspec" `
-        -id "Agdur" `
-        -version $version `
-        -description "Agdur is a simple micro-benchmarking library for the .NET framework." `
-        -author "Mattias Rydengren" `
-        -licenseUrl "https://github.com/coderesque/agdur/blob/master/LICENSE" `
-        -projectUrl "https://github.com/coderesque/agdur" `
-        -tags "agdur benchmarking"
-        
-    Copy-Item -Destination $nugetDirectory\lib\net40 -LiteralPath `
-        $buildDirectory\Agdur.dll, `
-        $buildDirectory\Agdur.pdb, `
-        $buildDirectory\Agdur.xml 
+	# Update version in nuspec.
+	$content = [xml](Get-Content $nuspec)
+	$content.package.metadata.version = $version
+	$content.Save($nuspec)
+	
+    Copy-Item -Destination $path_nuget\lib\net40 -LiteralPath `
+        $path_binaries\Agdur.dll, `
+        $path_binaries\Agdur.pdb, `
+        $path_binaries\Agdur.xml 
     
-    & $toolsDirectory\nuget-cli\nuget.exe pack $nugetDirectory\Agdur.nuspec -o $nugetDirectory | Out-Null
-    Remove-Item -LiteralPath $nugetDirectory\lib, $nugetDirectory\Agdur.nuspec -Force -Recurse -ErrorAction SilentlyContinue
+    & $path_tools\nuget-cli\nuget.exe pack $nuspec -o $path_nuget | Out-Null
+    Remove-Item -LiteralPath $path_nuget\lib, $nuspec -Force -Recurse -ErrorAction SilentlyContinue
 }
