@@ -1,33 +1,39 @@
-# This script is derived from the dotless build script.
 include .\extensions.ps1
 
 properties {
+    # name of solution and nuspec.
     $name                   = "Agdur"
     $version                = "1.0"
     
     # files that should be part of the nuget.
-    $nuget_package_files    = @( "$name.???")
-
+    $nuget_package_files    = @( "$name.???" )    
+    
+    # shouldn't normally be any need change the variables below this comment.
     $root                   = Resolve-Path .
+    $root_parent            = Resolve-Path "$root\.."
+
+    # build
+	$build_path             = "$root\build"
+	$build_binaries_path    = "$build_path\binaries\"
+    $build_nuget_path       = "$build_path\nuget"    
+   
+    # source
+	$source_path            = "$root\src"
+    $solution_file          = "$source_path\$name.sln"
     
     # nuget
     $nuspec                 = "$name.nuspec"
-    $nuspec_file            = "$root\$nuspec"
-    
-    # build
-    $build_path             = "$root\build"
-    $build_binaries_path    = "$build_path\binaries\"
-    $build_nuget_path       = "$build_path\nuget"
     $nuspec_build_file      = "$build_path\nuget\$nuspec"
-    
-    # source
-    $source_path            = "$root\src"
-    $solution_file          = "$source_path\$name.sln"    
+    $nuspec_file            = "$root\$nuspec"
+
+    $nuget_apikey_path      = "$root_parent\nuget.apikey"
+    $nuget_executable       = "$source_path\.nuget\NuGet.exe"
+    $nuget_package          = "$build_nuget_path\$name.$version.nupkg"
 }
 
 Framework "4.0"
 
-task default -depends build
+task Default -depends build
 
 task clean {
     Remove-Item -Force -Recurse -ErrorAction SilentlyContinue -LiteralPath $build_path
@@ -38,7 +44,7 @@ task build -depends clean {
     $metadata = ([xml](Get-Content $nuspec_file)).package.metadata
     
     # the AssemblyVersionAttribute is no fan of beta versions and will fail the build, thus
-    # we will be using the syntax major[.minor[.patch]].alpha-version in AssemblyInfo.
+    # we will be using the syntax major[.minor[.patch]].beta-version in AssemblyInfo.
     $assembly_version = $version -replace '(\d+\\.)?(\d+\\.)?(\d+)-beta(\d+)', '$1$2$3.$4'
     
     Generate-Assembly-Info `
@@ -50,7 +56,22 @@ task build -depends clean {
         -copyright "Copyright (c) Mattias Rydengren 2013"
 
     New-Item $build_binaries_path -ItemType Directory | Out-Null
-    msbuild $solution_file /p:OutDir=$build_binaries_path /p:Configuration=Release /v:q
+    exec { msbuild $solution_file /p:OutDir=$build_binaries_path /p:Configuration=Release /v:q }
+}
+
+task test -depends build {
+    $test_runner_executable = Resolve-Path "$root\packages\NUnit.Runners.*\tools\nunit-console-x86.exe"
+    $published_websites_path = "$build_binaries_path\_PublishedWebsites"
+    
+    if (Test-Path $published_websites_path) {
+        # make sure tests find web project, if needed.
+        Move-Item $published_websites_path\$name.Web $build_binaries_path
+        Remove-Item $published_websites_path       
+    }
+    
+    Get-Item $build_binaries_path\*Tests*.dll |% {
+        exec { & $test_runner_executable $_ /noresult }
+    }
 }
 
 task nuget -depends build {
@@ -66,5 +87,14 @@ task nuget -depends build {
 	$content.package.metadata.version = $version
 	$content.Save($nuspec_build_file)
     
-    & "$source_path\.nuget\NuGet.exe" pack $nuspec_build_file -o $build_nuget_path | Out-Null
+    exec { & $nuget_executable pack $nuspec_build_file -o $build_nuget_path }
+}
+
+task publish -depends test, nuget {
+    if ((Test-Path $nuget_apikey_path) -eq $false) {
+        return Write-Host "Missing NuGet API key: $nuget_apikey_path" -ForegroundColor Red        
+    }
+
+    $apikey = Get-Content $nuget_apikey_path
+    exec { & $nuget_executable push $nuget_package $apikey }
 }
